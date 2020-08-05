@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Introduction.css';
+import './Introduction.scss';
 
 import BG from '../../assets/img/INTRO_BACKGROUND2.png';
 

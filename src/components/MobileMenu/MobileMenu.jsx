@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './MobileMenu.css';
+import './MobileMenu.scss';
 
 import { faBars } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

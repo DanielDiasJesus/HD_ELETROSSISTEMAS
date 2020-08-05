@@ -1,6 +1,7 @@
 import React from 'react'
 
-import './DesktopMenu.css'
+// import './DesktopMenu.css'
+import './DesktopMenu.scss'
 import { faInstagram, faFacebookSquare, faLinkedinIn } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
