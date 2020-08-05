@@ -1,0 +1,196 @@
+.topbar__desktop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    font-family: 'Roboto';
+    font-size: 1.642em;
+    
+    /* border: solid 0.2em violet; */
+
+    width: 100%;
+}
+
+.topbar__desktop__logo{
+    padding: .3em;
+    max-width: 9em;
+}
+
+.topbar__desktop__logo img{
+    width: 100%;
+}
+
+.topbar__desktop__menu > ul{
+    display: flex;
+    /* justify-content: space-between; */
+    
+    align-items: center;
+    
+    width: 100%;
+
+    padding:0em 0em;
+    margin: 0;
+    
+    list-style-type: none;
+}
+.topbar__desktop__menu > ul > a > li{
+    position: relative;
+    
+
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    
+    text-align: center;
+    
+    padding:0.4em 2em;
+
+    cursor: pointer;
+}
+.topbar__desktop__menu > ul > a{
+    text-decoration: none;
+    color: #1b1b1b;
+    font-weight: 500;
+    
+    /* border: .2em solid black; */
+}
+
+.topbar__desktop__menu > ul > a::after{
+    display: flex;
+    
+    content: "";
+
+    padding: 0em;
+    margin-top: .5em;
+    
+    border-bottom: solid .2em #1a78a3;
+    transform: scaleX(0);
+    transition: transform .2s ease-in-out;
+}
+.topbar__desktop__menu > ul > a:hover::after{
+    transform: scaleX(.7);
+}
+/* 
+.topbar__desktop__menu > ul > a:first-child::after{
+    transform: scaleX(0);
+    transform-origin: 0% 0%;
+}
+.topbar__desktop__menu > ul > a:last-child::after{
+    transform: scaleX(0);
+    transform-origin: 100% 0%;
+}
+.topbar__desktop__menu > ul > a:last-child:hover::after, .topbar__desktop__menu > ul > a:first-child:hover::after{
+    transform: scaleX(.7);   
+} */
+
+.topbar__desktop__menu > ul > a > li:hover{
+    color: #1a78a3;
+}
+
+.topbar__desktop__menu > ul > a:hover  .topbar__desktop__menu__submenu{
+    position: absolute;
+
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    align-self: center;
+    
+    list-style-type: none;
+    padding: 0;
+
+    animation: grow .2s linear;
+    top: 100%;
+    /* border: .2em solid black; */
+    
+    margin-top: .8em;
+}
+.topbar__desktop__menu__submenu{
+    display: none;
+    width: 20em;
+    background: #f8f8f8;
+}
+.topbar__desktop__menu__submenu li{
+    width: 50%;
+    color: #2c2c2c;
+    padding: .6em 0em;
+
+    background: #f8f8f8;
+    transition: background .18s ease-in;
+    font-size: .95em;
+}
+.topbar__desktop__menu__submenu li:hover {
+    color: #1a78a3;
+    background: #cfcfcf;
+}
+
+.topbar__social{
+    display: flex;
+    justify-content: space-between;
+
+    max-width: 9.5em;
+    
+}
+.topbar__social a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 50%;
+
+    /* border: solid 0.2em blueviolet; */
+
+    width: 100%;
+}
+.topbar__social__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+    /* border: solid 0.2em red; */
+
+    margin: 0em 0.2em;
+
+    border-radius: 50%;
+    padding: 0.8em;
+    
+    width: 100%;
+}
+.topbar__social__item .i{
+    color: #b3b3b3;
+    border-radius: 50%;
+    
+    width: 100%;
+    height: 100%;
+}
+.topbar__social a:hover{
+    animation: fade 0.3s linear;
+    background: #d8d8d8;
+}
+
+.topbar__social a:hover #instagram{
+    color:rgb(255, 0, 64);
+}
+.topbar__social a:hover #facebook{
+    color: rgb(64, 100, 173);
+}
+.topbar__social a:hover #linkedin{
+    color: rgb(2, 113, 174);
+}
+@keyframes fade{
+    0%{
+        background: #efefef;
+    }
+    100%{
+        background: #d8d8d8;
+    }
+}
+@keyframes grow{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "services": [
+        {
+            "servico": "ELÉTRICA",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+            "proficiency": [1,2,3,4,5],
+            "photo": "ELETRICA.jpg",
+            "iconCode": "ELETRICA2.png"
+        },
+        {
+            "servico": "PINTURA",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+            "proficiency": [1,2,3,4,5],
+            "photo": "PINTURA.jpeg",
+            "iconCode": "PINTURA.png"
+        },
+        {
+            "servico": "HIDRÁULICA",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+            "proficiency": [1,2,3,4],
+            "photo": "HIDRAULICA.png",
+            "iconCode": "HIDRAULICA.png"
+            
+        },
+        {
+            "servico": "SOLDAGEM",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+            "proficiency": [1,2,3,4,5],
+            "photo": "SOLDAGEM.jpg",
+            "iconCode": "SOLDAGEM.png"
+        },
+        {
+            "servico": "ALVENARIA",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+            "proficiency": [1,2,3,4,5],
+            "photo": "ALVENARIA.jpg",
+            "iconCode": "ALVENARIA.png"
+        },
+        {
+            "servico": "MARCENARIA",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+            "proficiency": [1,2,3,4],
+            "photo": "MARCENARIA.jpg",
+            "iconCode": "MARCENARIA.png"
+        },
+        {
+            "servico": "CONSTRUÇÃO CIVIL",
+            "descricao": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+            "proficiency": [1,2,3,4],
+            "photo": "CONSTRUÇAO_CIVIL.jpg",
+            "iconCode": "CONSTRUCAO_CIVIL.png"
+        },
+        {
+            "servico": "ORÇAMENTO PERSONALIZADO",
+            "descricao":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+            "proficiency": [],
+            "photo": "PERSONALIZADO.jpg",
+            "iconCode":"PERSONALIZADO.png"
+        }
+    ]
+}

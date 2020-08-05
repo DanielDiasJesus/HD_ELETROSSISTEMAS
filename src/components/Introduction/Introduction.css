@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.introduction{
+    height: 56.1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    margin-top: 10.3em;
+
+    background-size: 120% 130%; 
+    background-attachment: fixed;
+}
+.introduction__budget{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    
+    padding: 3em 0em;
+    
+    border-radius: 20pt;
+    
+    height: 50%;
+    background-color: rgba(189, 227, 244, .7);
+}
+.introduction__budget__title{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    padding: 0;
+    margin: 0;
+}
+.introduction__budget__title h3{
+    font-size: 3em;
+    /* font-size: 30px; */
+    font-family: 'Montserrat';
+    font-style: normal;
+    text-align: center;
+    color: #125371;
+
+    margin: .7em;
+}
+
+.introuction__budget__call button:hover{
+    background: #efefef;
+    color: #1a78a3;
+}
+
+.introuction__budget__call button{
+    cursor: pointer;
+    
+    padding: 1.4em;
+    border: none;
+    border-radius: 30pt;
+    
+    font-size: 1.5em;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 900;
+    
+    color: #125371;
+    background: #f8f8f8;
+
+    transition: background 200ms linear;
+}
+.introuction__budget__call button:focus{
+    outline: none;
+}
+@media screen and (max-width: 653px){
+    .introduction{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-size: cover !important;
+        background-position: 0 0 !important;
+        
+        height: 100%;
+        margin-top: 9.6em;
+    }
+    .introduction__budget{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        
+        width: 100%;
+        height: 100%;
+        
+        border-radius: 0;
+
+        padding: 4em 0em;
+        margin: 0 !important;
+    }
+    .introduction__budget__title{
+        flex-direction: column;
+
+        /* border: .2em solid black; */
+    }
+    .introuction__budget__call{
+        margin-top: 2em;
+        /* border: .2em solid black; */
+    }
+    .introduction__budget__title h3{
+        width: 98%;
+
+        text-align: center;
+        /* font-size: 1.5em; */
+    }
+}
