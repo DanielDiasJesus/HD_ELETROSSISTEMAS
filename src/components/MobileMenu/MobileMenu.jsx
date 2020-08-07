@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './MobileMenu.scss';
 
-import { faBars } from "@fortawesome/free-solid-svg-icons"
+import { faBars, faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function MobileMenu(props) {
@@ -19,7 +19,7 @@ export default function MobileMenu(props) {
     return (
         <div className="topbar__mobile">
             <div className="topbar__mobile__logo">
-                <img src={require('../../assets/img/HDE LOGO_MOBILE.png')} alt="logo2"></img>
+                <img src={require('../../assets/img/HDE_LOGO_DESKTOP.png')} alt="logo2"></img>
             </div>
             <div className={`topbar__mobile__icon--${toggleMenu ? "spin" : "nips"}`}>
                 <FontAwesomeIcon icon={faBars} className="i" onClick={handleToggleMenu} />
@@ -31,7 +31,10 @@ export default function MobileMenu(props) {
                         <p>SOBRE A HD</p>
                     </li>
                     <li>
-                        <p onClick={handleClickSubmenu}>SERVIÇOS</p>
+                        <p onClick={handleClickSubmenu}>
+                            SERVIÇOS
+                            <FontAwesomeIcon icon={faPlus} className={`i--${toggleSubMenu ? "show" : "hide"}`} />
+                        </p>                        
                         <div className={`topbar__mobile__menu__submenu--${toggleSubMenu ? "show" : "hide"}`}>
                             <ul className="topbar__mobile__menu__submenu">
                                 <li><p>ELÉTRICA</p></li>

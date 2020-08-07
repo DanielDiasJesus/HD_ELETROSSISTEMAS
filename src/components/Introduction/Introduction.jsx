@@ -5,7 +5,7 @@ import BG from '../../assets/img/INTRO_BACKGROUND2.png';
 
 export default function Introduction() {
     let [useMovement, setMovement] = useState([]);
-
+    
     let introductionStyle = {
         backgroundImage: `url(${BG})`,
         backgroundPosition: `${useMovement[0] * (-10 / 1100)}px ${useMovement[1] * (-10 / 1100)}px`
@@ -28,7 +28,7 @@ export default function Introduction() {
                     <h3>CONSTRUÇÕES ESTRATÉGICAMENTE PROJETADAS</h3>
                 </div>
                 <div className="introuction__budget__call">
-                    <button >FAÇA JÁ SEU ORÇAMENTO</button>
+                    <button>FAÇA JÁ SEU ORÇAMENTO</button>        
                 </div>
             </div>
         </div>

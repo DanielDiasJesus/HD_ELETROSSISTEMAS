@@ -27,8 +27,8 @@ export default function Services() {
         return styles;
     }
     return (
-        <div className="services">
-            <div className="services__info" id="SERVICOS">
+        <div className="services" id="services">
+            <div className="services__info">
                 <div className="services__info__title">
                     <h3 style={{opacity: 1}}>NOSSOS SERVIÇOS</h3>
                     <h3 style={{opacity: 0.4}}>NOSSOS SERVIÇOS</h3>

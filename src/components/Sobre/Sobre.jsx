@@ -1,6 +1,6 @@
 import React from 'react';
-
-export default function Clients(){
+import './Sobre.scss';
+export default function Sobre(){
     return(
         <div className="clients">
             
