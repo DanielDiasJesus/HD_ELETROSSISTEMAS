@@ -1,4 +1,5 @@
 import React, { useEffect, useState }from 'react';
+import { Link } from 'react-router-dom';
 
 import './DesktopMenu.scss';
 import { faInstagram, faFacebookSquare, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
@@ -9,7 +10,7 @@ export default function DesktopMenu() {
 
     function controlMenu(){
         return useScrollTop >  100 ? {
-            height : "4em"
+            height : "4.4em"
         }: null;
     }
 
@@ -19,10 +20,18 @@ export default function DesktopMenu() {
         }: null;
     }
 
-    function controlSubMenu(){
-        return useScrollTop >=  600 && useScrollTop <=  2650 ? {
-            display : "none"
-        }: null;
+    function controlSubMenu(ACTION){
+        switch (ACTION){
+            case "SERVICOS":
+                return useScrollTop >=  600 && useScrollTop <=  2690 ? {
+                    display : "none"
+                }: null;
+            case "CONTATOS":
+                return useScrollTop >=  600 && useScrollTop <=  2690 ? {
+                    display : "none"
+                }: null;
+            default: break;
+        }
     }
 
     function executeScroll( coord){
@@ -50,7 +59,7 @@ export default function DesktopMenu() {
                     </li>
                     <li onClick={event => executeScroll(600)}>
                         SERVIÇOS
-                        <ul className='topbar__desktop__menu__submenu' style={controlSubMenu()}>
+                        <ul className='topbar__desktop__menu__submenu' style={controlSubMenu("SERVICOS")}>
                             <li onClick={event => event.stopPropagation()}>
                                 ELÉTRICA
                             </li>
@@ -77,6 +86,14 @@ export default function DesktopMenu() {
                 
                     <li id="contato">
                         CONTATO
+                        <ul className='topbar__desktop__menu__submenu' style={controlSubMenu("CONTATO")}>
+                            <li onClick={event => event.stopPropagation()}>
+                                CHAT-BOT
+                            </li>
+                            <li  onClick={event => event.stopPropagation()}>
+                                JUNTE-SE A NÓS
+                            </li>
+                        </ul>
                     </li>
                     <li id="clientes">
                         CLIENTES

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import servicos from '../../data/servicos.json';
 // import './Services.css';
 import './Services.scss';
@@ -65,7 +67,7 @@ export default function Services() {
                         <div className="services__carroussel__service-slim__header" style={createStyleFlat(index)}>
                             <div className="services__carroussel__service-slim__header__logo">
                                 <img src={require(`../../assets/img/icons/${obj.iconCode}`)}
-                                    alt={obj.servicos} />
+                                    alt={obj.servico} />
                             </div>
                         </div>
                         <div className="animate" style={createStyleFlat(index)}></div>
@@ -78,7 +80,9 @@ export default function Services() {
                                 ))}
                             </div>
                         </div>
-                        <button className="services__carroussel__service-slim__orcamento" style={createStyleFlat(index, true)}> FAZER ORCAMENTO!</button>
+                        <Link to={`/orcamento/${obj.servico}`}>
+                            <button className="services__carroussel__service-slim__orcamento" style={createStyleFlat(index, true)}> FAZER ORCAMENTO!</button>
+                        </Link>
                     </div>
                 ))}
             </div>

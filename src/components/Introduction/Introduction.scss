@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
 .introduction{
     height: 56.1em;
 
@@ -12,6 +11,8 @@
 
     background-size: 120% 130%; 
     background-attachment: fixed;
+
+    clip-path: ellipse(100% 95% at 50% 0%);
 }
 .introduction__budget{
     display: flex;

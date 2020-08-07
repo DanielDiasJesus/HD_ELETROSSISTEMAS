@@ -1,17 +1,17 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+
 import TopBar from '../components/TopBar';
-import Introduction from '../components/Introduction';
-import Services from '../components/Services';
-import Sobre from '../components/Sobre';
+import Routes from '../routes';
 
 import './App.scss';
 function App() {
   return (
     <div className="App">
-      <TopBar />
-      <Introduction />
-      <Services />
-      <Sobre />
+      <BrowserRouter>
+        <TopBar />
+        <Routes />
+      </BrowserRouter>
     </div>
   );
 }

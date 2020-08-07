@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import './Introduction.scss';
 
 import BG from '../../assets/img/INTRO_BACKGROUND2.png';
@@ -28,7 +30,9 @@ export default function Introduction() {
                     <h3>CONSTRUÇÕES ESTRATÉGICAMENTE PROJETADAS</h3>
                 </div>
                 <div className="introuction__budget__call">
-                    <button>FAÇA JÁ SEU ORÇAMENTO</button>        
+                    <Link to="/orcamento">
+                        <button>FAÇA JÁ SEU ORÇAMENTO</button>        
+                    </Link>
                 </div>
             </div>
         </div>

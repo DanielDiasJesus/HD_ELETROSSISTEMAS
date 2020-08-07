@@ -6,14 +6,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function MobileMenu(props) {
     let [toggleMenu, setToggleMenu] = useState(false);
-    let [toggleSubMenu, setToggleSubMenu] = useState(false);
+    let [menuServices, setMenuServices] = useState(false);
+    let [menuContact, setMenuContacts] = useState(false);
 
     function handleToggleMenu() {
         setToggleMenu(!toggleMenu);
     }
 
-    function handleClickSubmenu() {
-        setToggleSubMenu(!toggleSubMenu);
+    function handleMenuServices() {
+        setMenuServices(!menuServices);
+    }
+    function handleMenuContacts() {
+        setMenuContacts(!menuContact);
     }
 
     return (
@@ -31,23 +35,33 @@ export default function MobileMenu(props) {
                         <p>SOBRE A HD</p>
                     </li>
                     <li>
-                        <p onClick={handleClickSubmenu}>
+                        <p onClick={handleMenuServices}>
                             SERVIÇOS
-                            <FontAwesomeIcon icon={faPlus} className={`i--${toggleSubMenu ? "show" : "hide"}`} />
+                            <FontAwesomeIcon icon={faPlus} className={`i--${menuServices ? "show" : "hide"}`} />
                         </p>                        
-                        <div className={`topbar__mobile__menu__submenu--${toggleSubMenu ? "show" : "hide"}`}>
+                        <div className={`topbar__mobile__menu__submenu--${menuServices ? "show" : "hide"}`}>
                             <ul className="topbar__mobile__menu__submenu">
                                 <li><p>ELÉTRICA</p></li>
                                 <li><p>PINTURA</p></li>
+                                <li><p>HIDRÁULICA</p></li>
                                 <li><p>SOLDAGEM</p></li>
-                                <li><p>CONSTRUÇÃO</p></li>
-                                <li><p>DESTRUÇÃO</p></li>
-                                <li><p>TESTING</p></li>
+                                <li><p>ALVENARIA</p></li>
+                                <li><p>MARCENARIA</p></li>
+                                <li><p>CONSTRUÇÃO CIVÍL</p></li>
                             </ul>
                         </div>
                     </li>
-                    <li id="contato">
-                        <p>CONTATO</p>
+                    <li>
+                        <p onClick={handleMenuContacts}>
+                            CONTATO
+                            <FontAwesomeIcon icon={faPlus} className={`i--${menuContact ? "show" : "hide"}`} />
+                        </p>
+                        <div className={`topbar__mobile__menu__submenu--${menuContact ? "show" : "hide"}`}>
+                            <ul className="topbar__mobile__menu__submenu">
+                                <li><p>CHAT-BOT</p></li>
+                                <li><p>JUNTE-SE A NÓS</p></li>
+                            </ul>
+                        </div>
                     </li>
                     <li id="clientes">
                         <p>CLIENTES</p>

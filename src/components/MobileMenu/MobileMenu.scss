@@ -1,3 +1,6 @@
+html{
+    touch-action: manipulation;
+}
 .topbar__mobile{
     display: flex;
     justify-content: space-between;
@@ -6,7 +9,9 @@
     width: 100%;
     
     background: #f8f8f8;
-
+    
+    // border: .2em solid black;
+    
     padding: 0em 1em;
 }
 .topbar__mobile__logo{
@@ -65,10 +70,10 @@
     /* align-items: center; */
     
     height: 55em;
-    width: 55%;
+    width: 80%;
     
     top: 8.8em;
-    right: -.1em;
+    right: 0%;
 
     margin: 0;
     padding: 0;
@@ -84,7 +89,7 @@
     /* align-items: center; */
     
     height: 52.6em;
-    width: 55%;
+    width: 80%;
     
     top: 8.8em;
     
@@ -152,6 +157,7 @@
     animation: fadeIn 100ms linear;
     /* border: .2em solid violet; */
 }
+
 .topbar__mobile__menu__submenu{
     display: flex;
     justify-content: center;
@@ -161,15 +167,13 @@
 
     padding: 0;
     margin: 0;
-    
+
     list-style-type: none;
 }
 .topbar__mobile__menu__submenu li{
     padding: 1.5em 0em;
     padding-left: 2em;
     width: 100%;
-    
-    /* border: .2em solid darkblue; */
 
     transition: background .18s ease-in;
 }
@@ -187,23 +191,19 @@
 
 @keyframes showMenu{
     from{
-        right: -55%;
-        /* opacity: 0; */
+        right: -80%;
     }
     to{
         right: 0%;
-        /* opacity: 1; */
     }
 }
 
 @keyframes hideMenu{
     from{
         right: 0%;
-        /* opacity: 1; */
     }
     to{
-        right: -55%;
-        /* opacity: 0; */
+        right: -80%;
     }
 }
 @keyframes fadeIn{
