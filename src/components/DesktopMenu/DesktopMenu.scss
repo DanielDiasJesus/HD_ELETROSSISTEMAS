@@ -56,8 +56,6 @@
     text-decoration: none;
     color: #1b1b1b;
     font-weight: 500;
-
-    cursor: pointer;
 }
 
 .topbar__desktop__menu > ul > li::after{
@@ -91,7 +89,12 @@
 .topbar__desktop__menu > ul > li:hover{
     color: #1a78a3;
 }
+.topbar__desktop__menu > ul > li > .link{
+    text-decoration: none;
 
+    color: #1b1b1b;
+    font-weight: 500;
+}
 .topbar__desktop__menu > ul > li:hover > .topbar__desktop__menu__submenu{
     position: absolute;
 
@@ -123,7 +126,7 @@
     background: #f8f8f8;
     transition: background .18s ease-in;
     font-size: .95em;
-    // border: .1em solid darkblue; 
+    cursor: pointer;
 }
 .topbar__desktop__menu__submenu li:hover {
     color: #1a78a3;

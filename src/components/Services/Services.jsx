@@ -80,7 +80,7 @@ export default function Services() {
                                 ))}
                             </div>
                         </div>
-                        <Link to={`/orcamento/${obj.servico}`}>
+                        <Link to={`/orcamento/${obj.servico.replace(" ", "-").toLowerCase()}`}>
                             <button className="services__carroussel__service-slim__orcamento" style={createStyleFlat(index, true)}> FAZER ORCAMENTO!</button>
                         </Link>
                     </div>

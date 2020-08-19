@@ -1,7 +1,7 @@
 import React from 'react';
 import Introduction from '../../components/Introduction';
 import Services from '../../components/Services';
-import Sobre from '../../components/Sobre';
+import About from '../../components/About';
 // import Contato from '../../components/Contato';
 // import Clientes from '../../components/Clientea';
 
@@ -10,7 +10,7 @@ export default function HomeRoute(){
         <>
             <Introduction />
             <Services />
-            <Sobre />
+            <About />
         </>
     );
 }

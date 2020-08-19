@@ -1,0 +1,204 @@
+.about{
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    // background: #f8f8f8;
+    background: #c2c2c2;
+}
+.about__header{
+    max-width: 50%;
+    // border: .1em solid black;
+}
+.about__header__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+.about__header__title h2{
+    padding:0;
+    margin:0;
+
+    font-family: 'Montserrat';
+    font-weight: bolder;
+    font-size: 5.2rem;
+    text-align: center;
+    // border: .1em solid black;
+    
+    color: #f8f8f8;
+}
+.about__header p{
+    margin: .5em 0em;
+    padding: 0em .5em;
+    
+    font-family: 'Roboto';
+    font-weight: bolder;
+    font-size: 1.65em;
+    line-height: 1.5em;
+    text-align: justify;
+
+    color: #2c2c2c;
+    // color: #1b1b1b;
+}
+.about__content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    // border: .1em solid black;
+    max-width: 90%;
+    margin-top: 3em;
+}
+.about__content__header{
+    margin-bottom: 3em;
+    max-width: 98%;
+}
+.about__content__header h3{
+    padding:0;
+    margin: .6em 0em;
+    
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 1.8em;
+    line-height: 1.7em;
+    text-align: justify;
+    
+    color: #2c2c2c;
+}
+.about__content__header h3 .destaque{
+    color: #f8f8f8;
+}
+.about__content__method{
+    max-width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .1em solid black;
+}
+.about__content__method__card{
+    width: 100%;
+    height: 35rem;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.about__content__method__card__header{
+    width: 100%;
+    height: 20em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about__content__method__card__header h3{
+    padding: 0;
+    margin: 0;
+    
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 3em;
+    line-height: 1.5em;
+    text-align: center;
+
+    color: #f8f8f8;
+}
+.about__content__method__card__content{
+    width: 98%;
+    margin: 2em 0em;
+    // border: .1em solid white;
+}
+.about__content__method__card__content h4{
+    margin: 0em .5em;
+    padding: 0;
+    
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 200;
+    font-size: 2em;
+    line-height: 1.5em;
+    text-align: justify;
+
+    color: #f8f8f8;;
+}
+.about__content__facts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    margin: 7em 0em;
+}
+.about__content__facts__header{
+    padding: 1em 2em;
+}
+.about__content__facts__header h3{
+    padding:0;
+    margin:0;
+    
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 1.8em;
+    line-height: 1.7em;
+    text-align: justify;
+    
+    color: #2c2c2c;
+}
+
+.about__content__facts__main{
+    width: 100%;
+
+    margin: 2em 0em;
+    padding: 4em 0em;
+
+    display: flex;
+    // align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    border-top: .2em solid #2c2c2c;
+}
+.about__content__facts__main__item{
+    width: 25%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+
+.about__content__facts__main__item__icon{
+    max-width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.about__content__facts__main__item__icon img{
+    width: 100%;
+}
+.about__content__facts__main__item__title h2{
+    padding:0;
+    margin:0;
+
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 4em;
+    line-height: 1.7em;
+    text-align: center;
+}
+.about__content__facts__main__item__subtitle{
+    max-width: 70%;
+}
+.about__content__facts__main__item__subtitle h3{
+    margin: 0;
+    padding: 0;
+    
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 1.6em;
+    line-height: 1.7em;
+    text-align: center;
+    
+    color: #2c2c2c;
+}
