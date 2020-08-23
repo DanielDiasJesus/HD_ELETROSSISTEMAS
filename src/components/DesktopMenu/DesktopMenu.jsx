@@ -2,32 +2,32 @@ import React, { useEffect, useState }from 'react';
 import { Link } from 'react-router-dom';
 
 import './DesktopMenu.scss';
-import { faInstagram, faFacebookSquare, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import servicos from '../../data/servicos.json';
 
 export default function DesktopMenu(props) {
     const [useScrollTop, setScrollTop] = useState(0);
+    const [useServices] = useState(servicos.services);
 
     function controlMenu(props){
-        return useScrollTop >  100 ? {
-            height : "4em"
+        return useScrollTop >  80 ? {
+            height : "3.5em"
         }: null;
     }
 
     function controlLogo(){
-        return useScrollTop >  100 ? {
-            maxWidth : "6em"
+        return useScrollTop >  80 ? {
+            maxWidth : "3.8em"
         }: null;
     }
-
+    
     function controlSubMenu(ACTION){
         switch (ACTION){
             case "SERVICOS":
-                return useScrollTop >=  600 && useScrollTop <=  2685 ? {
+                return useScrollTop >=  600 && useScrollTop <=  2550 ? {
                     display : "none"
                 }: null;
-            case "CONTATOS":
-                return useScrollTop >=  600 && useScrollTop <=  2690 ? {
+            case "CONTATO":
+                return useScrollTop >= 4259 ? {
                     display : "none"
                 }: null;
             default: break;
@@ -52,17 +52,12 @@ export default function DesktopMenu(props) {
 
     return (
         <div className="topbar__desktop" style={controlMenu()}>
-            <div className="topbar__desktop__logo" style={controlLogo()}>
-                <Link to="/">
-                    <img src={require('../../assets/img/HDE_LOGO_DESKTOP_BORDERED.png')} alt="logo2"></img>
-                </Link>
-            </div>
             <div className="topbar__desktop__menu">
                 <ul>    
                     <li>
                         <Link 
                             to="/" 
-                            onClick={event => executeScroll(2680)}
+                            onClick={event => executeScroll(2640)}
                             className="link"
                         >
                             SOBRE A HD
@@ -77,33 +72,24 @@ export default function DesktopMenu(props) {
                                 SERVIÇOS
                             </Link>
                             <ul className='topbar__desktop__menu__submenu' style={controlSubMenu("SERVICOS")}>
-                                <li onClick={event => event.stopPropagation()}>
-                                    ELÉTRICA
-                                </li>
-                                <li  onClick={event => event.stopPropagation()}>
-                                    PINTURA
-                                </li>
-                                <li  onClick={event => event.stopPropagation()}>
-                                    HIDRÁULICA
-                                </li>
-                                <li  onClick={event => event.stopPropagation()}>
-                                    SOLDAGEM
-                                </li>
-                                <li  onClick={event => event.stopPropagation()}>
-                                    ALVENARIA
-                                </li>
-                                <li  onClick={event => event.stopPropagation()}>
-                                    MARCENARIA
-                                </li>
-                                <li  onClick={event => event.stopPropagation()}>
-                                    CONSTRUÇÃO CIVÍL
-                                </li>
+                                {useServices.map((obj, index) =>(
+                                    <li onClick = {event => event.stopPropagation()} key={index}>
+                                        {obj.servico}
+                                    </li>
+                                ))}
                             </ul>
-                        </li>                    
+                        </li>
+                        <li id="logo">
+                            <div className="topbar__desktop__logo" style={controlLogo()}>
+                                <Link to="/" onClick={event => executeScroll(0)}>
+                                    <img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img>
+                                </Link>
+                            </div>
+                        </li>                 
                         <li id="contato">
                             <Link
                                 to="/"
-                                onClick={event => executeScroll(0)}
+                                onClick={event => executeScroll(4259)}
                                 className="link"
                             >
                                 CONTATO
@@ -117,34 +103,34 @@ export default function DesktopMenu(props) {
                                 </li>
                             </ul>
                         </li>                    
-                        <li id="clientes">
+                        <li>
                             <Link
                                 to="/"
                                 onClick={event => executeScroll(0)}
                                 className="link"
                             >
-                                CLIENTES
+                                CASES
                             </Link>
                         </li>
                 </ul>
             </div>
-            <div className="topbar__social">
+            {/* <div className="topbar__social">
                 <a href="https://www.instagram.com/hdeletrosistemas/?hl=pt-br" target="blank" rel="noopener noreferrer">
                     <div className="topbar__social__item">
-                        <FontAwesomeIcon icon={faInstagram} className="i" id="instagram" />
+                        <FontAwesomeIcon icon={faInstagram} className="i" />
                     </div>
                 </a>
                 <a href="facebook" target="blank" rel="noopener noreferrer">
                     <div className="topbar__social__item">
-                        <FontAwesomeIcon icon={faFacebookSquare} className="i" id="facebook" />
+                        <FontAwesomeIcon icon={faFacebookSquare} className="i" />
                     </div>
                 </a>
                 <a href="linkedin" target="blank" rel="noopener noreferrer">
                     <div className="topbar__social__item" >
-                        <FontAwesomeIcon icon={faLinkedinIn} className="i" id="linkedin" />
+                        <FontAwesomeIcon icon={faLinkedinIn} className="i" />
                     </div>
                 </a>
-            </div>
+            </div> */}
         </div>
     );
 }

@@ -7,10 +7,8 @@ import './TopBar.scss'
 export default function TopBar() {
     return (
         <div className="topbar">
-            {window.innerWidth > 653 ? 
-                <DesktopMenu />: 
-                <MobileMenu />
-            }
+            <DesktopMenu />
+            <MobileMenu />
         </div>
     )
 }

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 body {
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #d3e7f4;
+  background: #f8f8f8;
   
   font-size: 62.5%;
 }

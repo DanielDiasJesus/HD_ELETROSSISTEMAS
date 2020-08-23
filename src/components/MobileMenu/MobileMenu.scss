@@ -1,6 +1,4 @@
-html{
-    touch-action: manipulation;
-}
+html{touch-action: manipulation;}
 .topbar__mobile{
     display: flex;
     justify-content: space-between;
@@ -15,7 +13,7 @@ html{
     padding: 0em 1em;
 }
 .topbar__mobile__logo{
-    max-width: 14.4em;
+    max-width: 13em;
 }
 
 .topbar__mobile__logo img{
@@ -49,14 +47,14 @@ html{
     width: 100%;
     
     right: 0%;
-    top: 8.8em;
+    top: 8.1em;
     
     animation: fadeIn 200ms linear;
 }
 .topbar__mobile__blocktouch--unlock{
     position: absolute;
 
-    top: 8.8em;
+    top: 8.1em;
 
     height: 0%;
     width: 0%;
@@ -72,7 +70,7 @@ html{
     height: 55em;
     width: 80%;
     
-    top: 8.8em;
+    top: 8.1em;
     right: 0%;
 
     margin: 0;
@@ -91,7 +89,7 @@ html{
     height: 52.6em;
     width: 80%;
     
-    top: 8.8em;
+    top: 8.1em;
     
     margin: 0;
     padding: 0;

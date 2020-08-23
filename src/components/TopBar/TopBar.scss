@@ -18,25 +18,19 @@
     left: 0;
     top: 0;
 }
-
+.topbar__mobile{display: none;}
 @media screen and (max-width:939px){
     .topbar{
         padding: 0em 0.5em;
         margin: 0;
     }
-    .topbar__social{
-        display: none;
-    }
+    .topbar__social{display: none;}
 }
-@media screen and (max-width:653px){
+@media screen and (max-width:781px){
     .topbar{
         padding: 0;
         opacity: 1;
     }
-    .topbar__desktop{
-        display: none;
-    }
-    .topbar__social{
-        display: none;
-    }
+    .topbar__social, .topbar__desktop{display: none;}
+    .topbar__mobile{display: flex;}
 }

@@ -12,19 +12,15 @@ export default function Services() {
     const [useServices] = useState(servicos.services);
 
     function createStyleFlat(index, bool = false) {
-        const colorsSlim = ["rgba(000, 102, 255)", 
-                            "rgba(251, 000, 255)",
-                            "rgba(000, 214, 197)",
-                            "rgba(057, 227, 000)",
-                            "rgba(255, 000, 000)", 
-                            "rgba(207, 079, 000)",
-                            "rgba(255, 179, 000)", 
-                            "rgba(191, 191, 191)"];
-        const styles = !bool ? {
-            boxShadow: `inset 0em 0em 0em 15em ${colorsSlim[index]}`
-        } : {
-                color: colorsSlim[index]
-            }
+        // const colorsSlim = ["rgba(000, 102, 255)", 
+        //                     "rgba(251, 000, 255)",
+        //                     "rgba(000, 214, 197)",
+        //                     "rgba(057, 227, 000)",
+        //                     "rgba(255, 000, 000)", 
+        //                     "rgba(207, 079, 000)",
+        //                     "rgba(255, 179, 000)", 
+        //                     "rgba(191, 191, 191)"];
+        const styles = !bool ? {boxShadow: `inset 0em 0em 0em 15em ${"#B88C0B"}`} : {color: "#9C7909"}
 
         return styles;
     }
@@ -32,13 +28,10 @@ export default function Services() {
         <div className="services" id="services">
             <div className="services__info">
                 <div className="services__info__title">
-                    <h3 style={{opacity: 1}}>NOSSOS SERVIÇOS</h3>
-                    <h3 style={{opacity: 0.4}}>NOSSOS SERVIÇOS</h3>
-                    <h3 style={{opacity: 0.2}}>NOSSOS SERVIÇOS</h3>
-                    <h3 style={{opacity: 0.1}}>NOSSOS SERVIÇOS</h3>
+                    <h3>NOSSOS SERVIÇOS</h3>
                 </div>
                 <div className="services__info__description">
-                    <p>
+                    {/* <p>
                         <span className='services__info__description__icon'>
                             <FontAwesomeIcon icon={faStar} size="lg"/>
                         </span>
@@ -55,10 +48,9 @@ export default function Services() {
                             <FontAwesomeIcon icon={faStar} size="lg"/>
                         </span>
                         Garantido pela <span>tradicionalidade</span>, <span>confiabilidade</span> de nossos clientes e por <span>nossa marca ao longo do tempo.</span>
-                    </p>
-                    <p>
-                        Você pode escolher um serviço abaixo e fazer um orçamento em poucos cliques
-                    </p>
+                    </p> */}
+                    <p>Você pode escolher um serviço abaixo e fazer um orçamento com poucos cliques</p>
+                    {/* <p>Com a nossa ferramenta única de orçamento</p> */}
                 </div>
             </div>
             <div className="services__carroussel">
