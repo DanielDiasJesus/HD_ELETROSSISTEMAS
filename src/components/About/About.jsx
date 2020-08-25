@@ -27,8 +27,8 @@ export default function About(){
                         A partir disso, desenvolvemos a melhor solução existente atualmente no mercado: a <span className="destaque">HD Eletrossistemas.</span></h3>                    
                     <h3><span className="destaque">O trabalho da HD é refletido por nosso método único que consiste em 3 pilares:</span></h3>
                 </div>
-                <div className="about__content__method">
-                    <article className="about__content__method__card" style={{background: "#008ECC"}}> {/*989898*/}
+                {/* <div className="about__content__method">
+                    <article className="about__content__method__card" style={{background: "#008ECC"}}>
                         <div className="about__content__method__card__header">
                             <h3>Confiabilidade</h3>
                         </div>
@@ -41,7 +41,7 @@ export default function About(){
                             </h4>
                         </div>
                     </article>
-                    <article className="about__content__method__card" style={{background: "#006896"}}> {/*888888*/}
+                    <article className="about__content__method__card" style={{background: "#006896"}}> 
                         <div className="about__content__method__card__header">
                             <h3>Responsabilidade</h3>
                         </div>
@@ -54,7 +54,7 @@ export default function About(){
                             </h4>
                         </div>
                     </article>
-                    <article className="about__content__method__card" style={{background: "#005275"}}> {/*787878*/}
+                    <article className="about__content__method__card" style={{background: "#005275"}}> 
                         <div className="about__content__method__card__header">
                             <h3>Qualidade</h3>
                         </div>
@@ -66,8 +66,8 @@ export default function About(){
                             </h4>
                         </div>
                     </article>
-                </div>
-                <div className="about__content__facts">
+                </div> */}
+                {/* <div className="about__content__facts">
                     <div className="about__content__facts__header">
                         <h3>
                             Contamos com profissionais qualificados e experientes, com os melhores materiais e 
@@ -133,7 +133,7 @@ export default function About(){
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>  */}
             </div>
         </div>
     )

@@ -8,12 +8,10 @@ html{touch-action: manipulation;}
     
     background: #f8f8f8;
     
-    // border: .2em solid black;
-    
     padding: 0em 1em;
 }
 .topbar__mobile__logo{
-    max-width: 13em;
+    max-width: 8.7em;
 }
 
 .topbar__mobile__logo img{
@@ -47,15 +45,14 @@ html{touch-action: manipulation;}
     width: 100%;
     
     right: 0%;
-    top: 8.1em;
+    top: 9em;
     
     animation: fadeIn 200ms linear;
 }
 .topbar__mobile__blocktouch--unlock{
     position: absolute;
-
-    top: 8.1em;
-
+    top: 9em;
+    
     height: 0%;
     width: 0%;
 }
@@ -67,10 +64,11 @@ html{touch-action: manipulation;}
     justify-content: center;
     /* align-items: center; */
     
-    height: 55em;
+    // height: 53.8em;
+    height: 53em;
     width: 80%;
     
-    top: 8.1em;
+    top: 9em;
     right: 0%;
 
     margin: 0;
@@ -86,10 +84,10 @@ html{touch-action: manipulation;}
     justify-content: center;
     /* align-items: center; */
     
-    height: 52.6em;
+    height: 54em;
     width: 80%;
     
-    top: 8.1em;
+    top: 9em;
     
     margin: 0;
     padding: 0;

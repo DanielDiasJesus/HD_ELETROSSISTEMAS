@@ -11,6 +11,10 @@ export default function MobileMenu(props) {
 
     function handleToggleMenu() {
         setToggleMenu(!toggleMenu);
+        if(!toggleMenu)
+            document.body.style.overflow = "hidden";
+        else
+            document.body.style.overflow = "auto";
     }
 
     function handleMenuServices() {
@@ -23,7 +27,7 @@ export default function MobileMenu(props) {
     return (
         <div className="topbar__mobile">
             <div className="topbar__mobile__logo">
-                <img src={require('../../assets/img/HDE_LOGO_BLUE.png')} alt="logo2"></img>
+                <img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img>
             </div>
             <div className={`topbar__mobile__icon--${toggleMenu ? "spin" : "nips"}`}>
                 <FontAwesomeIcon icon={faBars} className="i" onClick={handleToggleMenu} />
