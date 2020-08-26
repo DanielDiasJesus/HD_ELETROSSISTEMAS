@@ -5,24 +5,27 @@ html{touch-action: manipulation;}
     align-items: center;
     
     width: 100%;
+    height : 6.5em;
     
-    background: #f8f8f8;
-    
-    padding: 0em 1em;
+    padding-right: 3em;
 }
 .topbar__mobile__logo{
+    justify-content: center;
+    align-items: center;
+    
+    padding: 0;
+    margin: 0;
+
     max-width: 8.7em;
+    transform : scale(.7);
+    transition: transform 100ms linear;
 }
 
-.topbar__mobile__logo img{
-    width: 100%;
-}
-
+.topbar__mobile__logo img{width: 100%;}
 .topbar__mobile__icon--spin, .topbar__mobile__icon--nips{
     max-width: 2.5em;
     max-height: 2.5em;
 }
-
 .topbar__mobile__icon--spin .i{
     width: 100%;
     height: 100%;
@@ -39,36 +42,33 @@ html{touch-action: manipulation;}
 
 .topbar__mobile__blocktouch--lock{
     position: fixed;
-    background: rgba(0, 0, 0, .35);
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, .35) 20%,  #efefef 20%);
     
     height: 100%;
     width: 100%;
     
     right: 0%;
-    top: 9em;
+    top: 6.6em;
     
-    animation: fadeIn 200ms linear;
+    animation: fadeIn 100ms linear;
 }
 .topbar__mobile__blocktouch--unlock{
     position: absolute;
-    top: 9em;
+    top: 6.6em;
     
     height: 0%;
     width: 0%;
 }
 .topbar__mobile__togglemenu--show{
     position: fixed;
-    /* position: absolute; */
 
     display: flex;
     justify-content: center;
-    /* align-items: center; */
-    
-    // height: 53.8em;
-    height: 53em;
+
+    height: 47em;
     width: 80%;
     
-    top: 9em;
+    top: 6.6em;
     right: 0%;
 
     margin: 0;
@@ -84,10 +84,10 @@ html{touch-action: manipulation;}
     justify-content: center;
     /* align-items: center; */
     
-    height: 54em;
+    height: 47em;
     width: 80%;
     
-    top: 9em;
+    top: 6.6em;
     
     margin: 0;
     padding: 0;
@@ -186,45 +186,25 @@ html{touch-action: manipulation;}
 }
 
 @keyframes showMenu{
-    from{
-        right: -80%;
-    }
-    to{
-        right: 0%;
-    }
+    from{right: -80%;}
+    to{right: 0%;}
 }
 
 @keyframes hideMenu{
-    from{
-        right: 0%;
-    }
-    to{
-        right: -80%;
-    }
+    from{right: 0%;}
+    to{right: -80%;}
 }
 @keyframes fadeIn{
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
+    from{opacity: 0;}
+    to{opacity: 1;}
 }
 @keyframes fadeOut {
-    from{
-        opacity: 1;
-    }
-    to{
-        opacity: 0;
-    }
+    from{opacity: 1;}
+    to{opacity: 0;}
 }
 @keyframes spinLogo{
-    from{
-        transform: rotate(0deg);
-    }
-    to{
-        transform: rotate(180deg);
-    }
+    from{transform: rotate(0deg);}
+    to{transform: rotate(180deg);}
 }
 @keyframes more {
     from{

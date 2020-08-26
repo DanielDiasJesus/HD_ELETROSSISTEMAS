@@ -8,7 +8,9 @@ export default function Contact(){
     return(
         <div className="contact">
             <div className = "contact__header">
-                <h2>Entre em contato</h2>
+                <div className = "contact__info__title__line"></div>
+                <h3>ENTRE EM CONTATO</h3>
+                <div className = "contact__info__title__line"></div>
             </div>
             <div className="contact__main">
                 <div className="contact__main__info">
@@ -50,7 +52,7 @@ export default function Contact(){
                     </div>
                 </div>
                 <div className="contact__main__form">
-                    <h4>Você pode nos encaminhar uma mensagem por este formulário também</h4>
+                    <h4>Encaminhe-nos uma mensagem por este formulário</h4>
                     <form>
                         <div className="contact__main__form__item">
                             <input type="text" placeholder="Ex: Maria da Silva"></input>
@@ -78,10 +80,10 @@ export default function Contact(){
                     </form>
                 </div>
             </div>
-            {/* <div className="contact__bottombar">
+            <div className="contact__bottombar">
                 © Copyright 2020 All Rights Reserved
                 <a href="https://www.linkedin.com/in/danieldiasjesus" target="blank" rel="noopener noreferrer">Made by Daniel Jesus</a>
-            </div> */}
+            </div>
         </div>
     )
 }

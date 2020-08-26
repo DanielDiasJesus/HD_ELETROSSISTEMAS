@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import './MobileMenu.scss';
 
 import { faBars, faPlus } from "@fortawesome/free-solid-svg-icons"
@@ -8,13 +8,15 @@ export default function MobileMenu(props) {
     let [toggleMenu, setToggleMenu] = useState(false);
     let [menuServices, setMenuServices] = useState(false);
     let [menuContact, setMenuContacts] = useState(false);
-
+    
     function handleToggleMenu() {
         setToggleMenu(!toggleMenu);
-        if(!toggleMenu)
-            document.body.style.overflow = "hidden";
-        else
-            document.body.style.overflow = "auto";
+        if(!toggleMenu){
+
+        }
+        else{
+            
+        }
     }
 
     function handleMenuServices() {
@@ -23,6 +25,15 @@ export default function MobileMenu(props) {
     function handleMenuContacts() {
         setMenuContacts(!menuContact);
     }
+
+    // useEffect(()=>{
+    //     const onScroll = event => {
+    //         setScrollTop(event.target.documentElement.scrollTop);
+    //       };
+    //       window.addEventListener("scroll", onScroll);
+    //       console.log(useScrollTop);
+    //       return () => window.removeEventListener("scroll", onScroll);
+    //     }, [useScrollTop]);
 
     return (
         <div className="topbar__mobile">

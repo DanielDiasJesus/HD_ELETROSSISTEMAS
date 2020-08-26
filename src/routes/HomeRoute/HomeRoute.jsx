@@ -11,7 +11,7 @@ export default function HomeRoute(){
             <Introduction />
             <Services />
             <About />
-            {/* <Contato /> */}
+            <Contato />
         </>
     );
 }

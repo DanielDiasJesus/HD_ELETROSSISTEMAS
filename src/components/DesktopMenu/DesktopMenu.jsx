@@ -8,7 +8,7 @@ export default function DesktopMenu(props) {
     const [useScrollTop, setScrollTop] = useState(0);
     const [useServices] = useState(servicos.services);
 
-    function controlMenu(props){
+    function controlMenu(){
         return useScrollTop >  80 ? {
             height : "3.5em"
         }: null;

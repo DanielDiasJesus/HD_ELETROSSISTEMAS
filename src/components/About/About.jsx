@@ -5,7 +5,6 @@ export default function About(){
         <div className="about">
             <div className="about__header">
                 <div className="about__header__title">
-                    {/* <h2>Nosso jeito de ser</h2> */}
                     <h2>NOSSO JEITO DE SER</h2>
                 </div>
                 <p>
@@ -27,7 +26,7 @@ export default function About(){
                         A partir disso, desenvolvemos a melhor solução existente atualmente no mercado: a <span className="destaque">HD Eletrossistemas.</span></h3>                    
                     <h3><span className="destaque">O trabalho da HD é refletido por nosso método único que consiste em 3 pilares:</span></h3>
                 </div>
-                {/* <div className="about__content__method">
+                <div className="about__content__method">
                     <article className="about__content__method__card" style={{background: "#008ECC"}}>
                         <div className="about__content__method__card__header">
                             <h3>Confiabilidade</h3>
@@ -66,8 +65,8 @@ export default function About(){
                             </h4>
                         </div>
                     </article>
-                </div> */}
-                {/* <div className="about__content__facts">
+                </div>
+                <div className="about__content__facts">
                     <div className="about__content__facts__header">
                         <h3>
                             Contamos com profissionais qualificados e experientes, com os melhores materiais e 
@@ -133,7 +132,7 @@ export default function About(){
                             </div>
                         </div>
                     </div>
-                </div>  */}
+                </div>
             </div>
         </div>
     )

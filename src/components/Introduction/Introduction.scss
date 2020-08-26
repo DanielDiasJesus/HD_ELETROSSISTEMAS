@@ -126,7 +126,11 @@
         filter: opacity(.2);
     }
 }
-
+@media screen and (max-width:781px){
+    .introduction{
+        margin-top: 6.7em;
+    }
+}
 @media screen and (max-width: 653px){
     .introduction__budget h3{font-size: 2.8em;}
     .introuction__budget__call{
