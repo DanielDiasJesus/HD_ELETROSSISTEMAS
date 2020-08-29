@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ServiceRoute.scss';
 
 // import servicos from '../../data/servicos.json';
