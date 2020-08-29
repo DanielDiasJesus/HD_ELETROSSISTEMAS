@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState }from 'react';
+
+import Fact from '../../components/Fact';
+import about from '../../data/about.json';
+
 import './About.scss';
+
 export default function About(){
+    const [useFacts] = useState(about.facts);
+    
     return(
         <div className="about">
             <div className="about__header">
@@ -75,62 +82,16 @@ export default function About(){
                         </h3>
                     </div>
                     <div className="about__content__facts__main">
-                        <div className="about__content__facts__main__item">
-                            <div className="about__content__facts__main__item__title">
-                                <h2>08</h2>
-                            </div>
-                            <div className="about__content__facts__main__item__subtitle">
-                                <h3>ANOS DE TRABALHO</h3>
-                            </div>
-                        </div>
-                        <div className="about__content__facts__main__item">
-                            <div className="about__content__facts__main__item__title">
-                                <h2>+80</h2>
-                            </div>
-                            <div className="about__content__facts__main__item__subtitle">
-                                <h3>PROJETOS CONCLUIDOS</h3>
-                            </div>
-                        </div>
-                        <div className="about__content__facts__main__item">
-                            <div className="about__content__facts__main__item__title">
-                                <h2>20</h2>
-                            </div>
-                            <div className="about__content__facts__main__item__subtitle">
-                                <h3>CIDADES VISITADAS PARA CLIENTES</h3>
-                            </div>
-                        </div>
-                        <div className="about__content__facts__main__item">
-                            <div className="about__content__facts__main__item__title">
-                                <h2>82%</h2>
-                            </div>
-                            <div className="about__content__facts__main__item__subtitle">
-                                <h3>DE SATISFAÇÃO EM NOSSAS RELAÇÕES</h3>
-                            </div>
-                        </div>
-                        <div className="about__content__facts__main__item">
-                            <div className="about__content__facts__main__item__title">
-                                <h2>0</h2>
-                            </div>
-                            <div className="about__content__facts__main__item__subtitle">
-                                <h3>VEZES RECLAMADO POR NOSSAS RELAÇÕES</h3>
-                            </div>
-                        </div>
-                        <div className="about__content__facts__main__item">
-                            <div className="about__content__facts__main__item__icon">
-                                <img src={require("../../assets/img/icons/CERTIFICADO.png")} alt=""/>
-                            </div>
-                            <div className="about__content__facts__main__item__subtitle">
-                                <h3>CERTIFICADOS EM TODAS AS ÁREAS DE ATUAÇÃO</h3>
-                            </div>
-                        </div>
-                        <div className="about__content__facts__main__item">
-                            <div className="about__content__facts__main__item__title">
-                                <h2>30</h2>
-                            </div>
-                            <div className="about__content__facts__main__item__subtitle">
-                                <h3>CIDADES DE ATUAÇÃO DA EMPRESA</h3>
-                            </div>
-                        </div>
+                    {
+                        useFacts.length < 1 
+                        ? null 
+                        : useFacts.map((obj, index) => (
+                            <Fact
+                                title={obj.title}
+                                subtitle={obj.subtitle}
+                                key={index}
+                            />
+                    ))}
                     </div>
                 </div>
             </div>

@@ -1,9 +1,6 @@
 import React from 'react';
 import './Contact.scss';
 
-import { faInstagram, faFacebookSquare, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 export default function Contact(){
     return(
         <div className="contact">
@@ -21,7 +18,7 @@ export default function Contact(){
                         <a href="sendEmailtosuporte@hdeletrossistemas.com" target="blank" rel="noopener noreferrer">suporte@hdeletrossistemas.com</a>
                     </div>
                     <div className="contact__main__info__item">
-                        <h4>Nos dê um alô</h4>
+                        <h4>Dê um alô</h4>
                         <a href="?" target="blank" rel="noopener noreferrer">(19) 3224-4415</a>
                         <a href="?" target="blank" rel="noopener noreferrer">(19) 97417-3218</a>
                     </div>
@@ -35,17 +32,17 @@ export default function Contact(){
                         <div className="contact__main__info__item__social">
                             <a href="https://www.instagram.com/hdeletrosistemas/?hl=pt-br" target="blank" rel="noopener noreferrer">
                                 <div className="contact__main__info__item__social__item">
-                                    <FontAwesomeIcon icon={faInstagram} className="i" id="instagram" />
+                                    <i className="fab fa-instagram"></i>
                                 </div>
                             </a>
                             <a href="facebook" target="blank" rel="noopener noreferrer">
                                 <div className="contact__main__info__item__social__item">
-                                    <FontAwesomeIcon icon={faFacebookSquare} className="i" id="facebook" />
+                                    <i className="fab fa-facebook-square"></i>
                                 </div>
                             </a>
                             <a href="linkedin" target="blank" rel="noopener noreferrer">
                                 <div className="contact__main__info__item__social__item" >
-                                    <FontAwesomeIcon icon={faLinkedinIn} className="i" id="linkedin" />
+                                    <i className="fab fa-linkedin-in"></i>
                                 </div>
                             </a>
                         </div>
@@ -81,7 +78,7 @@ export default function Contact(){
                 </div>
             </div>
             <div className="contact__bottombar">
-                © Copyright 2020 All Rights Reserved
+                <p>© Copyright 2020 All Rights Reserved</p>
                 <a href="https://www.linkedin.com/in/danieldiasjesus" target="blank" rel="noopener noreferrer">Made by Daniel Jesus</a>
             </div>
         </div>

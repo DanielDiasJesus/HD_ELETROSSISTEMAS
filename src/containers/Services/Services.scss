@@ -69,7 +69,7 @@
 .services__carroussel::-webkit-scrollbar {background-color: #cecece;}
 .services__carroussel::-webkit-scrollbar-thumb{background-color: #FFB700;}
 
-.services__carroussel__service-slim{
+.service{
     width: 38em;
     height: 38em;
     
@@ -91,7 +91,7 @@
 
     box-shadow: 0em 0em 1em 0em rgba(0,0,0, .4);
 }
-.services__carroussel__service-slim__header{
+.service__header{
     width: 100%;
     height: 45%;
 
@@ -99,9 +99,9 @@
     justify-content: center;
     align-items: center;
     border-radius: 10pt 10pt 0 0;
-    background: #FFB700 !important;
+    background: #FFB700;
 }
-.services__carroussel__service-slim__header__logo{
+.service__header__logo{
     width: 9em;
     height: 9em;
 
@@ -111,32 +111,17 @@
     justify-content: center;
     align-items: center;
 }
-.services__carroussel__service-slim__header__logo img{
+.service__header__logo img{
     width: 95%;
     transform: scale(.9);
     transition: transform 200ms linear;
 }
-.animate{
-    position: absolute;
-    
-    padding: 0;
-    margin: 0;
-    
-    width: 100%;
-    height: 25.5em;
-    transform: scaleY(0);
-    transform-origin: 0% 0%;
-
-    top : 12.5em;
-    z-index: -1;
-    transition: transform 200ms linear;
-}
-.services__carroussel__service-slim:hover .services__carroussel__service-slim__header img{transform: scale(1);}
-.services__carroussel__service-slim:hover .services__carroussel__service-slim__orcamento{
+.service:hover .service__header img{transform: scale(1);}
+.service:hover .service__orcamento{
     background: #EDAA00;
     color: #f8f8f8 ;
 }
-.services__carroussel__service-slim__description{
+.service__description{
     display: flex;
     justify-content: center;
     
@@ -145,7 +130,7 @@
     padding: 2.5em 0em;
     padding-left: .5em;
 }
-.services__carroussel__service-slim__description h3{
+.service__description h3{
     padding: 0;
     margin: 0;
 
@@ -157,7 +142,7 @@
     color: #2c2c2c;
     transition: color 200ms linear;
 }
-.services__carroussel__service-slim__description p{
+.service__description p{
     margin: 1em .25em;
 
     font-size: 1.75em;
@@ -168,13 +153,19 @@
     color: #2c2c2c;
     transition: color 200ms linear;
 }
-.services__carroussel__service-slim__description__rate .i{
+.service__rate{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.service__rate i{
+    font-size: 2.1em;
     margin-right: .8em;
     // color: #FDCC0D;
     // color : #FF9529
     color: #FFDF00;
 }
-.services__carroussel__service-slim__orcamento{
+.service__orcamento{
     cursor: pointer;
     
     padding: 1.4em;
@@ -191,7 +182,8 @@
     transition: background 200ms linear;
 }
 
-.services__carroussel__service-slim__orcamento:focus{outline: none;}
+.service__orcamento:focus{outline: none;}
+
 @media screen and (max-width: 940px){
     .services__info{flex-direction: column;}
     
@@ -210,6 +202,7 @@
     }
     .services__info__description p, .services__info__description p:last-child{font-size: 1.8em;}
     .services__carroussel{
+        width: 100%;
         padding: 0;
         margin: 0;
 
@@ -219,10 +212,8 @@
 
         box-shadow: 0em 0em .2em .1em rgba(0,0,0,.4);
     }
-    .services__carroussel__service-slim{
-        margin: 0em 1.5em;
-    }
-    .services__carroussel__service-slim__orcamento{
+    .service{margin: 0em 1.5em;}
+    .service__orcamento{
         background: #EDAA00;
         color: #f8f8f8;
     }
@@ -240,8 +231,8 @@
     }
 }
 @media screen and (max-width: 480px){
-    .services__carroussel__service-slim{
+    .service{
         margin: 0;
-        transform: scale(.82);
+        transform: scale(.8);
     }
 }

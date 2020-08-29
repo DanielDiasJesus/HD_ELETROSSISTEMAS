@@ -1,0 +1,39 @@
+{
+    "facts":[
+        {
+            "title": "08",
+            "iconable": false,
+            "subtitle": "ANOS DE TRABALHO"
+        },
+        {
+            "title": "+80",
+            "iconable": false,
+            "subtitle": "PROJETOS CONCLUIDOS"
+        },
+        {
+            "title": "20",
+            "iconable": false,
+            "subtitle": "CIDADES VISITADAS PARA CLIENTES"
+        },
+        {
+            "title": "82%",
+            "iconable": false,
+            "subtitle": "DE SATISFAÇÃO EM NOSSAS RELAÇÕES"
+        },
+        {
+            "title": "0",
+            "iconable": false,
+            "subtitle": "VEZES RECLAMADO POR NOSSAS RELAÇÕES"
+        },
+        {
+            "title": "✓",
+            "iconable": true,
+            "subtitle": "CERTIFICADOS EM TODAS AS ÁREAS DE ATUAÇÃO"
+        },
+        {
+            "title": "30",
+            "iconable": false,
+            "subtitle": "CIDADES DE ATUAÇÃO DA EMPRESA"            
+        }
+    ]
+}

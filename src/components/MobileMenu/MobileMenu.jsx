@@ -1,75 +1,88 @@
 import React, { useState, useEffect} from 'react';
-import './MobileMenu.scss';
+import { Link } from 'react-router-dom';
 
-import { faBars, faPlus } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './MobileMenu.scss';
 
 export default function MobileMenu(props) {
     let [toggleMenu, setToggleMenu] = useState(false);
     let [menuServices, setMenuServices] = useState(false);
     let [menuContact, setMenuContacts] = useState(false);
+    let [useScrollTop, setScrollTop] = useState(0);
+
+    const handleToggleMenu = () => setToggleMenu(!toggleMenu);
+    const handleMenuServices = () => setMenuServices(!menuServices);
+    const handleMenuContacts = () =>setMenuContacts(!menuContact);
+
+    useEffect(()=>{
+        const onScroll = event => {
+            setScrollTop(event.target.documentElement.scrollTop);
+          };
+          window.addEventListener("scroll", onScroll);
+          console.log(useScrollTop);
+          return () => window.removeEventListener("scroll", onScroll);
+        }, [useScrollTop]);
+
+    function executeScroll(ref){
+        setTimeout(() =>{
+            window.scrollTo(0, ref);
+        }, 10)
+        if(toggleMenu)
+            setToggleMenu(!toggleMenu);
+    }
     
-    function handleToggleMenu() {
-        setToggleMenu(!toggleMenu);
-        if(!toggleMenu){
-
-        }
-        else{
-            
-        }
-    }
-
-    function handleMenuServices() {
-        setMenuServices(!menuServices);
-    }
-    function handleMenuContacts() {
-        setMenuContacts(!menuContact);
-    }
-
-    // useEffect(()=>{
-    //     const onScroll = event => {
-    //         setScrollTop(event.target.documentElement.scrollTop);
-    //       };
-    //       window.addEventListener("scroll", onScroll);
-    //       console.log(useScrollTop);
-    //       return () => window.removeEventListener("scroll", onScroll);
-    //     }, [useScrollTop]);
-
     return (
         <div className="topbar__mobile">
             <div className="topbar__mobile__logo">
-                <img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img>
+                <Link to="/" onClick={event => executeScroll(0)}>
+                    <img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img>
+                </Link>
             </div>
             <div className={`topbar__mobile__icon--${toggleMenu ? "spin" : "nips"}`}>
-                <FontAwesomeIcon icon={faBars} className="i" onClick={handleToggleMenu} />
+                <i className="fas fa-bars" onClick={handleToggleMenu}></i>
             </div>
             <div className={`topbar__mobile__blocktouch--${toggleMenu ? "lock" : "unlock"}`} onClick={handleToggleMenu} />
             <div className={`topbar__mobile__togglemenu--${toggleMenu ? "show" : "hide"}`}>
                 <ul className="topbar__mobile__menu">
-                    <li>
-                        <p>SOBRE A HD</p>
-                    </li>
+                    <Link to="/">
+                        <li onClick={event => executeScroll(1442)}>
+                            <p>SOBRE A HD</p>
+                        </li>
+                    </Link>                    
                     <li>
                         <p onClick={handleMenuServices}>
                             SERVIÇOS
-                            <FontAwesomeIcon icon={faPlus} className={`i--${menuServices ? "show" : "hide"}`} />
+                            <i className="fas fa-plus" id={`i--${menuServices ? "show" : "hide"}`}></i>
                         </p>                        
                         <div className={`topbar__mobile__menu__submenu--${menuServices ? "show" : "hide"}`}>
                             <ul className="topbar__mobile__menu__submenu">
-                                <li><p>ELÉTRICA</p></li>
-                                <li><p>PINTURA</p></li>
-                                <li><p>HIDRÁULICA</p></li>
-                                <li><p>SOLDAGEM</p></li>
-                                <li><p>ALVENARIA</p></li>
-                                <li><p>MARCENARIA</p></li>
-                                <li><p>CONSTRUÇÃO CIVÍL</p></li>
+                                <Link to="orcamento/elétrica" onClick={handleToggleMenu}>
+                                    <li><p>ELÉTRICA</p></li>
+                                </Link>
+                                <Link to="orcamento/pintura" onClick={handleToggleMenu}>
+                                    <li><p>PINTURA</p></li>
+                                </Link>
+                                <Link to="orcamento/hidráulica" onClick={handleToggleMenu}>
+                                    <li><p>HIDRÁULICA</p></li>
+                                </Link>
+                                <Link to="orcamento/soldagem" onClick={handleToggleMenu}>
+                                    <li><p>SOLDAGEM</p></li>
+                                </Link>
+                                <Link to="orcamento/alvenaria" onClick={handleToggleMenu}>
+                                    <li><p>ALVENARIA</p></li>
+                                </Link>
+                                <Link to="orcamento/marcenaria" onClick={handleToggleMenu}>
+                                    <li><p>MARCENARIA</p></li>
+                                </Link>
+                                <Link to="orcamento/construção-civil" onClick={handleToggleMenu}>
+                                    <li><p>CONSTRUÇÃO CIVÍL</p></li>
+                                </Link>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <p onClick={handleMenuContacts}>
                             CONTATO
-                            <FontAwesomeIcon icon={faPlus} className={`i--${menuContact ? "show" : "hide"}`} />
+                            <i className="fas fa-plus" id={`i--${menuContact ? "show" : "hide"}`}></i>
                         </p>
                         <div className={`topbar__mobile__menu__submenu--${menuContact ? "show" : "hide"}`}>
                             <ul className="topbar__mobile__menu__submenu">
@@ -78,9 +91,11 @@ export default function MobileMenu(props) {
                             </ul>
                         </div>
                     </li>
-                    <li id="clientes">
-                        <p>CLIENTES</p>
-                    </li>
+                    <Link to="/">
+                        <li id="clientes">
+                            <p>CASES</p>
+                        </li>
+                    </Link>
                 </ul>
             </div>
         </div>

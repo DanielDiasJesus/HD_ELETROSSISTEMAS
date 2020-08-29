@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Introduction.scss';
 
 export default function Introduction() {
-    const [useScrollTop, setScrollTop] = useState(0);
-    const executeScroll = (coord) => window.scrollTo(0, coord);
+    const executeScroll = (coord) => window.scrollTo(0, 2110);
     
-    useEffect(()=>{
-        const onScroll = event => {
-            setScrollTop(event.target.documentElement.scrollTop);
-          };
-          window.addEventListener("scroll", onScroll);
-          console.log(useScrollTop);
-          return () => window.removeEventListener("scroll", onScroll);
-        }, [useScrollTop]);
-
-
     return (
         <div className="introduction">
             <div className="introduction__budget">
@@ -29,7 +18,7 @@ export default function Introduction() {
                     <Link to="/orcamento" className="link">
                         <button className="fazer__orcamento">FAZER ORÇAMENTO</button>        
                     </Link>
-                        <button className="saiba__mais" onClick={event => executeScroll(2450)}>SAIBA MAIS</button>
+                        <button className="saiba__mais" onClick={event => executeScroll()}>SAIBA MAIS</button>
                 </div>
             </div>
             <div className="introduction__pretty">

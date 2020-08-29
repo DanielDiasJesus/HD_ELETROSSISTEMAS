@@ -1,10 +1,9 @@
 import React from 'react';
-import Introduction from '../../components/Introduction';
-import Services from '../../components/Services';
-import About from '../../components/About';
-import Contato from '../../components/Contact';
+import Introduction from '../../containers/Introduction';
+import Services from '../../containers/Services';
+import About from '../../containers/About';
+import Contato from '../../containers/Contact';
 // import Clientes from '../../components/Clientea';
-
 export default function HomeRoute(){
     return(
         <>
