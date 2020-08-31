@@ -1,7 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import './Contact.scss';
 
 export default function Contact(){
+    const [useName, setName] = useState("");
+    const [useMail, setMail] = useState("");
+    const [useNumber, setNumber] = useState("");
+    const [useSubject, setSubject] = useState("");
+    const [useContent, setContent] = useState("");
+    
+    useEffect(()=>{
+        
+    }, [])
+    function handleName(event){
+        event.preventDefault();
+        setName(event.target.value);        
+    }
+    function handleMail(event){
+        event.preventDefault();
+        setMail(event.target.value);
+    }
+    function handleNumber(event){
+        event.preventDefault();
+        if(isNaN(event.target.value))
+            return;
+        setNumber(event.target.value);
+    }
+    function handleSubject(event){
+        event.preventDefault();
+        setSubject(event.target.value);
+    }
+    function handleContent(event){
+        event.preventDefault();
+        setContent(event.target.value);
+    }
+    function handleClick(event){
+        event.preventDefault();
+        
+    }
     return(
         <div className="contact">
             <div className = "contact__header">
@@ -52,27 +87,48 @@ export default function Contact(){
                     <h4>Encaminhe-nos uma mensagem por este formulário</h4>
                     <form>
                         <div className="contact__main__form__item">
-                            <input type="text" placeholder="Ex: Maria da Silva"></input>
+                            <input 
+                            type="text" 
+                            placeholder="Ex: Maria da Silva"
+                            onChange={event => handleName(event)} 
+                            value={useName}></input>
                             <label>Nome completo</label>
                         </div>
                         <div className="contact__main__form__item">
-                            <input type="email" placeholder="Ex: contato@hdeletrossistemas.com"></input>
+                            <input 
+                            type="email" 
+                            placeholder="Ex: contato@hdeletrossistemas.com" 
+                            onChange={event => handleMail(event)} 
+                            value={useMail}></input>
                             <label>Email</label>
                         </div>
                         <div className="contact__main__form__item">
-                            <input type="tel" id="phone" placeholder="Ex: (19) 3224-6116"></input>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                placeholder="Ex: 19 974173218" 
+                                onChange={event => handleNumber(event)}
+                                value={useNumber}></input>
                             <label>Numero</label>
                         </div>
                         <div className="contact__main__form__item">
-                            <input type="text" placeholder="Ex: Quero entrar para o time!"></input>
+                            <input 
+                            type="text" 
+                            placeholder="Ex: Quero entrar para o time!" 
+                            onChange={event => handleSubject(event)}
+                            value={useSubject}></input>
                             <label>Assunto da mensagem</label>
                         </div>
                         <div className="contact__main__form__item">
-                            <textarea rows="4" columns="10"></textarea>
+                            <textarea 
+                            rows="4" 
+                            columns="10" 
+                            onChange={event => handleContent(event)}
+                            value={useContent}></textarea>
                             <label>Texto da mensagem</label>                            
                         </div>
                         <div className="contact__main__form__item">
-                            <button>Enviar</button>
+                            <button onClick={event => handleClick(event)}>Enviar</button>
                         </div>
                     </form>
                 </div>

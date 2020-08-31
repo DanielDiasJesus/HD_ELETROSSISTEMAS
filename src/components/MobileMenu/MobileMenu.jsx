@@ -18,7 +18,6 @@ export default function MobileMenu(props) {
             setScrollTop(event.target.documentElement.scrollTop);
           };
           window.addEventListener("scroll", onScroll);
-          console.log(useScrollTop);
           return () => window.removeEventListener("scroll", onScroll);
         }, [useScrollTop]);
 

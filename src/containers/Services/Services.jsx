@@ -36,17 +36,16 @@ export default function Services() {
                 </div>
             </div>
             <div className="services__carroussel">
-                {console.log(useServices)}
                 {
                     useServices.length < 1 
                     ? null
                     : useServices.map((obj, index) => (
-                        <Service 
+                        <Service
+                            key={obj.id}
                             icon_code={obj.icon_code} 
                             service={obj.nome} 
                             description={obj.descricao} 
                             rate={obj.rate}
-                            key={index}
                         />
                 ))}
             </div>

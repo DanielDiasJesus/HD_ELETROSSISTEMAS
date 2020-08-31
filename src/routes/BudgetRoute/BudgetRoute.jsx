@@ -1,12 +1,23 @@
-import React,  { useState } from 'react';
-import servicos from '../../data/servicos.json';
+import React,  { useState, useEffect } from 'react';
 import Service from '../../components/Service';
 import { Link } from 'react-router-dom';
 
 import './BudgetRoute.scss';
 export default function BudgetRoute(){
-    const [useServices] = useState(servicos.services);
+    const [useServices, setUseServices] = useState([]);
     const handleOnLoad = () => window.scrollTo(0, 0);
+
+    useEffect(()=>{
+        fetch("https://hdeletrossistemasapi-com.umbler.net/servicos")
+        .then(response =>{
+            if(!response.ok){
+                throw Error("Error while fetch services");
+            }
+            return response.json();
+        })
+        .then(data =>  setUseServices(data))
+        .catch(err => {throw Error(err.message)});
+    }, []);
 
     return(
         <div className="orcamento" onLoad={handleOnLoad}>
@@ -18,11 +29,11 @@ export default function BudgetRoute(){
             <div className="orcamento__servicos">
                 {
                     useServices.map((obj, index) => (
-                        <Link className="link" to={`/orcamento/${obj.servico.replace(" ", "-").toLowerCase()}`}>
+                        <Link className="link" to={`/orcamento/${obj.nome.replace(" ", "-").toLowerCase()}`}>
                             <Service 
-                                iconCode={obj.iconCode} 
-                                service={obj.servico}
-                                key={index}
+                                icon_code={obj.icon_code} 
+                                service={obj.nome}
+                                key={obj.id}
                             />
                         </Link>
                     ))

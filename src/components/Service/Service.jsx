@@ -5,7 +5,7 @@ export default function Service(props){
     function createStarField(limit){
         let start = [];
         for(let x = 0; x < limit; x++)
-        start.push(<i className="fas fa-star"/>);
+        start.push(<i key={x} className="fas fa-star"/>);
         return start;
     }
     
@@ -13,7 +13,6 @@ export default function Service(props){
         <div className="service">
             <div className="service__header">
                 <div className="service__header__logo">
-                    {console.log(props.icon_code)}
                     <img src={props.icon_code}
                         alt={props.service} />
                 </div>
