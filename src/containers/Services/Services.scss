@@ -71,7 +71,7 @@
 
 .service{
     width: 38em;
-    height: 38em;
+    // height: 0em;
     
     flex: 0 0 auto;
 
@@ -93,7 +93,7 @@
 }
 .service__header{
     width: 100%;
-    height: 45%;
+    height: 20%;
 
     display: flex;
     justify-content: center;
@@ -116,7 +116,7 @@
     transform: scale(.9);
     transition: transform 200ms linear;
 }
-.service:hover .service__header img{transform: scale(1);}
+.service:hover .service__header img{transform: scale(1); border: .1em solid black;}
 .service:hover .service__orcamento{
     background: #EDAA00;
     color: #f8f8f8 ;
@@ -128,10 +128,9 @@
     flex-direction: column;
 
     padding: 2.5em 0em;
-    padding-left: .5em;
 }
 .service__description h3{
-    padding: 0;
+    padding-left: .5em;
     margin: 0;
 
     font-size: 2em;
@@ -143,14 +142,15 @@
     transition: color 200ms linear;
 }
 .service__description p{
-    margin: 1em .25em;
-
-    font-size: 1.75em;
+    margin: 1em 0em;
+    padding: 0em .5em;
+    
+    font-size: 1.7em;
     font-weight: 100;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-style: normal;
     text-align: justify;
-    color: #2c2c2c;
+    // color: #2c2c2c;  
     transition: color 200ms linear;
 }
 .service__rate{
@@ -160,7 +160,7 @@
 }
 .service__rate i{
     font-size: 2.1em;
-    margin-right: .8em;
+    margin: 0em .5em;
     // color: #FDCC0D;
     // color : #FF9529
     color: #FFDF00;

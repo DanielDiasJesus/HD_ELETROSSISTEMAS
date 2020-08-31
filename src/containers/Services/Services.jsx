@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Service from '../../components/Service';
-import servicos from '../../data/servicos.json';
 
 import './Services.scss';
 
 export default function Services() {
-    const [useServices] = useState(servicos.services);
+    const [useServices, setUseServices] = useState([]);
     
+    useEffect(()=>{
+        fetch("http://hdeletrossistemasapi-com.umbler.net/servicos")
+        .then(response =>{
+            if(!response.ok){
+                throw Error("Error while fetch services");
+            }
+            return response.json();
+        })
+        .then(data =>  setUseServices(data))
+        .catch(err => {throw Error(err.message)});
+    }, []);
     return (
         <div className="services" id="services">
             <div className="services__info">
@@ -26,15 +36,16 @@ export default function Services() {
                 </div>
             </div>
             <div className="services__carroussel">
+                {console.log(useServices)}
                 {
                     useServices.length < 1 
                     ? null
                     : useServices.map((obj, index) => (
                         <Service 
-                            iconCode={obj.iconCode} 
-                            service={obj.servico} 
+                            icon_code={obj.icon_code} 
+                            service={obj.nome} 
                             description={obj.descricao} 
-                            proficiency={obj.proficiency}
+                            rate={obj.rate}
                             key={index}
                         />
                 ))}
