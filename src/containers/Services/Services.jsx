@@ -8,7 +8,7 @@ export default function Services() {
     const [useServices, setUseServices] = useState([]);
     
     useEffect(()=>{
-        fetch("http://hdeletrossistemasapi-com.umbler.net/servicos")
+        fetch("https://hdeletrossistemasapi-com.umbler.net/servicos")
         .then(response =>{
             if(!response.ok){
                 throw Error("Error while fetch services");
