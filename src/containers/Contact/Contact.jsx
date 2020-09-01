@@ -13,7 +13,7 @@ export default function Contact(){
     const [useContent, setContent] = useState("");
     const [errorContent, setErrorContent] = useState("");
     
-    const [useStatus, setStatus] = useState("");
+    // const [useStatus, setStatus] = useState("");
 
     function handleName(event){
         event.preventDefault();
