@@ -1,16 +1,20 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState }from 'react';
 import './Contact.scss';
 
 export default function Contact(){
     const [useName, setName] = useState("");
+    const [errorName, setErrorName] = useState("");
     const [useMail, setMail] = useState("");
+    const [errorMail, setErrorMail] = useState("");
     const [useNumber, setNumber] = useState("");
+    const [errorNumber, setErrorNumber] = useState("");
     const [useSubject, setSubject] = useState("");
+    const [errorSubject, setErrorSubject] = useState("");
     const [useContent, setContent] = useState("");
+    const [errorContent, setErrorContent] = useState("");
     
-    useEffect(()=>{
-        
-    }, [])
+    const [useStatus, setStatus] = useState("");
+
     function handleName(event){
         event.preventDefault();
         setName(event.target.value);        
@@ -21,8 +25,6 @@ export default function Contact(){
     }
     function handleNumber(event){
         event.preventDefault();
-        if(isNaN(event.target.value))
-            return;
         setNumber(event.target.value);
     }
     function handleSubject(event){
@@ -35,7 +37,82 @@ export default function Contact(){
     }
     function handleClick(event){
         event.preventDefault();
+
+        if(!validName(useName)){
+            setErrorName("Insira um nome válido!");
+            return;
+        }   
+        else
+            setErrorName("");
+        if(!validMail(useMail)){
+            setErrorMail("Insira um endereço de e-mail válido!");
+            return;
+        }
+        else
+            setErrorMail("");
+        if(!validNumber(useNumber)){
+            setErrorNumber("Insira um numero de celular válido!");
+            return;
+        }
+        else
+            setErrorNumber("");
+        if(useSubject.length < 5){
+            setErrorSubject("Insira um assunto válido!")
+            return;
+        }
+        else
+            setErrorSubject("");
+        if(useContent.length < 5){
+            setErrorContent("Insira um assunto válido!")
+            return;
+        }
+        else
+            setErrorContent("");
+        setName(useName.replace(" ", "%20"));
+        setSubject(useSubject.replace(" ", "%20"));
+        setContent(useContent.replace(" ", "%20"));
         
+        fetch(`https://hdeletrossistemasapi-com.umbler.net/sendemail?email=${useMail}&nome=${useName}&subject=${useSubject}&message=${useContent}`)
+        .then(response => response.text())
+        .then((data) => setStatus(data));
+    }
+    function validNumber(number){
+        number = number.replace(" ", "");
+        for(let x = 0; x < useNumber.length; x++)
+            if(isNaN(number.charAt(x)))
+                return false;
+
+        if(number.length !== 11 )
+            return false;
+        return true;
+    }
+    function validName(name){
+        const regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]$/;
+        if(regex.test(name))
+            return false;
+        if(name.length < 4)
+            return false;
+        return true;
+    }
+    function validMail(email){
+        const usuario = email.substring(0, email.indexOf("@"));
+        const dominio = email.substring(email.indexOf("@")+ 1, email.length);
+
+        if(email.length < 1)
+            return false;
+
+        if ((usuario.length >=1) &&
+            (dominio.length >=3) &&
+            (usuario.search("@") === -1) &&
+            (dominio.search("@") === -1) &&
+            (usuario.search(" ") === -1) &&
+            (dominio.search(" ") === -1) &&
+            (dominio.search(".") !==-1) &&
+            (dominio.indexOf(".") >=1)&&
+            (dominio.lastIndexOf(".") < dominio.length - 1))
+                return true;
+        
+        return false;
     }
     return(
         <div className="contact">
@@ -92,7 +169,10 @@ export default function Contact(){
                             placeholder="Ex: Maria da Silva"
                             onChange={event => handleName(event)} 
                             value={useName}></input>
-                            <label>Nome completo</label>
+                            <div className="contact__main__form__item_info">
+                                <label>Nome completo</label>
+                                <div className="contact__main__form__item__error">{errorName}</div>
+                            </div>
                         </div>
                         <div className="contact__main__form__item">
                             <input 
@@ -100,7 +180,10 @@ export default function Contact(){
                             placeholder="Ex: contato@hdeletrossistemas.com" 
                             onChange={event => handleMail(event)} 
                             value={useMail}></input>
-                            <label>Email</label>
+                            <div className="contact__main__form__item_info">
+                                <label>Email</label>
+                                <div className="contact__main__form__item__error">{errorMail}</div>
+                            </div>
                         </div>
                         <div className="contact__main__form__item">
                             <input 
@@ -109,7 +192,10 @@ export default function Contact(){
                                 placeholder="Ex: 19 974173218" 
                                 onChange={event => handleNumber(event)}
                                 value={useNumber}></input>
-                            <label>Numero</label>
+                            <div className="contact__main__form__item_info">
+                                <label>Numero</label>
+                                <div className="contact__main__form__item__error">{errorNumber}</div>
+                            </div>
                         </div>
                         <div className="contact__main__form__item">
                             <input 
@@ -117,7 +203,10 @@ export default function Contact(){
                             placeholder="Ex: Quero entrar para o time!" 
                             onChange={event => handleSubject(event)}
                             value={useSubject}></input>
-                            <label>Assunto da mensagem</label>
+                            <div className="contact__main__form__item_info">
+                                <label>Assunto da mensagem</label>
+                                <div className="contact__main__form__item__error">{errorSubject}</div>
+                            </div>
                         </div>
                         <div className="contact__main__form__item">
                             <textarea 
@@ -125,7 +214,10 @@ export default function Contact(){
                             columns="10" 
                             onChange={event => handleContent(event)}
                             value={useContent}></textarea>
-                            <label>Texto da mensagem</label>                            
+                            <div className="contact__main__form__item_info">
+                                <label>Texto da mensagem</label>
+                                <div className="contact__main__form__item__error">{errorContent}</div> 
+                            </div>
                         </div>
                         <div className="contact__main__form__item">
                             <button onClick={event => handleClick(event)}>Enviar</button>

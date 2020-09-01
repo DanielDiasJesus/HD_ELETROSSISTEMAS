@@ -9,14 +9,8 @@ export default function BudgetRoute(){
 
     useEffect(()=>{
         fetch("https://hdeletrossistemasapi-com.umbler.net/servicos")
-        .then(response =>{
-            if(!response.ok){
-                throw Error("Error while fetch services");
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data =>  setUseServices(data))
-        .catch(err => {throw Error(err.message)});
     }, []);
 
     return(
@@ -29,7 +23,7 @@ export default function BudgetRoute(){
             <div className="orcamento__servicos">
                 {
                     useServices.map((obj, index) => (
-                        <Link className="link" to={`/orcamento/${obj.nome.replace(" ", "-").toLowerCase()}`}>
+                        <Link className="link" to={`/orcamento/${obj.nome.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(" ", "-").toLowerCase()}`}>
                             <Service 
                                 icon_code={obj.icon_code} 
                                 service={obj.nome}

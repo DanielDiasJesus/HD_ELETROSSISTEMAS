@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Service(props){
+    const link = props.service.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(" ", "-").toLowerCase();
     function createStarField(limit){
         let start = [];
         for(let x = 0; x < limit; x++)
@@ -28,7 +29,7 @@ export default function Service(props){
                     }
                 </div>
             </div>
-            <Link to={`/orcamento/${props.service.replace(" ", "-").toLowerCase()}`}>
+            <Link to={`/orcamento/${link}`}>
                 <button className="service__orcamento"> FAZER ORCAMENTO!</button>
             </Link>
         </div>
