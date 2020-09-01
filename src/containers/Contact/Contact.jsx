@@ -13,7 +13,7 @@ export default function Contact(){
     const [useContent, setContent] = useState("");
     const [errorContent, setErrorContent] = useState("");
     
-    // const [useStatus, setStatus] = useState("");
+    const [useStatus, setStatus] = useState("");
 
     function handleName(event){
         event.preventDefault();
@@ -220,6 +220,7 @@ export default function Contact(){
                             </div>
                         </div>
                         <div className="contact__main__form__item">
+                            <div className="contact__main__form__item__error">{useStatus}</div> 
                             <button onClick={event => handleClick(event)}>Enviar</button>
                         </div>
                     </form>
