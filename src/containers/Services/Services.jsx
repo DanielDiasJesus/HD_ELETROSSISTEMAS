@@ -45,6 +45,7 @@ export default function Services() {
                             icon_code={obj.icon_code} 
                             service={obj.nome} 
                             description={obj.descricao} 
+                            withlink={true}
                             rate={obj.rate}
                         />
                 ))}

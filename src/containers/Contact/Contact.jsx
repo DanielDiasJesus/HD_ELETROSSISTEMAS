@@ -1,6 +1,10 @@
 import React, { useState }from 'react';
 import './Contact.scss';
-
+import{ 
+        validMail,
+        validName,
+        validNumber   
+    } from '../../utils/verificasoes';
 export default function Contact(){
     const [useName, setName] = useState("");
     const [errorName, setErrorName] = useState("");
@@ -44,30 +48,36 @@ export default function Contact(){
         }   
         else
             setErrorName("");
+
         if(!validMail(useMail)){
             setErrorMail("Insira um endereço de e-mail válido!");
             return;
         }
+
         else
             setErrorMail("");
+        
         if(!validNumber(useNumber)){
             setErrorNumber("Insira um numero de celular válido!");
             return;
         }
         else
             setErrorNumber("");
+        
         if(useSubject.length < 5){
             setErrorSubject("Insira um assunto válido!")
             return;
         }
         else
             setErrorSubject("");
+        
         if(useContent.length < 5){
             setErrorContent("Insira um assunto válido!")
             return;
         }
         else
             setErrorContent("");
+        
         setName(useName.replace(" ", "%20"));
         setSubject(useSubject.replace(" ", "%20"));
         setContent(useContent.replace(" ", "%20"));
@@ -75,44 +85,6 @@ export default function Contact(){
         fetch(`https://hdeletrossistemasapi-com.umbler.net/sendemail?email=${useMail}&nome=${useName}&subject=${useSubject}&message=${useContent}`)
         .then(response => response.text())
         .then((data) => setStatus(data));
-    }
-    function validNumber(number){
-        number = number.replace(" ", "");
-        for(let x = 0; x < useNumber.length; x++)
-            if(isNaN(number.charAt(x)))
-                return false;
-
-        if(number.length !== 11 )
-            return false;
-        return true;
-    }
-    function validName(name){
-        const regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]$/;
-        if(regex.test(name))
-            return false;
-        if(name.length < 4)
-            return false;
-        return true;
-    }
-    function validMail(email){
-        const usuario = email.substring(0, email.indexOf("@"));
-        const dominio = email.substring(email.indexOf("@")+ 1, email.length);
-
-        if(email.length < 1)
-            return false;
-
-        if ((usuario.length >=1) &&
-            (dominio.length >=3) &&
-            (usuario.search("@") === -1) &&
-            (dominio.search("@") === -1) &&
-            (usuario.search(" ") === -1) &&
-            (dominio.search(" ") === -1) &&
-            (dominio.search(".") !==-1) &&
-            (dominio.indexOf(".") >=1)&&
-            (dominio.lastIndexOf(".") < dominio.length - 1))
-                return true;
-        
-        return false;
     }
     return(
         <div className="contact">
@@ -126,8 +98,8 @@ export default function Contact(){
                     <h3>Como podemos te ajudar?</h3>
                     <div className="contact__main__info__item">
                         <h4>Envie-nos uma mensagem!</h4>
-                        <a href="sendEmailtocontato@hdeletrossistemas.com" target="blank" rel="noopener noreferrer">contato@hdeletrossistemas.com</a>
-                        <a href="sendEmailtosuporte@hdeletrossistemas.com" target="blank" rel="noopener noreferrer">suporte@hdeletrossistemas.com</a>
+                        <a href="mailto:contato@hdeletrossistemas.com?subject=Contato" target="_blank" rel="noopener noreferrer" title="você precisa de um manipulador de email padrão nas versões desktop">contato@hdeletrossistemas.com</a>
+                        <a href="mailto:rh@hdeletrossistemas.com?subject=RH" target="_blank" rel="noopener noreferrer" title="você precisa de um manipulador de email padrão nas versões desktop">rh@hdeletrossistemas.com</a>
                     </div>
                     <div className="contact__main__info__item">
                         <h4>Dê um alô</h4>

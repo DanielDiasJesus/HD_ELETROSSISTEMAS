@@ -14,7 +14,7 @@ export default function Routes() {
             <Route exact path="/orcamento">
                 <BudgetRoute />
             </Route>
-            <Route exact path="/orcamento:servicename">
+            <Route exact path="/orcamento/:servicename">
                 <ServiceRoute />
             </Route>
         </Switch>

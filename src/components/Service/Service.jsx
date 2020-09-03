@@ -29,9 +29,13 @@ export default function Service(props){
                     }
                 </div>
             </div>
-            <Link to={`/orcamento/${link}`}>
-                <button className="service__orcamento"> FAZER ORCAMENTO!</button>
-            </Link>
+            {
+                props.withlink ? 
+                <Link to={`/orcamento/${link}`} className="service_link">
+                    <button className="service__orcamento"> FAZER ORCAMENTO!</button>
+                </Link> : 
+                null
+            }
         </div>
     )
 }

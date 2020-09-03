@@ -122,7 +122,7 @@
 .orcamento__servicos .link > .service .service__orcamento,
 .orcamento__servicos .link > .service .service__description p,
 .orcamento__servicos .link > .service .service__rate,
-.orcamento__servicos .link > .service .service__rate i{display: none;}
+.orcamento__servicos .link > .service .service__rate i, .orcamento__servicos .link > .service .service_link{display: none;}
 
 @media screen and (max-width: 480px){
     .orcamento{

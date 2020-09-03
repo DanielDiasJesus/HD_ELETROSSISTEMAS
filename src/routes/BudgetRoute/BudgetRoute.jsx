@@ -5,16 +5,15 @@ import { Link } from 'react-router-dom';
 import './BudgetRoute.scss';
 export default function BudgetRoute(){
     const [useServices, setUseServices] = useState([]);
-    const handleOnLoad = () => window.scrollTo(0, 0);
-
+    const haveChange = false;
     useEffect(()=>{
         fetch("https://hdeletrossistemasapi-com.umbler.net/servicos")
         .then(response => response.json())
         .then(data =>  setUseServices(data))
     }, []);
-
+    useEffect(()=> window.scrollTo(0, 0), [haveChange]);
     return(
-        <div className="orcamento" onLoad={handleOnLoad}>
+        <div className="orcamento">
             <div className="orcamento__header">
                 <h3>Fazer um orçamento, nunca foi tão fácil!</h3>
                 {/* <h4>Selecione um dos servicos que deseja orçar abaixo:</h4>
@@ -23,11 +22,19 @@ export default function BudgetRoute(){
             <div className="orcamento__servicos">
                 {
                     useServices.map((obj, index) => (
-                        <Link className="link" to={`/orcamento/${obj.nome.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(" ", "-").toLowerCase()}`}>
-                            <Service 
+                        <Link 
+                        className="link" 
+                        to= {`/orcamento/${
+                                obj.nome.normalize("NFD")
+                                .replace(/[\u0300-\u036f]/g, "")
+                                .replace(" ", "-")
+                                .toLowerCase()}`}
+                        key={obj.id}
+                        >
+                            <Service
                                 icon_code={obj.icon_code} 
                                 service={obj.nome}
-                                key={obj.id}
+                                withlink={false}
                             />
                         </Link>
                     ))
