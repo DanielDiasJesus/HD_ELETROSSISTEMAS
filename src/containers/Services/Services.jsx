@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Service from '../../components/Service';
+import Loading from '../../components/Loading';
 
 import './Services.scss';
 
@@ -35,11 +36,11 @@ export default function Services() {
                     <p>Você pode escolher um serviço abaixo e fazer um orçamento com poucos cliques</p>
                 </div>
             </div>
-            <div className="services__carroussel">
+            {
+                useServices.length > 0 ?
+                <div className="services__carroussel">
                 {
-                    useServices.length < 1 
-                    ? null
-                    : useServices.map((obj, index) => (
+                    useServices.map((obj, index) => (
                         <Service
                             key={obj.id}
                             icon_code={obj.icon_code} 
@@ -48,8 +49,10 @@ export default function Services() {
                             withlink={true}
                             rate={obj.rate}
                         />
-                ))}
-            </div>
+                    ))}
+                </div> : 
+                <Loading/>
+            }
         </div>
     )
 }

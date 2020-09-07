@@ -85,6 +85,11 @@ export default function DesktopMenu(props) {
                             >
                                 CASES
                             </Link>
+                            <ul className='topbar__desktop__menu__submenu'>
+                                    <li onClick={event => event.stopPropagation()} id="soon">
+                                        EM BREVE...
+                                    </li>
+                                </ul>
                         </li>
                 </ul>
             </div>

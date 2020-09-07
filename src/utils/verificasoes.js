@@ -19,10 +19,10 @@ function validMail(email) {
     return false;
 }
 function validName(name) {
-    const regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]$/;
+    const regex = /[A-z][ ][A-z]/;
     if (regex.test(name))
-        return false;
-    if (name.length < 4)
+        return true;
+    if (name.length < 3)
         return false;
     return true;
 }
@@ -36,9 +36,24 @@ function validNumber(number) {
         return false;
     return true;
 }
+function validCep(cep) {
+    const regex = /^[0-9]{5}-[0-9]{3}$/;
+    // console.log(cep.length);
+    if (cep.length !== 9) {
+        console.log("SAIU PELO TAMANHO");
+        return false;
+    }
+    if (!regex.test(cep)) {
+        console.log("SAIU PELO REGEX");
+        console.log(cep)
+        return false;
+    }
+    return true;
+}
 
 module.exports = {
     validMail,
     validName,
-    validNumber
+    validNumber,
+    validCep
 }

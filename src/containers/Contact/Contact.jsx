@@ -19,26 +19,12 @@ export default function Contact(){
     
     const [useStatus, setStatus] = useState("");
 
-    function handleName(event){
-        event.preventDefault();
-        setName(event.target.value);        
-    }
-    function handleMail(event){
-        event.preventDefault();
-        setMail(event.target.value);
-    }
-    function handleNumber(event){
-        event.preventDefault();
-        setNumber(event.target.value);
-    }
-    function handleSubject(event){
-        event.preventDefault();
-        setSubject(event.target.value);
-    }
-    function handleContent(event){
-        event.preventDefault();
-        setContent(event.target.value);
-    }
+    const handleName = (nome) =>setName(nome); 
+    const handleMail = (email) => setMail(email);
+    const handleNumber = (numero) => setNumber(numero);        
+    const handleSubject = (subject) => setSubject(subject);
+    const handleContent = (content) => setContent(content);
+    
     function handleClick(event){
         event.preventDefault();
 
@@ -72,17 +58,17 @@ export default function Contact(){
             setErrorSubject("");
         
         if(useContent.length < 5){
-            setErrorContent("Insira um assunto válido!")
+            setErrorContent("Insira uma mensagem válido!")
             return;
         }
         else
             setErrorContent("");
         
-        setName(useName.replace(" ", "%20"));
-        setSubject(useSubject.replace(" ", "%20"));
-        setContent(useContent.replace(" ", "%20"));
+        const nome = useName.replace(" ", "%20");
+        const assunto = useSubject.replace(" ", "%20");
+        const mensagem = useContent.replace(" ", "%20");
         
-        fetch(`https://hdeletrossistemasapi-com.umbler.net/sendemail?email=${useMail}&nome=${useName}&subject=${useSubject}&message=${useContent}`)
+        fetch(`https://hdeletrossistemasapi-com.umbler.net/sendemail?email=${useMail}&nome=${nome}&subject=${assunto}&message=${mensagem}`)
         .then(response => response.text())
         .then((data) => setStatus(data));
     }
@@ -139,8 +125,7 @@ export default function Contact(){
                             <input 
                             type="text" 
                             placeholder="Ex: Maria da Silva"
-                            onChange={event => handleName(event)} 
-                            value={useName}></input>
+                            onChange={event => handleName(event.target.value)}/>
                             <div className="contact__main__form__item_info">
                                 <label>Nome completo</label>
                                 <div className="contact__main__form__item__error">{errorName}</div>
@@ -150,8 +135,7 @@ export default function Contact(){
                             <input 
                             type="email" 
                             placeholder="Ex: contato@hdeletrossistemas.com" 
-                            onChange={event => handleMail(event)} 
-                            value={useMail}></input>
+                            onChange={event => handleMail(event.target.value)}/>
                             <div className="contact__main__form__item_info">
                                 <label>Email</label>
                                 <div className="contact__main__form__item__error">{errorMail}</div>
@@ -162,8 +146,7 @@ export default function Contact(){
                                 type="tel" 
                                 id="phone" 
                                 placeholder="Ex: 19 974173218" 
-                                onChange={event => handleNumber(event)}
-                                value={useNumber}></input>
+                                onChange={event => handleNumber(event.target.value)}/>
                             <div className="contact__main__form__item_info">
                                 <label>Numero</label>
                                 <div className="contact__main__form__item__error">{errorNumber}</div>
@@ -173,8 +156,7 @@ export default function Contact(){
                             <input 
                             type="text" 
                             placeholder="Ex: Quero entrar para o time!" 
-                            onChange={event => handleSubject(event)}
-                            value={useSubject}></input>
+                            onChange={event => handleSubject(event.target.value)}/>
                             <div className="contact__main__form__item_info">
                                 <label>Assunto da mensagem</label>
                                 <div className="contact__main__form__item__error">{errorSubject}</div>
@@ -184,8 +166,7 @@ export default function Contact(){
                             <textarea 
                             rows="4" 
                             columns="10" 
-                            onChange={event => handleContent(event)}
-                            value={useContent}></textarea>
+                            onChange={event => handleContent(event.target.value)}/>
                             <div className="contact__main__form__item_info">
                                 <label>Texto da mensagem</label>
                                 <div className="contact__main__form__item__error">{errorContent}</div> 
