@@ -180,6 +180,12 @@ export default function ServiceRoute(){
             setServico([]);
             setSubServicos([]);
             setAdded([]);
+            
+            setNome("");
+            setEmail("");            
+            setNumero("");
+            setCep("");
+            setEndereco("");
         }) 
       },[history, haveChange])
     
