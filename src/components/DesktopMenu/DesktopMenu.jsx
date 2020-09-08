@@ -70,7 +70,7 @@ export default function DesktopMenu(props) {
                             </Link>
                             <ul className='topbar__desktop__menu__submenu'>
                                 <li onClick={event => event.stopPropagation()}>
-                                    CHAT-BOT
+                                    CHAT-BOT (EM BREVE)
                                 </li>
                                 <li onClick={event => event.stopPropagation()}>
                                     JUNTE-SE A NÓS
@@ -83,13 +83,8 @@ export default function DesktopMenu(props) {
                                 onClick={event => executeScroll(0)}
                                 className="link"
                             >
-                                CASES
+                                CASES (EM BREVE)
                             </Link>
-                            <ul className='topbar__desktop__menu__submenu'>
-                                    <li onClick={event => event.stopPropagation()} id="soon">
-                                        EM BREVE...
-                                    </li>
-                                </ul>
                         </li>
                 </ul>
             </div>

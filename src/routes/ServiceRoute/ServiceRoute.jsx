@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import './ServiceRoute.scss';
 import Loading from '../../components/Loading';
 
@@ -10,11 +11,12 @@ import{
 } from '../../utils/verificasoes';
 
 export default function ServiceRoute(){
+    const history = useHistory();
+    
     const [subServicos, setSubServicos] = useState([]);
     const [servico, setServico] = useState([]);
     const [added, setAdded] = useState([]);
     
-    const haveChange = false;
     const [succesBudget, setSuccesBudget] = useState(false);
     
     const [nome, setNome] = useState("");
@@ -24,8 +26,7 @@ export default function ServiceRoute(){
     const [cep, setCep] = useState("");
     const [error, setError] = useState("");    
     const [status, setStatus] = useState("");
-
-    const [enabled, setEnabled] = useState(false);
+    const [haveChange, setHaveChange] = useState(false);
     const handleName = (nome) =>{
         // event.preventDefault();
         setNome(nome);
@@ -66,38 +67,8 @@ export default function ServiceRoute(){
         else
             setError("");
     }
-
-    useEffect(()=> window.scrollTo(0,0), [haveChange]);
-    useEffect(()=>{
-        const { pathname } = window.location;
-        const param = pathname.split("/")[2];
-        
-        fetch(`https://hdeletrossistemasapi-com.umbler.net/subservicos?servico=${param.replace("-", " ")}`)
-        .then(response => response.json())
-        .then(data => setSubServicos(data))
-        
-    }, [haveChange]);
     
-    useEffect(()=>{
-        const { pathname } = window.location;
-        const param = pathname.split("/")[2];
-        
-        fetch(`https://hdeletrossistemasapi-com.umbler.net/servico?servico=${param.replace("-", " ")}`)
-        .then(response => response.json())
-        .then(data => setServico(data));
     
-        
-        if(subServicos.length > 0){
-            subServicos[0].map((subservico, index) => {
-                subservico.id_site = index;
-                subservico.added = false;
-                return subservico;
-            });
-        }
-
-    }, [haveChange, subServicos]);
-
- 
     function handleItemClick(event, index){
         event.preventDefault();
         const tempSub = subServicos[0];
@@ -142,8 +113,6 @@ export default function ServiceRoute(){
         else
             setError("");
 
-        setEnabled(true);
-
         const paramNome = nome.replace(" ", "%20");
         const paramNumero = numero.replace(" ", "");
         const paramEndereco = endereco.replace(" ", "%20");
@@ -174,6 +143,46 @@ export default function ServiceRoute(){
             }
         });
     }
+
+    useEffect(()=> window.scrollTo(0,0), [haveChange]);
+    useEffect(()=>{
+        const { pathname } = window.location;
+        const param = pathname.split("/")[2];
+        
+        fetch(`https://hdeletrossistemasapi-com.umbler.net/subservicos?servico=${param.replace("-", " ")}`)
+        .then(response => response.json())
+        .then(data => setSubServicos(data))
+        
+    }, [haveChange]);
+    
+    useEffect(()=>{
+        const { pathname } = window.location;
+        const param = pathname.split("/")[2];
+
+        fetch(`https://hdeletrossistemasapi-com.umbler.net/servico?servico=${param.replace("-", " ")}`)
+        .then(response => response.json())
+        .then(data => setServico(data));
+        
+        if(subServicos.length > 0){
+            subServicos[0].map((subservico, index) => {
+                subservico.id_site = index;
+                subservico.added = false;
+                return subservico;
+            });
+        }
+
+    }, [haveChange, subServicos]);
+    
+    useEffect(()=>{
+        return history.listen((location) => { 
+            console.log(`You changed the page to: ${location.pathname}`);
+            setHaveChange(!haveChange);
+            setServico([]);
+            setSubServicos([]);
+            setAdded([]);
+        }) 
+      },[history, haveChange])
+    
     return(
         <div className="service__budget">
             {
@@ -327,7 +336,7 @@ export default function ServiceRoute(){
                                         <div className="service__budget__makeit__final__error">{error}</div>
                                             {
                                                 status === "" ?
-                                                    <button onClick={event => handleEnd()} disabled={enabled}>Finalizar</button>
+                                                    <button onClick={event => handleEnd()}>Finalizar</button>
                                                 : <Loading/>
                                             }
                                     </div>

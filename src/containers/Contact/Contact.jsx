@@ -93,9 +93,9 @@ export default function Contact(){
                         <a href="?" target="blank" rel="noopener noreferrer">(19) 97417-3218</a>
                     </div>
                     <div className="contact__main__info__item">
-                        <a href="https://www.instagram.com/hdeletrosistemas/?hl=pt-br" target="blank" rel="noopener noreferrer">
+                        {/* <a href="https://www.instagram.com/hdeletrosistemas/?hl=pt-br" target="blank" rel="noopener noreferrer">
                             Deseja conversar com nosso atendente eletrônico?
-                        </a>
+                        </a> */}
                     </div>
                     <div className="contact__main__info__item">
                         <h4>Acompanhe nosso trabalho nas redes sociais:</h4>

@@ -54,47 +54,46 @@ export default function MobileMenu(props) {
                         </p>                        
                         <div className={`topbar__mobile__menu__submenu--${menuServices ? "show" : "hide"}`}>
                             <ul className="topbar__mobile__menu__submenu">
-                                <Link to="orcamento/elétrica" onClick={handleToggleMenu}>
+                                <Link to="/orcamento/elétrica" onClick={handleToggleMenu}>
                                     <li><p>ELÉTRICA</p></li>
                                 </Link>
-                                <Link to="orcamento/pintura" onClick={handleToggleMenu}>
+                                <Link to="/orcamento/pintura" onClick={handleToggleMenu}>
                                     <li><p>PINTURA</p></li>
                                 </Link>
-                                <Link to="orcamento/hidráulica" onClick={handleToggleMenu}>
+                                <Link to="/orcamento/hidráulica" onClick={handleToggleMenu}>
                                     <li><p>HIDRÁULICA</p></li>
                                 </Link>
-                                <Link to="orcamento/soldagem" onClick={handleToggleMenu}>
+                                <Link to="/orcamento/soldagem" onClick={handleToggleMenu}>
                                     <li><p>SOLDAGEM</p></li>
                                 </Link>
-                                <Link to="orcamento/alvenaria" onClick={handleToggleMenu}>
+                                <Link to="/orcamento/alvenaria" onClick={handleToggleMenu}>
                                     <li><p>ALVENARIA</p></li>
                                 </Link>
-                                <Link to="orcamento/marcenaria" onClick={handleToggleMenu}>
-                                    <li><p>MARCENARIA</p></li>
-                                </Link>
-                                <Link to="orcamento/construção-civil" onClick={handleToggleMenu}>
+                                <Link to="/orcamento/construção-civil" onClick={handleToggleMenu}>
                                     <li><p>CONSTRUÇÃO CIVÍL</p></li>
                                 </Link>
                             </ul>
                         </div>
                     </li>
-                    <li>
-                        <p onClick={handleMenuContacts}>
-                            CONTATO
-                            <i className="fas fa-plus" id={`i--${menuContact ? "show" : "hide"}`}></i>
-                        </p>
-                        <div className={`topbar__mobile__menu__submenu--${menuContact ? "show" : "hide"}`}>
-                            <ul className="topbar__mobile__menu__submenu">
-                                <li><p>CHAT-BOT</p></li>
-                                <li><p>JUNTE-SE A NÓS</p></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <Link to="/">
-                        <li id="clientes">
-                            <p>CASES</p>
+                    <Link to="/" className="mobile__link">
+                        <li onClick={event => executeScroll(4170)}>
+                            <p onClick={handleMenuContacts}>
+                                CONTATO
+                                {/* <i className="fas fa-plus" id={`i--${menuContact ? "show" : "hide"}`}></i> */}
+                            </p>
+                            {/* <div className={`topbar__mobile__menu__submenu--${menuContact ? "show" : "hide"}`}>
+                                <ul className="topbar__mobile__menu__submenu">
+                                    <li onClick={event => event.stopPropagation()}><p>CHAT-BOT (EM BREVE)</p></li>
+                                    <li onClick={event => event.stopPropagation()}><p>JUNTE-SE A NÓS</p></li>
+                                </ul>
+                            </div> */}
                         </li>
                     </Link>
+                    <Link to="/">
+                        <li>
+                            <p>CASES (EM BREVE)</p>
+                        </li>
+                    </Link>  
                 </ul>
             </div>
         </div>
