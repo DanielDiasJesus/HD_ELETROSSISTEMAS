@@ -85,12 +85,12 @@ export default function Contact(){
                     <div className="contact__main__info__item">
                         <h4>Envie-nos uma mensagem!</h4>
                         <a href="mailto:contato@hdeletrossistemas.com?subject=Contato" target="_blank" rel="noopener noreferrer" title="você precisa de um manipulador de email padrão nas versões desktop">contato@hdeletrossistemas.com</a>
-                        <a href="mailto:rh@hdeletrossistemas.com?subject=RH" target="_blank" rel="noopener noreferrer" title="você precisa de um manipulador de email padrão nas versões desktop">rh@hdeletrossistemas.com</a>
+                        {/* <a href="mailto:rh@hdeletrossistemas.com?subject=RH" target="_blank" rel="noopener noreferrer" title="você precisa de um manipulador de email padrão nas versões desktop">rh@hdeletrossistemas.com</a> */}
                     </div>
                     <div className="contact__main__info__item">
                         <h4>Dê um alô</h4>
-                        <a href="?" target="blank" rel="noopener noreferrer">(19) 3224-4415</a>
-                        <a href="?" target="blank" rel="noopener noreferrer">(19) 97417-3218</a>
+                        <a href="tel: 19 3224-4415" target="blank" rel="noopener noreferrer">(19) 3224-4415</a>
+                        <a href="tel: 19 97417-3218" target="blank" rel="noopener noreferrer">(19) 97417-3218</a>
                     </div>
                     <div className="contact__main__info__item">
                         {/* <a href="https://www.instagram.com/hdeletrosistemas/?hl=pt-br" target="blank" rel="noopener noreferrer">
