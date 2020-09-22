@@ -100,21 +100,21 @@ export default function Contact(){
                     <div className="contact__main__info__item">
                         <h4>Acompanhe nosso trabalho nas redes sociais:</h4>
                         <div className="contact__main__info__item__social">
-                            <a href="https://www.instagram.com/hdeletrosistemas/?hl=pt-br" target="blank" rel="noopener noreferrer">
+                            <a href="https://www.instagram.com/hdeletrossistemas/" target="blank" rel="noopener noreferrer">
                                 <div className="contact__main__info__item__social__item">
                                     <i className="fab fa-instagram"></i>
                                 </div>
                             </a>
-                            <a href="facebook" target="blank" rel="noopener noreferrer">
+                            <a href="https://www.facebook.com/hdeletrossistemas" target="blank" rel="noopener noreferrer">
                                 <div className="contact__main__info__item__social__item">
                                     <i className="fab fa-facebook-square"></i>
                                 </div>
                             </a>
-                            <a href="linkedin" target="blank" rel="noopener noreferrer">
+                            {/* <a href="linkedin" target="blank" rel="noopener noreferrer">
                                 <div className="contact__main__info__item__social__item" >
                                     <i className="fab fa-linkedin-in"></i>
                                 </div>
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </div>
