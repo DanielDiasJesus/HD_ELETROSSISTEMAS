@@ -63,11 +63,8 @@ export default function MobileMenu(props) {
                                 <Link to="/orcamento/hidráulica" onClick={handleToggleMenu}>
                                     <li><p>HIDRÁULICA</p></li>
                                 </Link>
-                                <Link to="/orcamento/soldagem" onClick={handleToggleMenu}>
-                                    <li><p>SOLDAGEM</p></li>
-                                </Link>
-                                <Link to="/orcamento/alvenaria" onClick={handleToggleMenu}>
-                                    <li><p>ALVENARIA</p></li>
+                                <Link to="/orcamento/acabamentos" onClick={handleToggleMenu}>
+                                    <li><p>ACABAMENTOS</p></li>
                                 </Link>
                                 <Link to="/orcamento/construção-civil" onClick={handleToggleMenu}>
                                     <li><p>CONSTRUÇÃO CIVÍL</p></li>
