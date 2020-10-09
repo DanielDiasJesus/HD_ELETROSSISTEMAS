@@ -19,7 +19,7 @@ export default function ServiceRoute(){
     
     const [succesBudget, setSuccesBudget] = useState(false);
     const [haveChange, setHaveChange] = useState(false);
-    const [callInInfo, setCallInInfo] = useState(false);
+    // const [callInInfo, setCallInInfo] = useState(false);
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
@@ -70,18 +70,17 @@ export default function ServiceRoute(){
             setError("");
     }
     
-    
-    function handleItemInfo(event, index){
-        event.preventDefault();
-        const tempSub = subServicos[0];
-        for(let x = 0; x < tempSub.length; x++){
-            if(tempSub[x].id_site === index){
-                tempSub[x].info = !tempSub[x].info;
-                setCallInInfo(!callInInfo);
-                break;    
-            }
-        }
-    }
+    // function handleItemInfo(event, index){
+    //     event.preventDefault();
+    //     const tempSub = subServicos[0];
+    //     for(let x = 0; x < tempSub.length; x++){
+    //         if(tempSub[x].id_site === index){
+    //             tempSub[x].info = !tempSub[x].info;
+    //             setCallInInfo(!callInInfo);
+    //             break;    
+    //         }
+    //     }
+    // }
     function handleItemClick(event, index){
         event.preventDefault();
         const tempSub = subServicos[0];
