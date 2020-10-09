@@ -22,7 +22,7 @@ export default function Introduction() {
                 </div>
             </div>
             <div className="introduction__pretty">
-                <img src={require("../../assets/img/INTRODUCTION_PRETTY_COLORFULL.png")} alt=""/>
+                <img src={require("../../assets/img/INTRODUCTION_PRETTY_BLUE.png")} alt=""/>
             </div>
         </div>
     )

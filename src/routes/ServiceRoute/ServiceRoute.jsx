@@ -18,7 +18,9 @@ export default function ServiceRoute(){
     const [added, setAdded] = useState([]);
     
     const [succesBudget, setSuccesBudget] = useState(false);
-    
+    const [haveChange, setHaveChange] = useState(false);
+    const [callInInfo, setCallInInfo] = useState(false);
+
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [numero, setNumero] = useState("");
@@ -26,7 +28,7 @@ export default function ServiceRoute(){
     const [cep, setCep] = useState("");
     const [error, setError] = useState("");    
     const [status, setStatus] = useState("");
-    const [haveChange, setHaveChange] = useState(false);
+    
     const handleName = (nome) =>{
         // event.preventDefault();
         setNome(nome);
@@ -69,6 +71,17 @@ export default function ServiceRoute(){
     }
     
     
+    function handleItemInfo(event, index){
+        event.preventDefault();
+        const tempSub = subServicos[0];
+        for(let x = 0; x < tempSub.length; x++){
+            if(tempSub[x].id_site === index){
+                tempSub[x].info = !tempSub[x].info;
+                setCallInInfo(!callInInfo);
+                break;    
+            }
+        }
+    }
     function handleItemClick(event, index){
         event.preventDefault();
         const tempSub = subServicos[0];
@@ -88,6 +101,17 @@ export default function ServiceRoute(){
                 }
             }
         }
+    }
+    const getAtualDate = () =>{
+        let dataAtual = new Date();
+        let dia = dataAtual.getDate();
+        let mes = dataAtual.getMonth() + 1;
+        let ano = dataAtual.getFullYear();
+        let hora = dataAtual.getHours();
+        let minuto = dataAtual.getMinutes();
+
+        return `${dia < 10 ? `0${dia}` : dia}${'/'}${mes < 10 ? `0${mes}` : `${mes}`}${'/'}${ano} - ${hora}:${minuto}h`;
+
     }
     const handleEnd = () =>{
         if(nome.length < 1){
@@ -167,6 +191,7 @@ export default function ServiceRoute(){
             subServicos[0].map((subservico, index) => {
                 subservico.id_site = index;
                 subservico.added = false;
+                subservico.info = false;
                 return subservico;
             });
         }
@@ -249,24 +274,34 @@ export default function ServiceRoute(){
                                 <div className="service__budget__client__item__error">{error}</div>
                             </div>
                             <div className="service__budget__client__item">
-                                <label>Digite seu nome completo</label>
-                                <input type="text" onChange={event => handleName(event.target.value)}></input>
+                                <label>Seu nome completo</label>
+                                <input type="text"
+                                 placeholder="ex. Romilson de Oliveira"
+                                 onChange={event => handleName(event.target.value)}></input>
                             </div>
                             <div className="service__budget__client__item">
-                                <label>Digite seu e-mail</label>
-                                <input type="text" onChange={event => handleEmail(event.target.value)}></input>
+                                <label>Seu e-mail</label>
+                                <input type="text" 
+                                placeholder="ex. contato@hdeletrossistemas.com"
+                                onChange={event => handleEmail(event.target.value)}></input>
                             </div>
                             <div className="service__budget__client__item">
-                                <label>Digite seu número</label>
-                                <input type="text" onChange={event => handleNumero(event.target.value)}></input>
+                                <label>Seu número</label>
+                                <input type="text" 
+                                placeholder="ex. 19 974173218" 
+                                onChange={event => handleNumero(event.target.value)}></input>
                             </div>
                             <div className="service__budget__client__item">
-                                <label>Digite seu endereço</label>
-                                <input type="text" onChange={event => handleEndereco(event.target.value)}></input>
+                                <label>Seu endereço</label>
+                                <input type="text" 
+                                placeholder="ex. Rua Lourival de Almeida, 745, Campinas-SP" 
+                                onChange={event => handleEndereco(event.target.value)}></input>
                             </div>
                             <div className="service__budget__client__item">
-                                <label>Digite seu CEP</label>
-                                <input type="text" onChange={event => handleCEP(event.target.value)}></input>
+                                <label>Seu CEP</label>
+                                <input type="text" 
+                                placeholder="ex. 13054-774" 
+                                onChange={event => handleCEP(event.target.value)}></input>
                             </div>
                             <div className="service__budget__client__item__error">
                                 <div className="service__budget__client__item__error">{error}</div>
@@ -288,12 +323,26 @@ export default function ServiceRoute(){
                                     <div className="service__budget__makeit__subservices__select__header"/>    
                                     {
                                         subServicos[0].map((subservico, index) =>(
-                                            <div className="service__budget__makeit__subservices__select__option" key={subservico.id}>
-                                                <h3>{subservico.nome}</h3>
-                                                <button
-                                                    onClick={event => handleItemClick(event, index)}
-                                                    
-                                                    ><i className="fas fa-plus" id={subservico.added ? 'spin': 'nips'}></i></button>
+                                            <div className="service__budget__makeit__subservices__select__main" key={subservico.id}>
+                                                <div className="service__budget__makeit__subservices__select__option">
+                                                    <h3>{subservico.nome}</h3>
+                                                    <div className="service__budget__makeit__subservices__select__buttons">
+                                                        {/* <button className="option__info" onClick={event => handleItemInfo(event, index)}>
+                                                            <i className="fas fa-info" id={subservico.info ? 'clicked' : 'dekcilc'}></i>
+                                                        </button> */}
+                                                        <button className="option__add" onClick={event => handleItemClick(event, index)}>
+                                                            <i className="fas fa-plus" id={subservico.added ? 'spin': 'nips'}></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                {
+                                                    subservico.info ?
+                                                        <div className="showinfo">
+                                                            <h3>{subservico.descricao}</h3>
+                                                        </div>
+                                                    :
+                                                    <div className="hideinfo"></div>
+                                                }
                                             </div>
                                         ))
                                     }
@@ -317,23 +366,20 @@ export default function ServiceRoute(){
                                         
                                     }
                                     <div className="service__budget__makeit__table__main">
-                                        <div className="service__budget__makeit__table__main__item">
-                                            <div className="service__budget__makeit__table__mainitem__id">
-                                                <h3>INDICE</h3>
-                                            </div>
-                                            <div className="service__budget__makeit__table__main__name">
-                                                <h3>SERVICO</h3>
+                                        <div className="service__budget__makeit__table__mainitem__id">
+                                            <h3>CLIENTE: {nome.toUpperCase()}</h3>
                                         </div>
-                                    </div>
+                                        <div className="service__budget__makeit__table__main__item">
+                                            <h3>INDICE</h3>
+                                            <h3>SERVIÇO</h3>
+                                            <h3>DATA/HORA</h3>
+                                        </div>
                                     {
                                         added.map((obj, index) =>(
                                             <div className="service__budget__makeit__table__main__item" key={index}>
-                                                <div className="service__budget__makeit__table__mainitem__id">
                                                     <h3>{++index}</h3>
-                                                </div>
-                                                <div className="service__budget__makeit__table__main__name">
                                                     <h3>{obj.nome}</h3>
-                                                </div>
+                                                    <h3>{getAtualDate()}</h3>
                                             </div>
                                         ))
                                     }
@@ -348,7 +394,7 @@ export default function ServiceRoute(){
                                     </div>
                                 </>
                                 : <div className="service__budget__makeit__table__header">
-                                    <h4>SELECIONE PELO MENOS UM ITEM</h4>
+                                    {/* <h4>SELECIONE PELO MENOS UM ITEM</h4> */}
                                 </div>
                             }
                             </div>

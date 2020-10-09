@@ -7,7 +7,7 @@ import './Services.scss';
 
 export default function Services() {
     const [useServices, setUseServices] = useState([]);
-    
+
     useEffect(()=>{
         fetch("https://hdeletrossistemasapi-com.umbler.net/servicos")
         .then(response =>{

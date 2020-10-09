@@ -3,8 +3,8 @@
     height: 100%;
     background: #f8f8f8;
     
-    margin-top: 8.4em;
-    padding: 0em 0em;
+    // margin-top: 8.4em;
+    padding: 4.5em 0em;
 
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 600;
     text-align: center;
-    color: #EDAA00;
+    color: #00b5e6;
 }
 .orcamento__header h4{
     width: 100%;
@@ -66,6 +66,8 @@
     width: 20em;
     height: 20em;
 
+    min-height: auto;
+
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -87,11 +89,11 @@
     justify-content: center;
     align-items: center;
     border-radius: 200pt 200pt 0 0;
-    background: #ffb700;
+    background: #00b5e6;
     transition: background 200ms linear;
 }
 .orcamento__servicos .link > .service .service__header__logo{
-    width: 6em;
+    width: 7em;
     height: 9em;
 }
 .orcamento__servicos > .service .service__header__logo img{
@@ -99,7 +101,7 @@
     transition: transform 200ms linear;
 }
 .orcamento__servicos .link:hover .service__header{
-    background: #ffb700;
+    background: #20cfff;
 }
 .orcamento__servicos .link:hover .service{
     background: #ffffff;

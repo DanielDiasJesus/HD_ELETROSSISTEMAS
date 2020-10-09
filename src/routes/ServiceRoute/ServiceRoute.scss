@@ -6,9 +6,6 @@
     align-items: center;
 
     width: 100%;
-    margin-top: 8.2em;
-
-    background: #f1f1f1;
 }
 .service__budget__header{
     position: relative;
@@ -18,6 +15,7 @@
     align-items: center;
     flex-direction: column;
     
+    padding-top: 8.1em;
     // border: .2em solid black;
     width: 100%;
     height: 50em;    
@@ -101,7 +99,7 @@
     font-weight: bolder;
     font-size: 1.2em;
     text-align: center;
-    color: red;
+    color: #ff0000;
 }
 .service__budget__client__item{
     width: 90%;
@@ -112,33 +110,38 @@
 
     background: #ffffff;
     margin: 1em 2em;
-    padding: 2em;
+    padding: 0em 2em;
 
     label{
         font-family: 'Roboto', Helvetica, sans-serif;
         font-weight: normal;
-        font-size: 2em;
+        font-size: 1.8em;
         line-height: 1.5em;
         text-align: justify;
+
+        color: #00b5e6;
     }
     input{
-        height: 2.7em;
+        height: 2.2em;
         width: 40%;
-        border-radius: 10pt;
+        border-radius: 8pt;
 
+        margin: .5em 0em;
         padding: 0em 1.2em;
         
         border: none;
         outline: none;
         background-image:none;    
-        background-color:#e3e1e0;
+        background:#00b5e6;
         
         font-family: 'Roboto', Helvetica, sans-serif;
         font-weight: normal;
-        font-size: 2em;
+        font-size: 1.8em;
 
         text-align: left;
+        color: #f8f8f8;
     }
+    input::placeholder{color: #f8f8f8; opacity: .9;}
 }
 .service__budget__makeit{
     width: 83.5%;
@@ -179,8 +182,11 @@
     max-height: 50em;
     overflow-y: auto;
 }
-.service__budget__makeit__subservices__select::-webkit-scrollbar-thumb{background-color:green;}
-.service__budget__makeit__subservices__select::-webkit-scrollbar{background-color:#e3e1e0;}
+.service__budget__makeit__subservices__select::-webkit-scrollbar-thumb{background: #00b5e6;}
+.service__budget__makeit__subservices__select::-webkit-scrollbar{background: #ffffff;}
+.service__budget__makeit__subservices__select__main{
+    max-width: 100%;
+}
 .service__budget__makeit__subservices__select__option{
     display: flex;
     align-items: center;
@@ -193,15 +199,15 @@
         font-family: 'Roboto', Helvetica, sans-serif;
         font-weight: normal;
         font-size: 1.45em;
-        text-align: justify;
+        text-align: left;
     }
 }
 .service__budget__makeit__subservices__select__option #add{
-    background-color: green;
+    background: #00b5e6;
     i{animation: halfnpis 200ms linear backwards;}
 }
 .service__budget__makeit__subservices__select__option #remove{
-    background-color: red;
+    background-color: #dd3737;
     i{animation: halfspin 200ms linear forwards;}
 }
 @keyframes halfspin{
@@ -212,17 +218,22 @@
     from{transform: rotate(225deg);}
     to{transform: rotate(0deg);}
 }
-.service__budget__makeit__subservices__select__option button{
-    height: 2.7em;
-    border-radius: 6pt;
-    
-    padding: .1em .8em;
+.service__budget__makeit__subservices__select__buttons{
+    width: 15em;
+    display: flex;
+    justify-content: space-between;
+}
+.option__add, .option__info{
+    width: 100%;
+    padding: .6em;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
+    
     outline: none;
     cursor: pointer;
-
-    background-color: green;
 
     background-image:none;    
     
@@ -230,11 +241,47 @@
     font-size: 1.5em;
 
     i{
+        transform: scale(1);
         pointer-events: none;
         font-size: 1.3em; 
         font-weight: 600;
-        color: #f8f8f8;
+        transition: transform 200ms linear;
     }
+}
+.option__add{
+    background: #00b5e6;
+    i{color: #f8f8f8;}
+}
+.option__info{
+    background: #e3e1e0;
+    i{color: #3f3f3f;}
+}
+.option__add:hover i, .option__info:hover i{transform: scale(1.1);}
+.showinfo{
+    animation: growDown 200ms linear forwards;
+
+    h3{
+        margin: 0;
+    }
+}
+.hideinfo{
+    animation: growUp 200ms linear backwards;
+}
+@keyframes growUp{
+    from{height: 25em;}
+    to{height: 0em;}
+}
+#clicked{
+    transform: scale(1.1);
+    color: #666666;
+}
+#dekcilc{
+    transform: scale(1);
+    color: #1d1d1d;
+}
+@keyframes growDown{
+    from{height: 0em;}
+    to{height: 25em;}
 }
 .service__budget__makeit__table{
     width: 100%;
@@ -271,24 +318,24 @@
     background: #ffffff;
     
 }
-.service__budget__makeit__table__main__item{
+.service__budget__makeit__table__main__item, .service__budget__makeit__table__mainitem__id{
     width: 90%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
     padding: 1.2em;
     margin: .5em 0em;
-
     h3{
+        width: calc(100% / 3);
         margin: 0em;
         padding: 0em .2em;
         font-family: 'Roboto', Helvetica, sans-serif;
         font-weight: normal;
         font-size: 1.8em;
-        text-align: right;
+        text-align: center;
     }
 }
+.service__budget__makeit__table__mainitem__id{ h3{width: 100%;}}
 .service__budget__makeit__final__error{
     width: 100%;
     min-height: 1.25em;
@@ -322,8 +369,8 @@
     border: none;
     outline: none;
     background-image:none;    
-    background-color:green;
-    color: #f8f8f8;   
+    background:#f8f8f8;
+    color: #00b5e6;   
     font-family: 'Roboto', Helvetica, sans-serif;
     font-weight: normal;
     font-size: 2em;
