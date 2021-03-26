@@ -15,7 +15,7 @@ body {
 }
 html{scroll-behavior: smooth;}
 body{
-  background: #f8f8f8 url('./assets/img/BODY_BG.svg') no-repeat center center;
+  /* background: #f8f8f8 url('./assets/img/BODY_BG.svg') no-repeat center center; */
   background-size: cover;
 }
 body::-webkit-scrollbar-thumb {background-color: #00b5e6;}
