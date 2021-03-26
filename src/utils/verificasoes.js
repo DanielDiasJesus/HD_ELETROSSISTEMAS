@@ -46,10 +46,22 @@ function validAddress(endereco) {
     
     return true;
 }
+function validSubject(assunto){
+    if(assunto.length < 3 && assunto.length !== 0)
+        return false;
+    return true;
+}
+function validContent(content){
+    if(content.length < 10 && content.length !== 0)
+        return false;
+    return true;
+}
 module.exports = {
     validMail,
     validName,
     validNumber,
     validCep,
-    validAddress
+    validAddress,
+    validSubject,
+    validContent
 }

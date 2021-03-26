@@ -419,7 +419,7 @@ export default function ServiceRoute(){
                                         <div className="service__budget__makeit__final__error">{error}</div>
                                             {
                                                 status === "" ?
-                                                    <button onClick={event => handleEnd()}>Finalizar</button>
+                                                    <button onClick={handleEnd}>Finalizar</button>
                                                 : <Loading/>
                                             }
                                     </div>

@@ -1,55 +1,106 @@
-import React, { useState }from 'react';
+import React, { useEffect, useState }from 'react';
 import './Contact.scss';
+import { mask, unMask } from 'remask';
 import{ 
         validMail,
         validName,
-        validNumber   
+        validNumber,
+        validSubject,
+        validContent
     } from '../../utils/verificasoes';
 export default function Contact(){
-    const [useName, setName] = useState("");
-    const [useMail, setMail] = useState("");
-    const [useNumber, setNumber] = useState("");
-    const [useSubject, setSubject] = useState("");
-    const [useContent, setContent] = useState("");
+    const [nome, setName] = useState("");
+    const [email, setMail] = useState("");
+    const [numero, setNumber] = useState("");
+    const [assunto, setSubject] = useState("");
+    const [conteudo, setContent] = useState("");
     const [error, setError] = useState("");
-    const [useStatus, setStatus] = useState("");
+    const [status, setStatus] = useState("");
 
-    const handleName = (nome) =>setName(nome); 
-    const handleMail = (email) => setMail(email);
-    const handleNumber = (numero) => setNumber(numero);        
-    const handleSubject = (subject) => setSubject(subject);
-    const handleContent = (content) => setContent(content);
-    
-    function handleClick(event){
-        event.preventDefault();
-
-        if(!validName(useName))
+    const handleName = event => setName(event.target.value); 
+    useEffect(()=>{
+        if(!validName(nome))
             setError("Insira um nome válido!");
-    
-        else if(!validMail(useMail))
+        else
+            setError("");
+    }, [nome])
+
+    const handleMail = event => setMail(event.target.value);
+    useEffect(()=>{
+        if(!validMail(email))
             setError("Insira um endereço de e-mail válido!");
-    
-        else if(!validNumber(useNumber))
+        else
+            setError("");
+    }, [email])
+
+    const handleNumber = event => {
+        const originalNumero = unMask(event.target.value);
+        const maskedNumero = mask(originalNumero, ["(99) 9999-9999", "(99) 9 9999-9999"])
+        setNumber(maskedNumero);
+    }
+    useEffect(()=>{
+        if(!validNumber(numero))
             setError("Insira um numero de celular válido!");
+        else 
+            setError("");
+    }, [numero])
     
-        else if(useSubject.length < 5)
-            setError("Insira um assunto válido!");
+    const handleSubject = event => setSubject(event.target.value);
+    useEffect(() =>{
+        if(!validSubject(assunto))
+            setError("O assunto deve ter no minimo 3 caracteres!");
+        else 
+            setError("");
+    }, [assunto])
+
+    const handleContent = event => setContent(event.target.value);
+    useEffect(() =>{
+        if(!validContent(conteudo))
+            setError("Sua mensagem deve ter no minimo 10 caracteres!");
+        else 
+            setError("");
+    }, [conteudo])
+
+    const handleEnd = () => {
+
+        if(nome.length < 1){
+            setError("Preencha o campo Nome");
+            return;
+        }
     
-        else if(useContent.length < 5)
-            setError("Insira uma mensagem válido!");
+        else if(email.length < 1){
+            setError("Preencha o campo E-mail");
+            return
+        }
     
-        else{
+        else if(numero.length < 1){
+            setError("Preencha o campo Numero");
+            return;
+        }
+    
+        else if(assunto.length < 1){
+            setError("Preencha o campo Assunto");
+            return;   
+        }
+    
+        else if(conteudo.length < 1){
+            setError("Preencha o campo Conteudo");
+            return;
+        }
+        else if(error !== "")
+            return;
+        
+        else
             setError("");
         
-            const nome = useName.replace(" ", "%20");
-            const assunto = useSubject.replace(" ", "%20");
-            const mensagem = useContent.replace(" ", "%20");
-            const numero = useNumber.replace(" ", "%20");
+        const nomeOriginal = nome.replace(" ", "%20");
+        const assuntoOriginal = assunto.replace(" ", "%20");
+        const mensagemOriginal = conteudo.replace(" ", "%20");
+        const numeroOriginal = numero.replace(" ", "%20");
 
-            fetch(`https://hdeletrossistemasapi-com.umbler.net/sendemail?email=${useMail}&nome=${nome}&number=${numero}&subject=${assunto}&message=${mensagem}`)
-            .then(response => response.text())
-            .then((data) => setStatus(data));
-        }
+        fetch(`https://hdeletrossistemasapi-com.umbler.net/sendemail?email=${email}&nome=${nomeOriginal}&number=${numeroOriginal}&subject=${assuntoOriginal}&message=${mensagemOriginal}`)
+        .then(response => response.text())
+        .then((data) => setStatus(data));
     }
     return(
         <div className="contact">
@@ -98,38 +149,45 @@ export default function Contact(){
                         <div className="contact__main__form__item">
                             <input 
                             type="text" 
+                            autoComplete="new-password"
+                            value={nome}
                             placeholder="Seu nome completo (ex. Romilson de Oliveira)"
-                            onChange={event => handleName(event.target.value)}/>
+                            onChange={handleName}/>
                         </div>
                         <div className="contact__main__form__item">
                             <input 
-                            type="email" 
+                            type="email"
+                            autoComplete="new-password"
+                            value={email}
                             placeholder="Seu email (ex. contato@hdeletrossistemas.com)" 
-                            onChange={event => handleMail(event.target.value)}/>
+                            onChange={handleMail}/>
                         </div>
                         <div className="contact__main__form__item">
                             <input 
                                 type="tel" 
-                                id="phone" 
-                                placeholder="Seu número (ex. 19 974173218)" 
-                                onChange={event => handleNumber(event.target.value)}/>
+                                autoComplete="new-password"
+                                value={numero}
+                                placeholder="Seu número (ex. (19) 9 74173218)" 
+                                onChange={handleNumber}/>
                         </div>
                         <div className="contact__main__form__item">
                             <input 
                             type="text" 
-                            placeholder="Assunto" 
-                            onChange={event => handleSubject(event.target.value)}/>
+                            placeholder="Assunto"
+                            autoComplete="new-password"
+                            value={assunto}
+                            onChange={handleSubject}/>
                         </div>
                         <div className="contact__main__form__item">
                             <textarea 
                             rows="4" 
                             columns="10" 
                             placeholder="Menssagem"
-                            onChange={event => handleContent(event.target.value)}/>
+                            onChange={handleContent}/>
                         </div>
                         <div className="contact__main__form__item">
-                            <div className="contact__main__form__item__status">{useStatus}</div>
-                            <button onClick={event => handleClick(event)}>Enviar</button>
+                            <div className="contact__main__form__item__status">{status}</div>
+                            <button onClick={handleEnd}>Enviar</button>
                             <div className="contact__main__form__item__error">{error}</div> 
                         </div>
                     </form>
