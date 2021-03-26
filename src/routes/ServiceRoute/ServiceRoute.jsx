@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { mask, unMask } from 'remask';
 import './ServiceRoute.scss';
 import Loading from '../../components/Loading';
 
@@ -7,7 +8,8 @@ import{
     validMail,
     validName,
     validNumber,   
-    validCep
+    validCep,
+    validAddress
 } from '../../utils/verificasoes';
 
 export default function ServiceRoute(){
@@ -29,46 +31,64 @@ export default function ServiceRoute(){
     const [error, setError] = useState("");    
     const [status, setStatus] = useState("");
     
-    const handleName = (nome) =>{
-        // event.preventDefault();
-        setNome(nome);
+    const handleName = event => setNome(event.target.value);
+    useEffect(()=>{
         if(!validName(nome)){
             setError("Insira um nome válido!");
             return;
         }   
         else
             setError("");
-    }
-    const handleEmail = (email) =>{
-        setEmail(email)
+    }, [nome])    
+    
+    const handleEmail = event => setEmail(event.target.value);
+    useEffect(()=>{
         if(!validMail(email)){
             setError("Insira um endereço de e-mail válido!");
             return;
         }
         else
             setError("");
+    }, [email])
+
+    const handleNumero = event =>{
+        const originalNumero = unMask(event.target.value);
+        const maskedNumero = mask(originalNumero, ["(99) 9999-9999", "(99) 9 9999-9999"])
+        
+        setNumero(maskedNumero);
+        
     }
-    const handleNumero = (numero) =>{
-        setNumero(numero);
+    useEffect(()=>{
         if(!validNumber(numero)){
             setError("Insira um numero de celular válido!");
             return;
         }
         else
             setError("");
+    }, [numero])
+    const handleEndereco = event => setEndereco(event.target.value);
+    useEffect(() =>{
+        if(!validAddress(endereco)){
+            setError("Insira um endereço válido!");
+            return;
+        }
+        else
+            setError("");
+    }, [endereco])
+    const handleCEP = event =>{
+        const originalCEP = unMask(event.target.value);
+        const maskedCEP = mask(originalCEP, ["99999-999"])
+        
+        setCep(maskedCEP);
     }
-    const handleEndereco = (endereco) =>{
-        setEndereco(endereco);
-    }
-    const handleCEP = (cep) =>{
-        setCep(cep);
+    useEffect(()=>{
         if(!validCep(cep)){
             setError("Insira um CEP válido!");
             return;
         }
         else
             setError("");
-    }
+    }, [cep])
     
     // function handleItemInfo(event, index){
     //     event.preventDefault();
@@ -133,6 +153,8 @@ export default function ServiceRoute(){
             setError("Você acabou esquecendo de preencher o campo CEP!")
             return
         }
+        else if(error !== "")
+            return
         else
             setError("");
 
@@ -275,32 +297,42 @@ export default function ServiceRoute(){
                             <div className="service__budget__client__item">
                                 <label>Seu nome completo</label>
                                 <input type="text"
+                                 autoComplete="new-password"
                                  placeholder="ex. Romilson de Oliveira"
-                                 onChange={event => handleName(event.target.value)}></input>
+                                 value={nome}
+                                 onChange={handleName}></input>
                             </div>
                             <div className="service__budget__client__item">
                                 <label>Seu e-mail</label>
                                 <input type="text" 
+                                autoComplete="new-password"
                                 placeholder="ex. contato@hdeletrossistemas.com"
-                                onChange={event => handleEmail(event.target.value)}></input>
+                                value={email}
+                                onChange={handleEmail}></input>
                             </div>
                             <div className="service__budget__client__item">
                                 <label>Seu número</label>
-                                <input type="text" 
-                                placeholder="ex. 19 974173218" 
-                                onChange={event => handleNumero(event.target.value)}></input>
+                                <input type="tel" 
+                                autoComplete="new-password"
+                                placeholder="ex. (19) 9 97417-3218" 
+                                value={numero}
+                                onChange={handleNumero}></input>
                             </div>
                             <div className="service__budget__client__item">
                                 <label>Seu endereço</label>
                                 <input type="text" 
+                                autoComplete="new-password"
                                 placeholder="ex. Rua Lourival de Almeida, 745, Campinas-SP" 
-                                onChange={event => handleEndereco(event.target.value)}></input>
+                                value={endereco}
+                                onChange={handleEndereco}></input>
                             </div>
                             <div className="service__budget__client__item">
                                 <label>Seu CEP</label>
-                                <input type="text" 
-                                placeholder="ex. 13054-774" 
-                                onChange={event => handleCEP(event.target.value)}></input>
+                                <input type="text"
+                                autoComplete="new-password" 
+                                placeholder="ex. 13053-614" 
+                                value={cep}
+                                onChange={handleCEP}></input>
                             </div>
                             <div className="service__budget__client__item__error">
                                 <div className="service__budget__client__item__error">{error}</div>
@@ -352,11 +384,11 @@ export default function ServiceRoute(){
                             added.length > 0 ?
                                 <>
                                     <div className="service__budget__makeit__table__header">
-                                        <h4>Ótimo! Agora você só precisa dar uma ultima checada na lista aqui em baixo, e assim que tiver certeza clique em confirmar</h4>
+                                        <h4>Ótimo! Agora você só precisa dar uma ultima checada na lista aqui em baixo, e assim que tiver certeza clique em confirmar.</h4>
                                         {
                                             servico[0].nome.toLowerCase() !== 'orçamento personalizado' ?
-                                            <h4>Caso não tenha encontrado o item que procurava, tente voltar na seção de serviços, 
-                                                a opção de Orçamento Personalizado, lá você vai encontrar todas os nossos servicos</h4>
+                                            <h4>Caso não tenha encontrado o item que procurava, tente voltar na seção de serviços 
+                                                na opção de Orçamento Personalizado, lá você vai encontrar todas os nossos servicos</h4>
                                                 : ""
                                         }
                                             <h4>Ah, e não esqueça de preencher suas informações sobre você lá em cima.</h4>

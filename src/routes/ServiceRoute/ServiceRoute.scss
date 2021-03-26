@@ -4,30 +4,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    
+    padding-top: 8.1em;
+    
     width: 100%;
 }
 .service__budget__header{
     position: relative;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     
-    padding-top: 8.1em;
     // border: .2em solid black;
     width: 100%;
     height: 50em;    
 }
 .service__budget__header__content{
+    width: 80%;
+    height: 80%;
+    
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 80%;
-    height: 80%;
+
     border: .2em solid #f8f8f8;
+    
     z-index: 2;
 }
 .service__budget__header__content h3{
@@ -85,7 +89,7 @@
     }
 }
 .service__budget__client__item__error{
-    width: 90%;
+    width: 80%;
     min-height: 1.25em;
     display: flex;
     justify-content: center;
@@ -102,15 +106,20 @@
     color: #ff0000;
 }
 .service__budget__client__item{
-    width: 90%;
+    width: 75%;
     
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
-    background: #ffffff;
-    margin: 1em 2em;
-    padding: 0em 2em;
+    // background: #f8f8f8;
+    
+    border-radius: 2.5pt;
+    
+    margin: 0em 2em;
+    padding: 1em 2em;
+    // border: .2em solid #00b5e6;
 
     label{
         font-family: 'Roboto', Helvetica, sans-serif;
@@ -119,29 +128,30 @@
         line-height: 1.5em;
         text-align: justify;
 
-        color: #00b5e6;
+        color: #1c1c1c;
     }
     input{
         height: 2.2em;
-        width: 40%;
-        border-radius: 8pt;
+        width: 95%;
+        border-radius: 4pt;
 
         margin: .5em 0em;
-        padding: 0em 1.2em;
+        padding: .15em 1.2em;
         
         border: none;
         outline: none;
-        background-image:none;    
-        background:#00b5e6;
+        background-image:none;
+
+        border: .15em solid #00b5e6;
         
         font-family: 'Roboto', Helvetica, sans-serif;
         font-weight: normal;
         font-size: 1.8em;
 
         text-align: left;
-        color: #f8f8f8;
+        color: #00b5e6;
     }
-    input::placeholder{color: #f8f8f8; opacity: .9;}
+    input::placeholder{color: #1c1c1c; opacity: .35;}
 }
 .service__budget__makeit{
     width: 83.5%;
@@ -150,13 +160,16 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-
+}
+.service__budget__makeit__header{
+    width: 100%;
     h4{
         font-family: 'Roboto', Helvetica, sans-serif;
-        font-weight: normal;
-        font-size: 2em;
+        font-weight: bold;
+        font-size: 1.8em;
         line-height: 1.5em;
         text-align: justify;
+        color: #00b5e6;
     }
 }
 .service__budget__makeit__subservices{width: 100%;}
@@ -298,6 +311,7 @@
     align-items: flex-start;
     flex-direction: column;
     margin: 3em 0em;
+
     h4{
         margin: .2em 0em;
         padding: 0em .2em;
@@ -315,7 +329,7 @@
     justify-content: center;
     flex-direction: column;
     
-    background: #ffffff;
+    background: #00b5e6;
     
 }
 .service__budget__makeit__table__main__item, .service__budget__makeit__table__mainitem__id{
@@ -324,15 +338,19 @@
     align-items: center;
 
     padding: 1.2em;
-    margin: .5em 0em;
+
     h3{
         width: calc(100% / 3);
+        
         margin: 0em;
         padding: 0em .2em;
+
         font-family: 'Roboto', Helvetica, sans-serif;
         font-weight: normal;
         font-size: 1.8em;
         text-align: center;
+
+        color: #f8f8f8;
     }
 }
 .service__budget__makeit__table__mainitem__id{ h3{width: 100%;}}
@@ -379,7 +397,7 @@
 }
 @media screen and (max-width: 550px){
     .service__budget{
-        margin-top: 6.6em;
+        margin-top: 0em;
     }
     .service__budget__header__content{
         h3{font-size: 2.3em;}
@@ -389,16 +407,19 @@
         h4{font-size:1.8em;}
     }
     .service__budget__client__item{
-        flex-direction: column;
+        width: 100%;
         label{
             font-size: 2em;
             justify-content: left;
         }
-        input{width: 90%;}
+        input{width: 85%;}
     }
     .service__budget__makeit{
         width: 98%;
         h4{font-size:1.8em;}
+    }
+    .service__budget__makeit__header{
+        h4{margin: 0em 1em;}
     }
     .service__budget__makeit__subservices__select__option{
         flex-direction: column;
@@ -406,9 +427,13 @@
     }
     .service__budget__makeit__subservices__select{min-height: 20em;}
     .service__budget__makeit__table__header{
-        h4{font-size: 1.6em; line-height: 2em;}
+        h4{
+            font-size: 1.6em; 
+            line-height: 2em;
+            margin: 0em 1em;
+        }
     }
     .service__budget__makeit__table__main__item{
-        h3{font-size: 1.6em;}
+        h3{font-size: 1.5em;}
     }
 }
