@@ -21,6 +21,7 @@
 .introduction__budget__title{
     display: flex;
     flex-direction: column;
+    z-index: 2;
 }
 .introduction__budget__title h3{
     margin: .2em 0em;
@@ -99,6 +100,7 @@
 }
 .introduction__pretty img{
     width: 100%;
+    filter: invert(1);
 }
 @media screen and (max-width: 971px){
     .introduction{
