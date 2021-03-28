@@ -29,16 +29,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    transition: transform 300ms linear;
+
     img{
         width: 45%;
         height: auto;
     }
     a{
+        transition: color 300ms linear;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         text-decoration: none;
         color: #1c1c1c;
     }
 }
-
+.topbar__desktop__menu__item:hover{
+    a{color: #008ECC;}
+}
 // .topbar__desktop__logo{
 //     display: flex;
 //     max-width: 4.3em;

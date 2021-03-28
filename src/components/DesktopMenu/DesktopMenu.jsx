@@ -5,7 +5,7 @@ import './DesktopMenu.scss';
 
 export default function DesktopMenu(props) {
     const [useScrollTop, setScrollTop] = useState(0);
-
+    
     function controlMenu(){
         return useScrollTop >  80 ? {
             height : "3.5em"
@@ -14,14 +14,9 @@ export default function DesktopMenu(props) {
 
     function controlLogo(){
         return useScrollTop >  80 ? {
-            maxWidth : "3.8em"
+            transform : "scale(.7)"
         }: null;
     }
-    // function executeScroll(ref){
-    //     setTimeout(() =>{
-    //         window.scrollTo(0, ref);
-    //     }, 10)
-    // }
     
     useEffect(()=>{
         const onScroll = event => {
@@ -30,7 +25,7 @@ export default function DesktopMenu(props) {
           window.addEventListener("scroll", onScroll);
           return () => window.removeEventListener("scroll", onScroll);
         }, [useScrollTop]);
-
+    
     return (
         <div className="topbar__desktop" style={controlMenu(612)}>
             <div className="topbar__desktop__menu">
@@ -92,15 +87,15 @@ export default function DesktopMenu(props) {
                 <div className="topbar__desktop__menu__item">
                     <a href="/#servicos">SERVIÇOS</a>
                 </div>
-                <div className="topbar__desktop__menu__item" style={controlLogo()}>
+                <div className="topbar__desktop__menu__item"  style={controlLogo()}>
                     {/* <a href="#">SOBRE A HD</a> */}
-                    <img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img>
+                    <a href="/"><img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img></a>
                 </div>
                 <div className="topbar__desktop__menu__item">
                         <a href="/#contato">CONTATO</a>
                 </div>
                 <div className="topbar__desktop__menu__item">
-                        <a href="/#cases">CASES</a>
+                        <a href="/#cases" >CASES</a>
                 </div>
             </div>
         </div>
