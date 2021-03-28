@@ -95,7 +95,7 @@ export default function DesktopMenu(props) {
                         <a href="/#contato">CONTATO</a>
                 </div>
                 <div className="topbar__desktop__menu__item">
-                        <a href="/#cases" >CASES</a>
+                        <a href="/cases" >CASES</a>
                 </div>
             </div>
         </div>
