@@ -1,17 +1,17 @@
 import React, { useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 
 import './MobileMenu.scss';
 
 export default function MobileMenu(props) {
     let [toggleMenu, setToggleMenu] = useState(false);
     let [menuServices, setMenuServices] = useState(false);
-    let [menuContact, setMenuContacts] = useState(false);
+    // let [menuContact, setMenuContacts] = useState(false);
     let [useScrollTop, setScrollTop] = useState(0);
 
     const handleToggleMenu = () => setToggleMenu(!toggleMenu);
     const handleMenuServices = () => setMenuServices(!menuServices);
-    const handleMenuContacts = () =>setMenuContacts(!menuContact);
+    // const handleMenuContacts = () =>setMenuContacts(!menuContact);
 
     useEffect(()=>{
         const onScroll = event => {
@@ -21,18 +21,20 @@ export default function MobileMenu(props) {
           return () => window.removeEventListener("scroll", onScroll);
         }, [useScrollTop]);
 
-    function executeScroll(ref){
-        setTimeout(() =>{
-            window.scrollTo(0, ref);
-        }, 10)
-        if(toggleMenu)
-            setToggleMenu(!toggleMenu);
-    }
+    // function executeScroll(ref){
+    //     setTimeout(() =>{
+    //         window.scrollTo(0, ref);
+    //     }, 10)
+    //     if(toggleMenu)
+    //         setToggleMenu(!toggleMenu);
+    // }
     
     return (
         <div className="topbar__mobile">
             <div className="topbar__mobile__logo">
-                <a href="/#"><img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img></a>
+                <Link to="/#">
+                    <img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img>
+                </Link>
             </div>
             <div className={`topbar__mobile__icon--${toggleMenu ? "spin" : "nips"}`}>
                 <i className="fas fa-bars" onClick={handleToggleMenu}></i>
@@ -40,9 +42,9 @@ export default function MobileMenu(props) {
             <div className={`topbar__mobile__blocktouch--${toggleMenu ? "lock" : "unlock"}`} onClick={handleToggleMenu} />
             <div className={`topbar__mobile__togglemenu--${toggleMenu ? "show" : "hide"}`}>
                 <ul className="topbar__mobile__menu">
-                    <a href="/#sobre" onClick={handleToggleMenu} >
+                    <Link to="/#sobre" onClick={handleToggleMenu} >
                         <li><p>SOBRE A HD</p></li>
-                    </a>                    
+                    </Link>                    
                     <li>
                         <p onClick={handleMenuServices}>
                             SERVIÇOS
@@ -50,28 +52,28 @@ export default function MobileMenu(props) {
                         </p>                        
                         <div className={`topbar__mobile__menu__submenu--${menuServices ? "show" : "hide"}`}>
                             <ul className="topbar__mobile__menu__submenu">
-                                <a href="/orcamento/elétrica" onClick={handleToggleMenu}>
+                                <Link to="/orcamento/elétrica" onClick={handleToggleMenu}>
                                     <li><p>ELÉTRICA</p></li>
-                                </a>
-                                <a href="/orcamento/pintura" onClick={handleToggleMenu}>
+                                </Link>
+                                <Link to="/orcamento/pintura" onClick={handleToggleMenu}>
                                     <li><p>PINTURA</p></li>
-                                </a>
-                                <a href="/orcamento/hidráulica" onClick={handleToggleMenu}>
+                                </Link>
+                                <Link to="/orcamento/hidráulica" onClick={handleToggleMenu}>
                                     <li><p>HIDRÁULICA</p></li>
-                                </a>
-                                <a href="/orcamento/acabamentos" onClick={handleToggleMenu}>
+                                </Link>
+                                <Link to="/orcamento/acabamentos" onClick={handleToggleMenu}>
                                     <li><p>ACABAMENTOS</p></li>
-                                </a>
-                                <a href="/orcamento/construção-civil" onClick={handleToggleMenu}>
+                                </Link>
+                                <Link to="/orcamento/construção-civil" onClick={handleToggleMenu}>
                                     <li><p>CONSTRUÇÃO CIVÍL</p></li>
-                                </a>
-                                <a href="/orcamento/orcamento-personalizado" onClick={handleToggleMenu}>
+                                </Link>
+                                <Link to="/orcamento/orcamento-personalizado" onClick={handleToggleMenu}>
                                     <li><p>ORÇAMENTO PERSONALIZADO</p></li>
-                                </a>
+                                </Link>
                             </ul>
                         </div>
                     </li>
-                    <a href="/#contato" className="mobile__link" onClick={handleToggleMenu}>
+                    <Link to="/#contato" className="mobile__link" onClick={handleToggleMenu}>
                         <li>
                             <p>
                                 CONTATO
@@ -84,10 +86,10 @@ export default function MobileMenu(props) {
                                 </ul>
                             </div> */}
                         </li>
-                    </a>
-                    <a href="/cases">
+                    </Link>
+                    <Link to="/cases" onClick={handleToggleMenu}>
                         <li><p>CASES</p></li>
-                    </a>  
+                    </Link>  
                 </ul>
             </div>
         </div>

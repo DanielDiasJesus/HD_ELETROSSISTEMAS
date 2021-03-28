@@ -1,5 +1,5 @@
 import React, { useEffect, useState }from 'react';
-// import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 
 import './DesktopMenu.scss';
 
@@ -82,20 +82,20 @@ export default function DesktopMenu(props) {
                         </li>
                 </ul> */}
                 <div className="topbar__desktop__menu__item">
-                    <a href="/#sobre">SOBRE A HD</a>
+                    <Link to="/#sobre">SOBRE A HD</Link>
                 </div>
                 <div className="topbar__desktop__menu__item">
-                    <a href="/#servicos">SERVIÇOS</a>
+                    <Link to="/#servicos">SERVIÇOS</Link>
                 </div>
                 <div className="topbar__desktop__menu__item"  style={controlLogo()}>
                     {/* <a href="#">SOBRE A HD</a> */}
-                    <a href="/#"><img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img></a>
+                    <Link to="/#"><img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img></Link>
                 </div>
                 <div className="topbar__desktop__menu__item">
-                        <a href="/#contato">CONTATO</a>
+                    <Link to="/#contato">CONTATO</Link>
                 </div>
                 <div className="topbar__desktop__menu__item">
-                        <a href="/cases" >CASES</a>
+                    <Link to="/cases" >CASES</Link>
                 </div>
             </div>
         </div>
