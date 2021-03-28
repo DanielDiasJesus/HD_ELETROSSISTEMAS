@@ -20,7 +20,7 @@ export default function Services() {
         .catch(err => {throw Error(err.message)});
     }, []);
     return (
-        <div className="services" id="services">
+        <div className="services" id="servicos">
             <div className="services__info">
                 <div className="services__info__title">
                     <div className = "services__info__title__line"></div>

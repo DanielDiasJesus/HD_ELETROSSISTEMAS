@@ -9,7 +9,7 @@ export default function About(){
     const [useFacts] = useState(about.facts);
     
     return(
-        <div className="about">
+        <div className="about" id="sobre">
             <div className="about__header">
                 <div className="about__header__title">
                     <h2>NOSSO JEITO DE SER</h2>

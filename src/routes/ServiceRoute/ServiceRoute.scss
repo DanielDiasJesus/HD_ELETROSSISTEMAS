@@ -17,9 +17,8 @@
     align-items: center;
     flex-direction: column;
     
-    // border: .2em solid black;
     width: 100%;
-    height: 50em;    
+    height: 50em; 
 }
 .service__budget__header__content{
     width: 80%;
@@ -395,6 +394,10 @@
     line-height: 1.5em;
     text-align: justify;
 }
+
+.not__found__service{width: 100%;}
+.not__found__service > .not__found{padding: 0;}
+
 @media screen and (max-width: 550px){
     .service__budget{
         margin-top: 0em;

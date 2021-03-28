@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { mask, unMask } from 'remask';
 import './ServiceRoute.scss';
 import Loading from '../../components/Loading';
+
+import NotFoundRoute from '../NotFoundRoute';
 
 import{ 
     validMail,
@@ -13,14 +15,16 @@ import{
 } from '../../utils/verificasoes';
 
 export default function ServiceRoute(){
-    const history = useHistory();
+    // const history = useHistory();
     
     const [subServicos, setSubServicos] = useState([]);
     const [servico, setServico] = useState([]);
     const [added, setAdded] = useState([]);
     
     const [succesBudget, setSuccesBudget] = useState(false);
-    const [haveChange, setHaveChange] = useState(false);
+    const [haveChange] = useState(false);
+    const [notFound, setNotFound] = useState(false);
+
     // const [callInInfo, setCallInInfo] = useState(false);
 
     const [nome, setNome] = useState("");
@@ -90,6 +94,14 @@ export default function ServiceRoute(){
             setError("");
     }, [cep])
     
+    const serviceLength = (service) =>{
+        var key, count = 0;
+        for(key in service) 
+            if(service.hasOwnProperty(key)) 
+                count++;
+        return count;
+    } 
+
     // function handleItemInfo(event, index){
     //     event.preventDefault();
     //     const tempSub = subServicos[0];
@@ -103,7 +115,9 @@ export default function ServiceRoute(){
     // }
     function handleItemClick(event, index){
         event.preventDefault();
-        const tempSub = subServicos[0];
+        
+        const tempSub = subServicos;
+        
         for(let x = 0; x < tempSub.length; x++){
             if(tempSub[x].id_site === index){
                 if(tempSub[x].added === false){
@@ -120,6 +134,7 @@ export default function ServiceRoute(){
                 }
             }
         }
+
     }
     const getAtualDate = () =>{
         let dataAtual = new Date();
@@ -132,7 +147,7 @@ export default function ServiceRoute(){
         return `${dia < 10 ? `0${dia}` : dia}${'/'}${mes < 10 ? `0${mes}` : `${mes}`}${'/'}${ano} - ${hora}:${minuto}h`;
 
     }
-    const handleEnd = () =>{
+    const handleEnd = event =>{
         if(nome.length < 1){
             setError("Você acabou esquecendo de preencher o campo nome!")
             return
@@ -188,16 +203,29 @@ export default function ServiceRoute(){
             }
         });
     }
-
     useEffect(()=> window.scrollTo(0,0), [haveChange]);
+    
     useEffect(()=>{
         const { pathname } = window.location;
         const param = pathname.split("/")[2];
         
         fetch(`https://hdeletrossistemasapi-com.umbler.net/subservicos?servico=${param.replace("-", " ")}`)
-        .then(response => response.json())
-        .then(data => setSubServicos(data))
-        
+        .then((res) => {
+            if(res.status === 404){
+                setNotFound(true);
+                console.log("ERRO " + res.status);
+                console.log("SUBSERVICOS DE " + param + " NÃO ENCONTRADO NA API");
+                throw Error(res.json());
+            }
+            setNotFound(false);
+            return res.json();
+        })
+        .then((data) => {
+            // console.log("DATA SUBSERVICO: ", data);
+            setSubServicos(data[0]);
+        })
+        .catch(err => console.log("ERRO: " + err));
+
     }, [haveChange]);
     
     useEffect(()=>{
@@ -205,235 +233,273 @@ export default function ServiceRoute(){
         const param = pathname.split("/")[2];
 
         fetch(`https://hdeletrossistemasapi-com.umbler.net/servico?servico=${param.replace("-", " ")}`)
-        .then(response => response.json())
-        .then(data => setServico(data));
-        
+        .then((res) => {
+            if(res.status === 404){
+                setNotFound(true);
+                console.log("ERRO " + res.status);
+                console.log("SERVICO " + param + " NÃO ENCONTRADO NA API");
+                throw Error(res.statusMessage);
+            }
+            setNotFound(false);
+            
+            return res.json();
+        })
+        .then((data) => {
+            // console.log("DATA SERVICO = " + data);
+            setServico(data[0]);
+        })
+        .catch(err => console.log(err));
+
+    }, [haveChange]);
+    
+    useEffect(()=>{
+        // console.log("SUBSERVICOS ", subServicos);
+        // console.log("SUBSERVICOS ", subServicos.length);
+
         if(subServicos.length > 0){
-            subServicos[0].map((subservico, index) => {
+            subServicos.map((subservico, index) => {
                 subservico.id_site = index;
                 subservico.added = false;
                 subservico.info = false;
                 return subservico;
             });
         }
+    }, [subServicos])
 
-    }, [haveChange, subServicos]);
-    
-    useEffect(()=>{
-        return history.listen((location) => { 
-            console.log(`You changed the page to: ${location.pathname}`);
-            setHaveChange(!haveChange);
-            setServico([]);
-            setSubServicos([]);
-            setAdded([]);
+    // useEffect(()=>{
+    //     console.log("SERVICO ", servico);
+    //     // console.log("SERVICO ", serviceLength(servico));
+        
+    // }, [servico])
+
+    // useEffect(()=>{
+    //     console.log("ADDED ", added);
+    //     // console.log("SUBSERVICOS ", subServicos.length);
+    // }, [added])
+
+    // useEffect(()=>{
+    //     return history.listen((location) => { 
+    //         console.log(`You changed the page to: ${location.pathname}`);
+    //         setHaveChange(!haveChange);
+    //         setServico([]);
+    //         setSubServicos([]);
+    //         setAdded([]);
             
-            setNome("");
-            setEmail("");            
-            setNumero("");
-            setCep("");
-            setEndereco("");
-        }) 
-      },[history, haveChange])
+    //         setNome("");
+    //         setEmail("");            
+    //         setNumero("");
+    //         setCep("");
+    //         setEndereco("");
+    //     }) 
+    //   },[history, haveChange])
     
     return(
         <div className="service__budget">
             {
-                servico.length > 0 &&
-                subServicos.length > 0 ?
-                // 1 === 0 ?
+                !notFound ? 
                 <>
-                    <div className="service__budget__header">
-                        <div className="service__budget__header__bg">
-                            <img src={servico[0].image_code} alt="bgImage"/>
-                        </div>
-                        <div className="service__budget__header__content">
+                    {
+                        serviceLength(servico) > 0 &&
+                        // servico.length > 0 &&
+                        subServicos.length > 0 ?
+                        <>
+                            <div className="service__budget__header">
+                                <div className="service__budget__header__bg">
+                                    <img src={servico.image_code} alt="bgImage"/>
+                                </div>
+                                <div className="service__budget__header__content">
+                                    {
+                                        !succesBudget ? 
+                                        <>
+                                            <h3>Bem vindo a ferramenta de orçamento da HD!</h3>
+                                            <h4>
+                                                Para fazer um orçamento {
+                                                    servico.nome.toLowerCase() === 'orçamento personalizado' ? 'personalizado'
+                                                    :`de ${servico.nome.toLowerCase()}`}, 
+                                                você só precisa escolher um ou mais subitens do serviço
+                                                selecionado e ele será adicionado como um item do orçamento.
+                                            </h4>
+                                            <h4>
+                                                Não se preocupe com os preços ou quantidade, nós analisaremos o seu pedido e vamos
+                                                entrar em contato quanto antes possível!
+                                            </h4>
+                                        </> : 
+                                        <>
+                                            <h3>Orçamento realizado com sucesso!</h3>
+                                            <h4>
+                                                Obrigado por utilizar a nossa ferramenta para fazer um orçamento {
+                                                    servico.nome.toLowerCase() === 'orçamento personalizado' ? 'personalizado'
+                                                    :`de ${servico.nome.toLowerCase()}!`} 
+                                            </h4>
+                                            <h4>
+                                                Nós enviamos uma mensagem para o seu endereço de email com a relação do seu pedido
+                                                e assim que possível, nós retornaremos o contato com você.
+                                                Abraços da HD!
+                                            </h4>
+                                            <h4>
+                                                Lembrando que o periodo de atualização para fazer um novo orçamento é de um dia.
+                                                Se fizer algum novo orçamento dentro deste período, ele será somado ao anterior
+                                            </h4>
+                                        </>
+                                    }
+                                </div>
+                            </div>
                             {
                                 !succesBudget ? 
                                 <>
-                                    <h3>Bem vindo a ferramenta de orçamento da HD!</h3>
+                                    <div className="service__budget__client">
                                     <h4>
-                                        Para fazer um orçamento {
-                                            servico[0].nome.toLowerCase() === 'orçamento personalizado' ? 'personalizado'
-                                            :`de ${servico[0].nome.toLowerCase()}`}, 
-                                        você só precisa escolher um ou mais subitens do serviço
-                                        selecionado e ele será adicionado como um item do orçamento.
+                                            Precisamos de algumas informações sobre você para que possamos filtrar os
+                                            seus requerimentos!
                                     </h4>
-                                    <h4>
-                                        Não se preocupe com os preços ou quantidade, nós analisaremos o seu pedido e vamos
-                                        entrar em contato quanto antes possível!
-                                    </h4>
-                                </> : 
-                                <>
-                                    <h3>Orçamento realizado com sucesso!</h3>
-                                    <h4>
-                                        Obrigado por utilizar a nossa ferramenta para fazer um orçamento {
-                                            servico[0].nome.toLowerCase() === 'orçamento personalizado' ? 'personalizado'
-                                            :`de ${servico[0].nome.toLowerCase()}!`} 
-                                    </h4>
-                                    <h4>
-                                        Nós enviamos uma mensagem para o seu endereço de email com a relação do seu pedido
-                                        e assim que possível, nós retornaremos o contato com você.
-                                        Abraços da HD!
-                                    </h4>
-                                    <h4>
-                                        Lembrando que o periodo de atualização para fazer um novo orçamento é de um dia.
-                                        Se fizer algum novo orçamento dentro deste período, ele será somado ao anterior
-                                    </h4>
-                                </>
-                            }
-                        </div>
-                    </div>
-                    {
-                        !succesBudget ? 
-                        <>
-                            <div className="service__budget__client">
-                            <h4>
-                                    Precisamos de algumas informações sobre você para que possamos filtrar os
-                                    seus requerimentos!
-                            </h4>
-                            <div className="service__budget__client__item__error">
-                                <div className="service__budget__client__item__error">{error}</div>
-                            </div>
-                            <div className="service__budget__client__item">
-                                <label>Seu nome completo</label>
-                                <input type="text"
-                                 autoComplete="new-password"
-                                 placeholder="ex. Romilson de Oliveira"
-                                 value={nome}
-                                 onChange={handleName}></input>
-                            </div>
-                            <div className="service__budget__client__item">
-                                <label>Seu e-mail</label>
-                                <input type="text" 
-                                autoComplete="new-password"
-                                placeholder="ex. contato@hdeletrossistemas.com"
-                                value={email}
-                                onChange={handleEmail}></input>
-                            </div>
-                            <div className="service__budget__client__item">
-                                <label>Seu número</label>
-                                <input type="tel" 
-                                autoComplete="new-password"
-                                placeholder="ex. (19) 9 97417-3218" 
-                                value={numero}
-                                onChange={handleNumero}></input>
-                            </div>
-                            <div className="service__budget__client__item">
-                                <label>Seu endereço</label>
-                                <input type="text" 
-                                autoComplete="new-password"
-                                placeholder="ex. Rua Lourival de Almeida, 745, Campinas-SP" 
-                                value={endereco}
-                                onChange={handleEndereco}></input>
-                            </div>
-                            <div className="service__budget__client__item">
-                                <label>Seu CEP</label>
-                                <input type="text"
-                                autoComplete="new-password" 
-                                placeholder="ex. 13053-614" 
-                                value={cep}
-                                onChange={handleCEP}></input>
-                            </div>
-                            <div className="service__budget__client__item__error">
-                                <div className="service__budget__client__item__error">{error}</div>
-                            </div>
-                            <h4>Fique tranquilo, suas informações estão seguras com a gente :)</h4>
-                        </div>
-                        <div className="service__budget__makeit">
-                            <div className="service__budget__makeit__header">
-                                <h4>
-                                    Agora você só precisa escolher os itens que deseja adicionar
-                                    ao orçamento.
-                                </h4>
-                            </div>
-                            <div className="service__budget__makeit__subservices">
-                                <div className="service__budget__makeit__subservices__header">
-                                    <h2>SERVIÇOS DE {servico[0].nome.toUpperCase()}</h2>
-                                </div>
-                                <div className="service__budget__makeit__subservices__select">
-                                    <div className="service__budget__makeit__subservices__select__header"/>    
-                                    {
-                                        subServicos[0].map((subservico, index) =>(
-                                            <div className="service__budget__makeit__subservices__select__main" key={subservico.id}>
-                                                <div className="service__budget__makeit__subservices__select__option">
-                                                    <h3>{subservico.nome}</h3>
-                                                    <div className="service__budget__makeit__subservices__select__buttons">
-                                                        {/* <button className="option__info" onClick={event => handleItemInfo(event, index)}>
-                                                            <i className="fas fa-info" id={subservico.info ? 'clicked' : 'dekcilc'}></i>
-                                                        </button> */}
-                                                        <button className="option__add" onClick={event => handleItemClick(event, index)}>
-                                                            <i className="fas fa-plus" id={subservico.added ? 'spin': 'nips'}></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                {
-                                                    subservico.info ?
-                                                        <div className="showinfo">
-                                                            <h3>{subservico.descricao}</h3>
-                                                        </div>
-                                                    :
-                                                    <div className="hideinfo"></div>
-                                                }
-                                            </div>
-                                        ))
-                                    }
-                                </div>
-                            </div>
-                            <div className="service__budget__makeit__table">
-                            {
-                            added.length > 0 ?
-                                <>
-                                    <div className="service__budget__makeit__table__header">
-                                        <h4>Ótimo! Agora você só precisa dar uma ultima checada na lista aqui em baixo, e assim que tiver certeza clique em confirmar.</h4>
-                                        {
-                                            servico[0].nome.toLowerCase() !== 'orçamento personalizado' ?
-                                            <h4>Caso não tenha encontrado o item que procurava, tente voltar na seção de serviços 
-                                                na opção de Orçamento Personalizado, lá você vai encontrar todas os nossos servicos</h4>
-                                                : ""
-                                        }
-                                            <h4>Ah, e não esqueça de preencher suas informações sobre você lá em cima.</h4>
+                                    <div className="service__budget__client__item__error">
+                                        <div className="service__budget__client__item__error">{error}</div>
                                     </div>
-                                    {
-                                        
-                                    }
-                                    <div className="service__budget__makeit__table__main">
-                                        <div className="service__budget__makeit__table__mainitem__id">
-                                            <h3>CLIENTE: {nome.toUpperCase()}</h3>
-                                        </div>
-                                        <div className="service__budget__makeit__table__main__item">
-                                            <h3>INDICE</h3>
-                                            <h3>SERVIÇO</h3>
-                                            <h3>DATA/HORA</h3>
-                                        </div>
-                                    {
-                                        added.map((obj, index) =>(
-                                            <div className="service__budget__makeit__table__main__item" key={index}>
-                                                    <h3>{++index}</h3>
-                                                    <h3>{obj.nome}</h3>
-                                                    <h3>{getAtualDate()}</h3>
-                                            </div>
-                                        ))
-                                    }
+                                    <div className="service__budget__client__item">
+                                        <label>Seu nome completo</label>
+                                        <input type="text"
+                                        autoComplete="new-password"
+                                        placeholder="ex. Romilson de Oliveira"
+                                        value={nome}
+                                        onChange={handleName}></input>
                                     </div>
-                                    <div className="service__budget__makeit__final">
-                                        <div className="service__budget__makeit__final__error">{error}</div>
+                                    <div className="service__budget__client__item">
+                                        <label>Seu e-mail</label>
+                                        <input type="text" 
+                                        autoComplete="new-password"
+                                        placeholder="ex. contato@hdeletrossistemas.com"
+                                        value={email}
+                                        onChange={handleEmail}></input>
+                                    </div>
+                                    <div className="service__budget__client__item">
+                                        <label>Seu número</label>
+                                        <input type="tel" 
+                                        autoComplete="new-password"
+                                        placeholder="ex. (19) 9 97417-3218" 
+                                        value={numero}
+                                        onChange={handleNumero}></input>
+                                    </div>
+                                    <div className="service__budget__client__item">
+                                        <label>Seu endereço</label>
+                                        <input type="text" 
+                                        autoComplete="new-password"
+                                        placeholder="ex. Rua Lourival de Almeida, 745, Campinas-SP" 
+                                        value={endereco}
+                                        onChange={handleEndereco}></input>
+                                    </div>
+                                    <div className="service__budget__client__item">
+                                        <label>Seu CEP</label>
+                                        <input type="text"
+                                        autoComplete="new-password" 
+                                        placeholder="ex. 13053-614" 
+                                        value={cep}
+                                        onChange={handleCEP}></input>
+                                    </div>
+                                    <div className="service__budget__client__item__error">
+                                        <div className="service__budget__client__item__error">{error}</div>
+                                    </div>
+                                    <h4>Fique tranquilo, suas informações estão seguras com a gente :)</h4>
+                                </div>
+                                <div className="service__budget__makeit">
+                                    <div className="service__budget__makeit__header">
+                                        <h4>
+                                            Agora você só precisa escolher os itens que deseja adicionar
+                                            ao orçamento.
+                                        </h4>
+                                    </div>
+                                    <div className="service__budget__makeit__subservices">
+                                        <div className="service__budget__makeit__subservices__header">
+                                            <h2>SERVIÇOS DE {servico.nome.toUpperCase()}</h2>
+                                        </div>
+                                        <div className="service__budget__makeit__subservices__select">
+                                            <div className="service__budget__makeit__subservices__select__header"/>    
                                             {
-                                                status === "" ?
-                                                    <button onClick={handleEnd}>Finalizar</button>
-                                                : <Loading/>
+                                                subServicos.map((subservico, index) =>(
+                                                    <div className="service__budget__makeit__subservices__select__main" key={subservico.id}>
+                                                        <div className="service__budget__makeit__subservices__select__option">
+                                                            <h3>{subservico.nome}</h3>
+                                                            <div className="service__budget__makeit__subservices__select__buttons">
+                                                                {/* <button className="option__info" onClick={event => handleItemInfo(event, index)}>
+                                                                    <i className="fas fa-info" id={subservico.info ? 'clicked' : 'dekcilc'}></i>
+                                                                </button> */}
+                                                                <button className="option__add" onClick={event => handleItemClick(event, index)}>
+                                                                    <i className="fas fa-plus" id={subservico.added ? 'spin': 'nips'}></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        {
+                                                            subservico.info ?
+                                                                <div className="showinfo">
+                                                                    <h3>{subservico.descricao}</h3>
+                                                                </div>
+                                                            :
+                                                            <div className="hideinfo"></div>
+                                                        }
+                                                    </div>
+                                                ))
                                             }
+                                        </div>
                                     </div>
-                                </>
-                                : <div className="service__budget__makeit__table__header">
-                                    {/* <h4>SELECIONE PELO MENOS UM ITEM</h4> */}
+                                    <div className="service__budget__makeit__table">
+                                    {
+                                    added.length > 0 ?
+                                        <>
+                                            <div className="service__budget__makeit__table__header">
+                                                <h4>Ótimo! Agora você só precisa dar uma ultima checada na lista aqui em baixo, e assim que tiver certeza clique em confirmar.</h4>
+                                                {
+                                                    servico.nome.toLowerCase() !== 'orçamento personalizado' ?
+                                                    <h4>Caso não tenha encontrado o item que procurava, tente voltar na seção de serviços 
+                                                        na opção de Orçamento Personalizado, lá você vai encontrar todas os nossos servicos</h4>
+                                                        : ""
+                                                }
+                                                    <h4>Ah, e não esqueça de preencher suas informações sobre você lá em cima.</h4>
+                                            </div>
+                                            {
+                                                
+                                            }
+                                            <div className="service__budget__makeit__table__main">
+                                                <div className="service__budget__makeit__table__mainitem__id">
+                                                    <h3>CLIENTE: {nome.toUpperCase()}</h3>
+                                                </div>
+                                                <div className="service__budget__makeit__table__main__item">
+                                                    <h3>INDICE</h3>
+                                                    <h3>SERVIÇO</h3>
+                                                    <h3>DATA/HORA</h3>
+                                                </div>
+                                            {
+                                                added.map((obj, index) =>(
+                                                    <div className="service__budget__makeit__table__main__item" key={index}>
+                                                            <h3>{++index}</h3>
+                                                            <h3>{obj.nome}</h3>
+                                                            <h3>{getAtualDate()}</h3>
+                                                    </div>
+                                                ))
+                                            }
+                                            </div>
+                                            <div className="service__budget__makeit__final">
+                                                <div className="service__budget__makeit__final__error">{error}</div>
+                                                    {
+                                                        status === "" ?
+                                                            <button onClick={handleEnd}>Finalizar</button>
+                                                        : <Loading/>
+                                                    }
+                                            </div>
+                                        </>
+                                        : <div className="service__budget__makeit__table__header">
+                                            {/* <h4>SELECIONE PELO MENOS UM ITEM</h4> */}
+                                        </div>
+                                    }
+                                    </div>
                                 </div>
+                                </> : null
                             }
-                            </div>
-                        </div>
-                        </> : null
+                        </> : <Loading />
                     }
-                </> : <Loading/>
+                </> : <div  className="not__found__service">
+                        <NotFoundRoute />
+                      </div>
             }
+                    
         </div>
     )
 }

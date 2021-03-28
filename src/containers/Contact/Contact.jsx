@@ -103,7 +103,7 @@ export default function Contact(){
         .then((data) => setStatus(data));
     }
     return(
-        <div className="contact">
+        <div className="contact" id="contato">
             <div className="contact__main">
                 <div className="contact__main__info">
                     <div className = "contact__info__header"><h3>ENTRE EM CONTATO</h3></div>

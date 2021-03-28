@@ -1,5 +1,5 @@
 import React, { useEffect, useState }from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import './DesktopMenu.scss';
 
@@ -17,11 +17,11 @@ export default function DesktopMenu(props) {
             maxWidth : "3.8em"
         }: null;
     }
-    function executeScroll(ref){
-        setTimeout(() =>{
-            window.scrollTo(0, ref);
-        }, 10)
-    }
+    // function executeScroll(ref){
+    //     setTimeout(() =>{
+    //         window.scrollTo(0, ref);
+    //     }, 10)
+    // }
     
     useEffect(()=>{
         const onScroll = event => {
@@ -34,7 +34,7 @@ export default function DesktopMenu(props) {
     return (
         <div className="topbar__desktop" style={controlMenu(612)}>
             <div className="topbar__desktop__menu">
-                <ul>    
+                {/* <ul>    
                     <li>
                         <Link 
                             to="/" 
@@ -68,14 +68,14 @@ export default function DesktopMenu(props) {
                             >
                                 CONTATO
                             </Link>
-                            {/* <ul className='topbar__desktop__menu__submenu'>
+                            <ul className='topbar__desktop__menu__submenu'>
                                 <li onClick={event => event.stopPropagation()}>
                                     CHAT-BOT (EM BREVE)
                                 </li>
                                 <li onClick={event => event.stopPropagation()}>
                                     JUNTE-SE A NÓS
                                 </li>
-                            </ul> */}
+                            </ul> 
                         </li>                    
                         <li>
                             <Link
@@ -85,7 +85,23 @@ export default function DesktopMenu(props) {
                                 CASES (EM BREVE)
                             </Link>
                         </li>
-                </ul>
+                </ul> */}
+                <div className="topbar__desktop__menu__item">
+                    <a href="/#sobre">SOBRE A HD</a>
+                </div>
+                <div className="topbar__desktop__menu__item">
+                    <a href="/#servicos">SERVIÇOS</a>
+                </div>
+                <div className="topbar__desktop__menu__item" style={controlLogo()}>
+                    {/* <a href="#">SOBRE A HD</a> */}
+                    <img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img>
+                </div>
+                <div className="topbar__desktop__menu__item">
+                        <a href="/#contato">CONTATO</a>
+                </div>
+                <div className="topbar__desktop__menu__item">
+                        <a href="/#cases">CASES</a>
+                </div>
             </div>
         </div>
     );
