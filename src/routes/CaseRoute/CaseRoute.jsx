@@ -10,8 +10,8 @@ export default function CaseRoute(){
                 <h3>... em breve ...</h3>
             <div className="case__route__message">
                 <p>Nó da HD estamos trabalhando para adicionar nosos casos de trabalhos, 
-                    eles são muitos então estamos preparando tudo da melhor forma para nossos usuários.</p>
-                <p>Pedimos a todos paciência e agradecemos pelo compreendimento</p>
+                    eles são muitos então estamos preparando tudo da melhor forma para nossos usuários.
+                    Pedimos a todos paciência e agradecemos pelo compreendimento</p>
             </div>
         </div>
     )
