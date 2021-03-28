@@ -1,4 +1,5 @@
 html{touch-action: manipulation;}
+
 .topbar__mobile{
     display: flex;
     justify-content: space-between;
@@ -38,7 +39,7 @@ html{touch-action: manipulation;}
 
 .topbar__mobile__blocktouch--lock{
     position: fixed;
-    background-image: linear-gradient(90deg, rgba(0, 0, 0, .35) 20%,  #efefef 20%);
+    background: rgba(0, 0, 0, .35);
     
     height: 100%;
     width: 100%;
@@ -57,11 +58,11 @@ html{touch-action: manipulation;}
 }
 .topbar__mobile__togglemenu--show{
     position: fixed;
-
+    
     display: flex;
     justify-content: center;
 
-    height: 47em;
+    height: 100%;
     width: 80%;
     
     top: 6.5em;
@@ -70,7 +71,7 @@ html{touch-action: manipulation;}
     margin: 0;
     padding: 0;
 
-    animation: showMenu 100ms linear backwards;
+    animation: showMenu 70ms linear backwards;
 }
 .topbar__mobile__togglemenu--hide{
     position: fixed;
@@ -78,7 +79,7 @@ html{touch-action: manipulation;}
     display: flex;
     justify-content: center;
     
-    height: 47em;
+    height: 100%;
     width: 80%;
     
     top: 6.5em;
@@ -86,7 +87,7 @@ html{touch-action: manipulation;}
     margin: 0;
     padding: 0;
 
-    animation: hideMenu 100ms linear forwards;
+    animation: hideMenu 70ms linear forwards;
 }
 .topbar__mobile__menu > a{
     padding: 1em 1em;

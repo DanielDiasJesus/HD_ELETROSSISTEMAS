@@ -32,9 +32,7 @@ export default function MobileMenu(props) {
     return (
         <div className="topbar__mobile">
             <div className="topbar__mobile__logo">
-                <Link to="/" onClick={event => executeScroll(0)}>
-                    <img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img>
-                </Link>
+                <a href="/#"><img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img></a>
             </div>
             <div className={`topbar__mobile__icon--${toggleMenu ? "spin" : "nips"}`}>
                 <i className="fas fa-bars" onClick={handleToggleMenu}></i>
@@ -42,11 +40,9 @@ export default function MobileMenu(props) {
             <div className={`topbar__mobile__blocktouch--${toggleMenu ? "lock" : "unlock"}`} onClick={handleToggleMenu} />
             <div className={`topbar__mobile__togglemenu--${toggleMenu ? "show" : "hide"}`}>
                 <ul className="topbar__mobile__menu">
-                    <Link to="/">
-                        <li onClick={event => executeScroll(1442)}>
-                            <p>SOBRE A HD</p>
-                        </li>
-                    </Link>                    
+                    <a href="/#sobre" onClick={handleToggleMenu} >
+                        <li><p>SOBRE A HD</p></li>
+                    </a>                    
                     <li>
                         <p onClick={handleMenuServices}>
                             SERVIÇOS
@@ -54,27 +50,30 @@ export default function MobileMenu(props) {
                         </p>                        
                         <div className={`topbar__mobile__menu__submenu--${menuServices ? "show" : "hide"}`}>
                             <ul className="topbar__mobile__menu__submenu">
-                                <Link to="/orcamento/elétrica" onClick={handleToggleMenu}>
+                                <a href="/orcamento/elétrica" onClick={handleToggleMenu}>
                                     <li><p>ELÉTRICA</p></li>
-                                </Link>
-                                <Link to="/orcamento/pintura" onClick={handleToggleMenu}>
+                                </a>
+                                <a href="/orcamento/pintura" onClick={handleToggleMenu}>
                                     <li><p>PINTURA</p></li>
-                                </Link>
-                                <Link to="/orcamento/hidráulica" onClick={handleToggleMenu}>
+                                </a>
+                                <a href="/orcamento/hidráulica" onClick={handleToggleMenu}>
                                     <li><p>HIDRÁULICA</p></li>
-                                </Link>
-                                <Link to="/orcamento/acabamentos" onClick={handleToggleMenu}>
+                                </a>
+                                <a href="/orcamento/acabamentos" onClick={handleToggleMenu}>
                                     <li><p>ACABAMENTOS</p></li>
-                                </Link>
-                                <Link to="/orcamento/construção-civil" onClick={handleToggleMenu}>
+                                </a>
+                                <a href="/orcamento/construção-civil" onClick={handleToggleMenu}>
                                     <li><p>CONSTRUÇÃO CIVÍL</p></li>
-                                </Link>
+                                </a>
+                                <a href="/orcamento/orcamento-personalizado" onClick={handleToggleMenu}>
+                                    <li><p>ORÇAMENTO PERSONALIZADO</p></li>
+                                </a>
                             </ul>
                         </div>
                     </li>
-                    <Link to="/" className="mobile__link">
-                        <li onClick={event => executeScroll(4170)}>
-                            <p onClick={handleMenuContacts}>
+                    <a href="/#contato" className="mobile__link" onClick={handleToggleMenu}>
+                        <li>
+                            <p>
                                 CONTATO
                                 {/* <i className="fas fa-plus" id={`i--${menuContact ? "show" : "hide"}`}></i> */}
                             </p>
@@ -85,12 +84,10 @@ export default function MobileMenu(props) {
                                 </ul>
                             </div> */}
                         </li>
-                    </Link>
-                    <Link to="/">
-                        <li>
-                            <p>CASES (EM BREVE)</p>
-                        </li>
-                    </Link>  
+                    </a>
+                    <a href="/cases">
+                        <li><p>CASES</p></li>
+                    </a>  
                 </ul>
             </div>
         </div>
