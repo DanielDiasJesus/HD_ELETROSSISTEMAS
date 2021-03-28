@@ -89,7 +89,7 @@ export default function DesktopMenu(props) {
                 </div>
                 <div className="topbar__desktop__menu__item"  style={controlLogo()}>
                     {/* <a href="#">SOBRE A HD</a> */}
-                    <a href="/"><img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img></a>
+                    <a href="/#"><img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img></a>
                 </div>
                 <div className="topbar__desktop__menu__item">
                         <a href="/#contato">CONTATO</a>
