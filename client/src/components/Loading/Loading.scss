@@ -1,0 +1,52 @@
+.loading{
+    min-height: 100vh;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+    
+    h4{
+        // margin: 8em 0em;
+        padding: 0em .2em;
+        font-family: 'Roboto', Helvetica, sans-serif;
+        font-weight: normal;
+        font-size: 2em;
+        text-align: justify;
+    }
+
+}
+.loaging__toll{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // margin: em 0em;
+    width: 100%;
+}
+.loaging__toll__absolute{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    :first-child{
+        width: 100%;
+        margin-left: 5em;
+        animation: load 2s linear infinite;
+        animation-direction: normal;
+    }
+    :last-child{
+        width: 100%;
+        margin-top: 5em;
+        margin-right: 5em;
+        animation: load 2s linear infinite;
+        animation-direction: reverse;
+   }
+}
+
+
+@keyframes load{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}

@@ -1,0 +1,153 @@
+.orcamento{
+    width: 100%;
+    height: 100%;
+    background: #00b5e6;
+    
+    // margin: 0em 2.75em;
+    padding: 4.75em 0em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.orcamento__header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 90%;
+}
+.orcamento__header h3{
+    margin: .5em .5em;
+    padding: 0em;
+    width: 100%;
+    font-size: 5.8em;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    color: #f8f8f8;
+}
+.orcamento__header h4{
+    width: 100%;
+    margin: 0em 0em 1em 0em;
+    padding: 0em;
+    
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    font-weight: 100;
+    text-align: center;
+    
+    text-align: left;
+
+    // color: #EDAA00;
+}
+.orcamento__servicos{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.orcamento__servicos .link{
+    max-width: 20em;
+    max-height: 20em;
+
+    padding: 0;
+    margin: 2em 2em;
+    
+    text-decoration: none;
+    border-radius: 50%;
+
+    // background: linear-gradient(180deg, #EDAA00 50%, #e0e0e0 50%);
+}
+.orcamento__servicos .link > .service{
+    width: 20em;
+    height: 20em;
+
+    min-height: auto;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    
+    margin: 0em;
+    padding: 0;
+    background: #f8f8f8;
+    transform: scale(.95);
+
+    background: #00b5e6;
+    
+    transition: background 200ms linear;
+}
+.orcamento__servicos .link > .service .service__header{
+    max-width: 100%;
+    height: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background: transparent;
+    // transition: background 200ms linear;
+    
+    margin: 5em 0em 0em 0em;
+    transition: margin 200ms linear;
+    
+    // border: .2em solid red;
+}
+.orcamento__servicos .link > .service .service__header__logo{
+    max-width: 9em;
+    max-height: 9em;
+    img{
+        width: 100%;
+        transform: scale(1);
+    }
+}
+.orcamento__servicos .link:hover .service{background: #20cfff;}
+// .orcamento__servicos .link:hover .service{
+//     background: #ffffff;
+// }
+.orcamento__servicos .link:hover .service__header {margin: 1em 0em 0em 0em;}
+.orcamento__servicos .link:hover .service .service__description h3 {opacity: 1;}
+
+.orcamento__servicos .link > .service .service__description{
+    position: absolute;
+    padding: 0;
+    margin: 2.1em 0em;
+
+    top: 62%;
+
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 100;
+}
+.orcamento__servicos .link > .service .service__description h3{
+    font-size: 1.5em;
+    text-align: center;
+
+    color: #f8f8f8;
+    opacity: 0;
+    transition: opacity 100ms linear;
+    font-weight: 100;
+}
+.orcamento__servicos .link > .service .service__orcamento,
+.orcamento__servicos .link > .service .service__description p,
+.orcamento__servicos .link > .service .service__rate,
+.orcamento__servicos .link > .service .service__rate i, .orcamento__servicos .link > .service .service_link{display: none;}
+
+@media screen and (max-width: 480px){
+    .orcamento{
+        padding: 0;
+    }
+    .orcamento__header{
+        max-width: 100%;
+    }
+    .orcamento__header h3{font-size: 4em;}
+    .orcamento__header h4:last-child{font-size: 1.8em; text-align: center;}
+    .orcamento__header h4:not(:last-child){font-size: 2.3em;}
+    .orcamento__header{
+        padding: 0em 2em;
+    }
+}

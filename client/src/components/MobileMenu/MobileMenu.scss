@@ -1,0 +1,232 @@
+html{touch-action: manipulation;}
+
+.topbar__mobile{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    width: 100%;
+    height : 6.5em;
+    
+    padding-right: 3em;
+}
+.topbar__mobile__logo{
+    justify-content: center;
+    align-items: center;
+    
+    padding: 0;
+    margin: 0;
+
+    max-width: 8.7em;
+    transform : scale(.7);
+    transition: transform 100ms linear;
+}
+
+.topbar__mobile__logo img{width: 100%;}
+.topbar__mobile__icon--spin, .topbar__mobile__icon--nips{
+    max-width: 2.5em;
+    max-height: 2.5em;
+}
+.topbar__mobile__icon--spin i{
+    font-size: 3em;
+    animation: spinLogo 200ms linear;
+    color: #747474;
+}
+.topbar__mobile__icon--nips i{
+    font-size: 3em;
+    animation: nipsLogo 200ms linear;
+}
+
+.topbar__mobile__blocktouch--lock{
+    position: fixed;
+    background: rgba(0, 0, 0, .35);
+    
+    height: 100%;
+    width: 100%;
+    
+    right: 0%;
+    top: 6.6em;
+    
+    animation: fadeIn 100ms linear;
+}
+.topbar__mobile__blocktouch--unlock{
+    position: absolute;
+    top: 6.6em;
+    
+    height: 0%;
+    width: 0%;
+}
+.topbar__mobile__togglemenu--show{
+    position: fixed;
+    
+    display: flex;
+    justify-content: center;
+
+    height: 100%;
+    width: 80%;
+    
+    top: 6.5em;
+    right: 0%;
+
+    margin: 0;
+    padding: 0;
+
+    animation: showMenu 70ms linear backwards;
+}
+.topbar__mobile__togglemenu--hide{
+    position: fixed;
+
+    display: flex;
+    justify-content: center;
+    
+    height: 100%;
+    width: 80%;
+    
+    top: 6.5em;
+    
+    margin: 0;
+    padding: 0;
+
+    animation: hideMenu 70ms linear forwards;
+}
+.topbar__mobile__menu > a{
+    padding: 1em 1em;
+    font-size: 1.35em;
+    font-family: 'Roboto';
+    text-decoration: none;
+    color: black;
+}
+.topbar__mobile__menu{
+    display: flex;
+    flex-direction: column;    
+    
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+    
+    list-style-type: none;
+    
+    background: #efefef;
+    
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.topbar__mobile__menu > li{
+    font-size: 1.35em;
+    font-family: 'Roboto';
+    
+    transition: background .18s ease-in;
+}
+
+.topbar__mobile__menu > li p{
+    display: flex;
+    justify-content: space-between;
+
+    margin: 0;
+    padding: 2em 1em;
+}
+.topbar__mobile__menu > .mobile__link{
+    // border: .1em solid black;
+}
+.topbar__mobile__menu > .mobile__link li  p{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.topbar__mobile__menu > li p #i--show{
+    animation: more 200ms linear forwards;
+}
+.topbar__mobile__menu > li p #i--hide{
+    animation: minus 200ms linear backwards;
+}
+.topbar__mobile__menu > li:hover{
+    background: #dfdfdf;
+}
+.topbar__mobile__menu__submenu--hide{display: none;}
+.topbar__mobile__menu__submenu--show{animation: fadeIn 100ms linear;}
+.topbar__mobile__menu__submenu{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+
+    padding: 0;
+    margin: 0;
+
+    list-style-type: none;
+
+    a{
+        text-decoration: none;
+        color: #008ECC;
+    }
+}
+.topbar__mobile__menu__submenu li{
+    padding: 1.5em 0em;
+    padding-left: 2em;
+    width: 100%;
+
+    transition: background .18s ease-in;
+}
+.topbar__mobile__menu__submenu > li:hover{background: #cecdcd;}
+.topbar__mobile__menu__submenu li p{
+    
+    padding: 0%;
+    
+    width: 100%;
+    height: 100%;
+    /* border: .2em solid darkblue; */
+}
+
+@keyframes showMenu{
+    from{right: -80%;}
+    to{right: 0%;}
+}
+@keyframes hideMenu{
+    from{right: 0%;}
+    to{right: -80%;}
+}
+@keyframes fadeIn{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+@keyframes fadeOut {
+    from{opacity: 1;}
+    to{opacity: 0;}
+}
+@keyframes spinLogo{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(180deg);}
+}
+@keyframes more {
+    from{
+        transform: rotate(0deg);
+        color: black;
+    }
+    to{
+        transform: rotate(225deg);
+        color: red;
+    }
+}
+@keyframes minus {
+    from{
+        transform: rotate(225deg);
+        color: red;
+    }
+    to{
+        transform: rotate(0deg);
+        color: black;
+    }
+}
+@keyframes nipsLogo{
+    from{
+        transform: rotate(180deg);
+        color: black;
+    }
+    to{
+        transform: rotate(0deg);
+        color: #747474;
+    }
+}

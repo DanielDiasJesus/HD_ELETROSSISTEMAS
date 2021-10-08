@@ -1,0 +1,187 @@
+.about{
+    padding: 0em 0em;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    border-top: 6em solid transparent;
+}
+.about__header{
+    max-width: 90%;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.about__header__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 1em;
+}
+.about__header__title h2{
+    margin: 0em;
+    padding: 0em;
+    
+    font-size: 6.6em;
+    
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    
+    color: #00b5e6;
+}
+.about__header p{
+    max-width: 70%;
+    
+    margin: .8em 0em;
+    padding: 0em 1em;
+    
+    font-family: 'Roboto';
+    font-size: 2em;
+    line-height: 1.5em;
+    text-align: center;
+
+    color: #00b5e6;
+}
+.about__content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.about__content__header{
+    margin-bottom: 3em;
+    max-width: 90%;
+
+}
+.about__content__header h3{
+    padding:0;
+    margin: .6em 0em;
+    
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 1.8em;
+    line-height: 1.7em;
+    text-align: justify;
+    
+    color: #2c2c2c;
+}
+.about__content__header h3 .destaque{color: #008ECC;}
+.about__content__method{
+    max-width: 90%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about__content__method__card{
+    width: 100%;
+    height: 30rem;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;   
+}
+.about__content__method__card__header{
+    width: 100%;
+    min-height: 12em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about__content__method__card__header h3{
+    padding: 0;
+    margin: 0;
+
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 3em;
+    line-height: 1.5em;
+    text-align: center;
+    color: #f8f8f8;
+}
+.about__content__method__card__content{
+    width: 98%;
+    max-height: 33em;
+    margin: 2em 0em;
+}
+.about__content__method__card__content h4{
+    margin: 0em .5em;
+    padding: 0;
+    
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 2em;
+    line-height: 1.5em;
+    text-align: justify;
+
+    color: #f8f8f8;;
+}
+.about__content__facts{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.about__content__facts__header{
+    margin: 3em 0em;
+    max-width: 90%;
+}
+.about__content__facts__header h3{
+    padding:0;
+    margin:0;
+    
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 1.8em;
+    line-height: 1.6em;
+    text-align: justify;
+}
+.about__content__facts__main{
+    max-width: 90%;
+
+    margin: 1em 0em;
+    padding: 2em 0em;
+
+    display: flex;
+    
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    border-top: .3em solid #2c2c2c;
+}
+@media screen and (max-width: 890px){.about__content__method__card__content h4{font-size: 1.8em;}}
+@media screen and (max-width: 780px){
+    .about__content__method, .about__header{max-width: 100%;}
+    .about__content__method{flex-direction: column;}
+    .about__content__method__card{
+        height: 20rem;
+        justify-content: center;
+    }
+    
+    .about__header__title, .about__header__title h2{width: 100%;}
+    .about__header{max-width: 100%;}
+    .about__header p{max-width: 90%;}
+    .about__content__header h3{
+        font-size: 1.5em;
+        margin: 1em 0em;
+    }
+    .about__header p{font-size: 1.62em;}
+}
+@media screen and (max-width: 680px){
+    .about__header p{text-align: justify;}
+    .about__content__method__card__header{
+        min-height: auto;
+        padding: 1em 0em;
+    }
+    .about__content__facts__header h3{font-size: 1.62em;}
+    .about__content__facts__main{
+        flex-direction: column;
+        max-width: 100%;
+        width: 100%;
+    }
+}

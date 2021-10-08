@@ -1,0 +1,48 @@
+.fact{
+    width: 25%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 1em 0em;
+}
+
+.fact__icon{
+    max-width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fact__icon img{width: 100%;}
+.fact__title h2{
+    padding:0;
+    margin:0;
+
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 4em;
+
+    text-align: center;
+}
+.fact__subtitle{max-width: 100%;}
+.fact__subtitle h3{
+    margin: 0;
+    padding: 0;
+    
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 1.6em;
+    line-height: 1.6em;
+    text-align: center;
+}
+@media screen and (max-width: 680px){
+    .fact{
+        background: #00b5e6;
+        margin: .1em 0em;
+        width: 100%;
+        padding: 1.5em 0em;
+
+        color: #f8f8f8;
+    }
+    .fact__icon{max-width: 20%;}
+}
