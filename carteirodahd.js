@@ -21,9 +21,9 @@ carteiro.use('compile', hbs({
     viewPath: './templates/',
     extName: '.handlebars'
 }));
-console.log("[* Carteiro da HD] O carteiro já está pronto para a entrega!");
+console.log("[*][CARTEIRO] O carteiro já está pronto para a entrega!");
 function Contato(fromNome, fromEmail, fromNumero, fromAssunto, fromMensagem) {
-    console.log("[* Carteiro da HD] Alguém soliciou um envio de mensagem");
+    console.log("[*][CARTEIRO] Alguém soliciou um envio de mensagem");
     carteiro.sendMail({
         from: `HD Eletrossistemas - SUPORTE <suporte@hdeletrossistemas.com>`,
         to: `contato@hdeletrossistemas.com`,
@@ -42,13 +42,13 @@ function Contato(fromNome, fromEmail, fromNumero, fromAssunto, fromMensagem) {
         }]
     }).then(message => {
         // console.log(message);
-        console.log("[* Carteiro da HD] Mensagem enviada com sucesso!")
+        console.log("[*][CARTEIRO] Mensagem enviada com sucesso!")
     }).catch(err => {
-        console.log("[! Carteiro da HD] Erro ao enviar mensagem", err);
+        console.log("[!][CARTEIRO] Erro ao enviar mensagem", err);
     })
 }
 function NovoOrcamento(fromNome, fromEmail, fromNumero, fromEndereco, fromCEP, orcamento) {
-    console.log("[* Carteiro da HD] Alguém fez um orcamento!");
+    console.log("[*][CARTEIRO] Alguém fez um orcamento!");
     carteiro.sendMail({
         from: `HD Eletrossistemas - SUPORTE <suporte@hdeletrossistemas.com>`,
         to: `contato@hdeletrossistemas.com`,
@@ -70,14 +70,14 @@ function NovoOrcamento(fromNome, fromEmail, fromNumero, fromEndereco, fromCEP, o
         }]
     }).then(message => {
         // console.log(message);
-        console.log("[* Carteiro da HD] Mensagem enviada com sucesso!")
+        console.log("[*][CARTEIRO] Mensagem enviada com sucesso!")
     }).catch(err => {
-        console.log("[! Carteiro da HD] Erro ao enviar mensagem", err);
+        console.log("[!][CARTEIRO] Erro ao enviar mensagem", err);
     })
 }
 function Agradecimentos(fromNome, fromEmail, orcamento) {
-    console.log("[* Carteiro da HD] Alguém fez um orcamento!");
-    console.log("[* Carteiro da HD] Tentando enviar email...");
+    console.log("[*][CARTEIRO] Alguém fez um orcamento!");
+    console.log("[*][CARTEIRO] Tentando enviar email...");
 
     carteiro.sendMail({
         from: `HD Eletrossistemas - SUPORTE <suporte@hdeletrossistemas.com>`,
@@ -96,9 +96,9 @@ function Agradecimentos(fromNome, fromEmail, orcamento) {
         }]
 
     }).then(message => {
-        console.log("[* Carteiro da HD] Mensagem enviada com sucesso!")
+        console.log("[*][CARTEIRO] Mensagem enviada com sucesso!")
     }).catch(err => {
-        console.log("[! Carteiro da HD] Erro ao enviar mensagem", err);
+        console.log("[!][CARTEIRO] Erro ao enviar mensagem", err);
     })
 }
 

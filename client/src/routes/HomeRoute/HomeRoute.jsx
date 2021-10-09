@@ -9,7 +9,7 @@ export default function HomeRoute(){
     const [data, setdata] = useState([]);
     
     useEffect(()=>{
-        fetch("/api/testproxy")
+        fetch("/api/")
         .then(response =>{
             if(!response.ok){
                 throw Error("Error while fetch services");

@@ -9,14 +9,14 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-console.log("[* PoolFactory] Pool criada com sucesso!");
+console.log("[*][POOL] CRIADO COM SUCESSO");
 
-pool.on('release', () => console.log('[* PoolFactory] conexão retornada'));
+pool.on('release', () => console.log('[*][POOL] CONEXÃO RETORNADA'));
 
 process.on('SIGINT', () =>
     pool.end(err => {
         if (err) return console.log(err);
-        console.log('[! PoolFactory] Pool fechado');
+        console.log('[!][POOL] FECHADO');
         process.exit(0);
     })
 );
