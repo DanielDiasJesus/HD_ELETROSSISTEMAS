@@ -27,7 +27,7 @@ export default function Service(props){
                     {
                         props.rate !== undefined 
                         ?createStarField(props.rate)
-                        :console.log("nullStar :(")
+                        :""
                     }
                 </div>
             </div>

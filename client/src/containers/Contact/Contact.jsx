@@ -1,6 +1,9 @@
 import React, { useEffect, useState }from 'react';
 import './Contact.scss';
 import { mask, unMask } from 'remask';
+
+import { ContatoFetch } from '../../utils/safe_fetch';
+
 import{ 
         validMail,
         validName,
@@ -98,9 +101,15 @@ export default function Contact(){
         const mensagemOriginal = conteudo.replace(" ", "%20");
         const numeroOriginal = numero.replace(" ", "%20");
 
-        fetch(`/api/sendemail?email=${email}&nome=${nomeOriginal}&number=${numeroOriginal}&subject=${assuntoOriginal}&message=${mensagemOriginal}`)
-        .then(response => response.text())
-        .then((data) => setStatus(data));
+        ContatoFetch( 
+            email,
+            nomeOriginal,
+            numeroOriginal,
+            assuntoOriginal,
+            mensagemOriginal
+         ).then(data => {
+            setStatus(data)
+        })
     }
     return(
         <div className="contact" id="#contato">

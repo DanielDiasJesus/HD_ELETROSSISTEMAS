@@ -6,27 +6,21 @@ import Loading from '../../components/Loading';
 import './Services.scss';
 
 import servicos from '../../utils/res_images';
-import {handleNome} from '../../utils/verificasoes';
+
+import { handleNome } from '../../utils/verificasoes';
+import { ServicesFetch } from '../../utils/safe_fetch';
 
 export default function Services() {
-    const [useServices, setUseServices] = useState([]);
+    const [services, setServices] = useState([]);
     
     useEffect(()=>{
-        fetch("/api/servicos")
-        .then(response =>{
-            if(!response.ok){
-                throw Error("Error while fetch services");
-            }
-            // console.log(response);
-            return response.json();
+        ServicesFetch().then( response => {
+            setServices(response);
         })
-        .then(data => setUseServices(data))
-        .catch(err => {throw Error(err.message)});
     }, []);
 
     return (
         <div className="services" id="#servicos">
-            {/* <img src={imageTest} className="services__img__test" /> */}
             <div className="services__info">
                 <div className="services__info__title">
                     <div className = "services__info__title__line"></div>
@@ -43,10 +37,10 @@ export default function Services() {
                 </div>
             </div>
             {
-                useServices.length > 0 ?
+                services.length > 0 ?
                 <div className="services__carroussel">
                 {
-                    useServices.map((obj, index) => {
+                    services.map((obj, index) => {
                         const nome = handleNome(obj.NOME);
                         
                         // console.log(nome);
@@ -61,7 +55,7 @@ export default function Services() {
                     })
                 }
                     <Service
-                        key={useServices.length + 1}
+                        key={services.length + 1}
                         icon_code={servicos["orcamento_personalizado"].icon}
                         service={"ORÇAMENTO PERSONALIZADO"}
                         description={"Não encontrou o serviço que procurava? Deseja fazer um orçamento mais completo? Aqui você pode escolher os qualquer serviços e os trabalhos que oferecemos e que deseja colocar no orçamento."}

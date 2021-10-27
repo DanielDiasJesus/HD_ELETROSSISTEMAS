@@ -1,4 +1,4 @@
-import React, { useEffect, useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import { HashLink as Link } from 'react-router-hash-link';
 
 import './DesktopMenu.scss';
@@ -6,18 +6,17 @@ import './DesktopMenu.scss';
 export default function DesktopMenu(props) {
     const [useScrollTop, setScrollTop] = useState(0);
     
-    function controlMenu(){
+    const controlMenu = () =>{
         return useScrollTop >  80 ? {
             height : "3.5em"
         }: null;
     }
 
-    function controlLogo(){
+    const controlLogo = () =>{
         return useScrollTop >  80 ? {
             transform : "scale(.7)"
         }: null;
     }
-    
     useEffect(()=>{
         const onScroll = event => {
             setScrollTop(event.target.documentElement.scrollTop);
@@ -25,9 +24,9 @@ export default function DesktopMenu(props) {
           window.addEventListener("scroll", onScroll);
           return () => window.removeEventListener("scroll", onScroll);
         }, [useScrollTop]);
-    
+
     return (
-        <div className="topbar__desktop" style={controlMenu(612)}>
+        <div className="topbar__desktop" style={controlMenu()}>
             <div className="topbar__desktop__menu">
                 {/* <ul>    
                     <li>
@@ -89,7 +88,7 @@ export default function DesktopMenu(props) {
                 </div>
                 <div className="topbar__desktop__menu__item"  style={controlLogo()}>
                     {/* <a href="#">SOBRE A HD</a> */}
-                    <Link to="/#introduction"><img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img></Link>
+                    <Link to="/#"><img src={require('../../assets/img/HDE_LOGO_BLUE.svg')} alt="logo2"></img></Link>
                 </div>
                 <div className="topbar__desktop__menu__item">
                     <Link to="/#contato">CONTATO</Link>

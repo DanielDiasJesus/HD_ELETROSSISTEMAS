@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import './Introduction.scss';
 
 export default function Introduction() {
-    const executeScroll = (coord) => window.scrollTo(0, 2110);
-    
     return (
         <div className="introduction" id="#introduction">
             <div className="introduction__budget">
@@ -18,7 +16,9 @@ export default function Introduction() {
                     <Link to="/orcamento" className="link">
                         <button className="fazer__orcamento">FAZER ORÇAMENTO</button>        
                     </Link>
-                        <button className="saiba__mais" onClick={event => executeScroll()}>SAIBA MAIS</button>
+                    <Link to="#sobre" className="link">
+                        <button className="saiba__mais" >SAIBA MAIS</button>
+                    </Link>
                 </div>
             </div>
             <div className="introduction__pretty">

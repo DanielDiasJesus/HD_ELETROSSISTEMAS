@@ -6,6 +6,13 @@ import Loading from '../../components/Loading';
 
 import NotFoundRoute from '../NotFoundRoute';
 
+import { 
+    ServicoFetch, 
+    SubServicosFetch,
+    FazerOrcamento,
+    EnviarMensagem
+} from '../../utils/safe_fetch';
+
 import servicos from '../../utils/res_images';
 
 import{ 
@@ -45,46 +52,28 @@ export default function ServiceRoute(){
         const param = pathname.split("/")[2];
         
         if(param !== 'orcamento-personalizado'){
-
-            fetch(`/api/servico?servico=${param.replace("-", " ")}`)
-            .then((res) => {
-                if(res.status === 404){
-                    setNotFound(true);
-                    console.log("ERRO " + res.status);
-                    console.log("SERVICO " + param + " NÃO ENCONTRADO NA API");
-                    throw Error(res.statusMessage);
+            ServicoFetch(param).then(data => {
+                if(data[0]){
+                    setServico(data[0]);
+                    setNotFound(false);
                 }
-                setNotFound(false);
-                
-                return res.json();
+                else
+                    setNotFound(true);
             })
-            .then((data) => setServico(data[0]))
-            .catch(err => console.log(err));
         }
         else 
             setPersonalizado(true);
-        
-    }, [haveChange]);
-    
-    //fetch subservicos
-    useEffect(()=>{
-        const { pathname } = window.location;
-        const param = pathname.split("/")[2];
-        
-            fetch(`/api/subservico-servico?servico=${param.replace("-", " ")}`)
-            .then((res) => {
-                if(res.status === 404){
-                    setNotFound(true);
-                    console.log("ERRO " + res.status);
-                    console.log("SUBSERVICOS DE " + param + " NÃO ENCONTRADO NA API");
-                    throw Error(res.json());
-                }
-                setNotFound(false);
-                return res.json();
-            })
-            .then((data) => setSubServicos(data[0]))
-            .catch(err => console.log("ERRO: " + err));
 
+        SubServicosFetch(param).then(data => {
+            if(data){
+                setSubServicos(data);
+                setNotFound(false);
+            }
+            else
+                setNotFound(true);
+
+        })
+        
     }, [haveChange]);
     
     const handleName = event => setNome(event.target.value);
@@ -236,24 +225,30 @@ export default function ServiceRoute(){
             }
         })
         const paramOrcamentoEssencial = JSON.stringify(orcamentoEssencial);
-        
-        fetch(`/api/fazerOrcamento?nome=${paramNome}&email=${email}&numero=${paramNumero}&endereco=${paramEndereco}&cep=${cep}&orcamento=${paramOrcamentoEssencial}`)
-        .then((response) => response.text())
-        .then((data) => {
+        FazerOrcamento( paramNome, 
+                        email, 
+                        paramNumero, 
+                        paramEndereco, 
+                        cep, 
+                        paramOrcamentoEssencial )
+        .then(data => {
             if(data === "DONE"){
                 setStatus("Orçamento aprovado! Enviando mensagens...");
-                setTimeout(()=>{
-                    fetch(`/api/mensagemorcamento?nome=${paramNome}&email=${email}&numero=${paramNumero}&endereco=${paramEndereco}&cep=${cep}`)
-                    .then(response => response.text())
-                    .then((data) => {
+                setTimeout(() =>{
+                    EnviarMensagem( paramNome,
+                        email,
+                        paramNumero,
+                        paramEndereco,
+                        cep )
+                    .then(data => {
                         setStatus(data)
                         setTimeout(()=>{
                             setSuccesBudget(true)
                         }, 1000)
-                    });
-                }, 1000);
+                    })
+                }, 1000)
             }
-        });
+        })
     }
     useEffect(()=> window.scrollTo(0,0), [haveChange]);
     
@@ -309,7 +304,7 @@ export default function ServiceRoute(){
                             <div className="service__budget__header">
                                 <div className="service__budget__header__bg">
                                     {
-					personalizado ?
+					                    personalizado ?
                                             <img src={servicos["orcamento_personalizado"].banner} alt="bgImage"/>
                                         :serviceLength(servico) > 0 ?
                                             <img src={servicos[handleNome(servico.NOME)].banner} alt="bgImage"/>
@@ -345,13 +340,13 @@ export default function ServiceRoute(){
                                                 } 
                                             </h4>
                                             <h4>
-                                                Nós enviamos uma mensagem para o seu endereço de email com a relação do seu pedido
+                                                Nós enviamos uma mensagem para o seu endereço de e-mail com a relação do seu pedido
                                                 e assim que possível, nós retornaremos o contato com você.
                                                 Abraços da HD!
                                             </h4>
                                             <h4>
                                                 Lembrando que o periodo de atualização para fazer um novo orçamento é de um dia.
-                                                Se fizer algum novo orçamento dentro deste período, ele será somado ao anterior
+                                                Se fizer algum novo orçamento dentro deste período, ele será somado ao anterior.
                                             </h4>
                                         </>
                                     }
@@ -497,7 +492,13 @@ export default function ServiceRoute(){
                                             }
                                             </div>
                                             <div className="service__budget__makeit__final">
-                                                <div className="service__budget__makeit__final__error">{error}</div>
+                                                <div className="service__budget__makeit__final__error">
+                                                    {
+                                                        status === "" ?
+                                                        error : 
+                                                        status
+                                                    }
+                                                </div>
                                                     {
                                                         status === "" ?
                                                             <button onClick={handleEnd}>Finalizar</button>

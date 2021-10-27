@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 const ScrollHandler = ({ location }) => {
   useEffect(() => {
-    const element = document.getElementById(location.hash);
+    const element = document.getElementById(location.hash ? location.hash : "#");
 
     setTimeout(() => {
       window.scrollTo({

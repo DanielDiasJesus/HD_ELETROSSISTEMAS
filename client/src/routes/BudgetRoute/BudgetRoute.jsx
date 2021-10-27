@@ -7,19 +7,21 @@ import './BudgetRoute.scss';
 import servicos from '../../utils/res_images';
 import {handleNome} from '../../utils/verificasoes';
 
+import { ServicesFetch } from '../../utils/safe_fetch';
+
 export default function BudgetRoute(){
-    const [useServices, setUseServices] = useState([]);
+    const [services, setServices] = useState([]);
     const haveChange = false;
     useEffect(()=>{
-        fetch("/api/servicos")
-        .then(response => response.json())
-        .then(data =>  setUseServices(data))
+        ServicesFetch().then( response => {
+            setServices(response);
+        })
     }, [haveChange]);
-    useEffect(()=> window.scrollTo(0, 0), [haveChange]);
+    
     return(
         <div className="orcamento">
             {
-                useServices.length > 0 ?
+                services.length > 0 ?
                 <>
                     <div className="orcamento__header">
                     <h3>Fazer um orçamento, nunca foi tão fácil!</h3>
@@ -28,7 +30,7 @@ export default function BudgetRoute(){
                     </div>
                     <div className="orcamento__servicos">
                         {
-                            useServices.map((obj, index) => {
+                            services.map((obj, index) => {
                                 const nome = handleNome(obj.NOME);
                                 
                                 return (<Link 
@@ -38,7 +40,7 @@ export default function BudgetRoute(){
                                             .replace(/[\u0300-\u036f]/g, "")
                                             .replace(" ", "-")
                                             .toLowerCase()}`}
-                                    key={obj.id}
+                                    key={obj.ID}
                                     >
                                         <Service
                                             icon_code={servicos[nome].icon} 
@@ -53,7 +55,7 @@ export default function BudgetRoute(){
                         }
                             <Link className="link" to="/orcamento/orcamento-personalizado">
                                 <Service
-                                    key={useServices.length + 1}
+                                    key={services.length + 1}
                                     icon_code={servicos["orcamento_personalizado"].icon}
                                     service={"ORÇAMENTO PERSONALIZADO"}
                                     withlink={false}

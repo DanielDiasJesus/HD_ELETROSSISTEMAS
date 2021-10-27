@@ -47,10 +47,16 @@
 }
 .introuction__budget__call{
     width: 100%;
-    margin: 4em 0em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
+    margin: 4em 0em;
     
     z-index: 2;
 }
@@ -67,7 +73,8 @@
     border-radius: 10pt;
 }
 .link{
-    margin-right: 2em;
+    width: 100%;
+    margin: 0em 1em;
     outline: none;
 }
 .fazer__orcamento{
@@ -76,7 +83,7 @@
     color: #00b5e6;
 }
 .saiba__mais{
-    width: 25%;
+    width: 100%;
     height: auto;
     
     background: transparent;
@@ -146,11 +153,9 @@
         justify-content: center; 
         align-items: center;
     }
-    .link, .saiba__mais{
+    
+    .link, .fazer__orcamento, .saiba__mais{
         margin: .5em 0em;
-        width: 90%;
-    }
-    .saiba__mais{
-        
+        width: 100%;
     }
 }
