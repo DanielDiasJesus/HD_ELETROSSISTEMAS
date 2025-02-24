@@ -5,7 +5,7 @@ export default function Maintenance(){
     return(
         <div className="maintenance">
             <div className="maintenance__header">
-                <h1>HDE</h1>
+                <h1>CHD</h1>
             </div>
                 <h3>... em manutenção ...</h3>
             <div className="maintenance__message">
