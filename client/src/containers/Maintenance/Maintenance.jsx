@@ -10,7 +10,7 @@ export default function Maintenance(){
                 <h3>... em manutenção ...</h3>
             <div className="maintenance__message">
                 <p>Nós da HD estamos trabalhando atualmente no nosso site.
-                   Estamos fazendo de tudo para te proporcionar a melhro experiência.
+                   Estamos fazendo de tudo para proporcionar a melhor experiência aos nossos colaboradores.
                    Fique despreocupado pois, em breve voltaremos :)
                 </p>
             </div>
